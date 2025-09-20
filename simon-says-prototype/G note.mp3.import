@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://s8j6b3ud0b08"
+path="res://.godot/imported/G note.mp3-a39fa73ea45e1210684a959c452cb272.mp3str"
+
+[deps]
+
+source_file="res://G note.mp3"
+dest_files=["res://.godot/imported/G note.mp3-a39fa73ea45e1210684a959c452cb272.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

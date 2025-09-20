@@ -1,0 +1,232 @@
+[gd_scene load_steps=39 format=3 uid="uid://cxgkxkqfgpj8e"]
+
+[ext_resource type="Script" uid="uid://dbjt2vt1v05fs" path="res://mainscene.gd" id="1_wtdyi"]
+[ext_resource type="AudioStream" uid="uid://s8j6b3ud0b08" path="res://G note.mp3" id="2_sbvtr"]
+[ext_resource type="AudioStream" uid="uid://bcdiyrglymke8" path="res://A note.mp3" id="3_fl65m"]
+[ext_resource type="AudioStream" uid="uid://1up4h6fr56vw" path="res://B note.mp3" id="4_76yo1"]
+[ext_resource type="AudioStream" uid="uid://dkg5h40n5gjl4" path="res://C note.mp3" id="5_8bn17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fl65m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtdyi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtb1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn5c8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5lfti"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sbvtr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76yo1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bn17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ftms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lhry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ibrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ofsq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4p23x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtreq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8b8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc52x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dgxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1mr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gyya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ek7m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sl4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sm3u2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xf0pi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2c5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_312mw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvxvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28t8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7qwr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbpqh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ewkxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5au1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkysf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtdyi"]
+bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wtdyi")
+
+[node name="RedButton" type="Button" parent="."]
+offset_left = 333.0
+offset_top = 221.0
+offset_right = 430.0
+offset_bottom = 400.0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fl65m")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wtdyi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xtb1e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dn5c8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5lfti")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sbvtr")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RedButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.17584, 0.00651154, 0, 1)
+
+[node name="GreenButton" type="Button" parent="."]
+offset_left = 468.0
+offset_top = 95.0
+offset_right = 715.0
+offset_bottom = 178.0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_76yo1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8bn17")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1ftms")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0lhry")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0ibrq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4ofsq")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="GreenButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.04311, 0.292175, 4.81308e-08, 1)
+
+[node name="BlueButton" type="Button" parent="."]
+offset_left = 730.0
+offset_top = 228.0
+offset_right = 829.0
+offset_bottom = 403.0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4p23x")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_jtreq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_j8b8d")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lc52x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dgxd")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_x1mr1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8gyya")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3ek7m")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5sl4u")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="BlueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0.0975703, 0.274262, 1)
+
+[node name="YellowButton" type="Button" parent="."]
+offset_left = 466.0
+offset_top = 447.0
+offset_right = 713.0
+offset_bottom = 530.0
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sm3u2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xf0pi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_w2c5i")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_312mw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qvxvv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_28t8q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_r7qwr")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_jbpqh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ewkxy")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_5au1j")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xkysf")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="YellowButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.289837, 0.275972, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 255.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wtdyi")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Points: 0"
+
+[node name="GameOverText" type="Label" parent="."]
+visible = false
+offset_left = 278.0
+offset_top = 280.0
+offset_right = 912.0
+offset_bottom = 393.0
+theme_override_font_sizes/font_size = 40
+text = "Game Over! Game restarting in 3"
+
+[node name="RedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sbvtr")
+
+[node name="GreenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fl65m")
+
+[node name="BlueSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_76yo1")
+
+[node name="YellowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8bn17")
+
+[connection signal="pressed" from="RedButton" to="." method="_on_red_button_pressed"]
+[connection signal="pressed" from="GreenButton" to="." method="_on_green_button_pressed"]
+[connection signal="pressed" from="BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="YellowButton" to="." method="_on_yellow_button_pressed"]
