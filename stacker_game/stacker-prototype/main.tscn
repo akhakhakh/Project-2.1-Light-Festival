@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://2cef4l75q32f"]
+
+[ext_resource type="Texture2D" uid="uid://bpr5lu21h54nt" path="res://assets/black-bg.png" id="1_ig7tw"]
+
+[node name="Node" type="Node"]
+
+[node name="BlackBg" type="Sprite2D" parent="."]
+position = Vector2(578.99994, 325.49994)
+scale = Vector2(0.5989584, 0.6046296)
+texture = ExtResource("1_ig7tw")
