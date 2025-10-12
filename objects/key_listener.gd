@@ -25,7 +25,6 @@ const OK_SCORE := 20
 # Player’s total score for this lane
 var total_score: int = 0
 
-
 # Called when the node enters the scene tree
 func _ready():
 	# Set up the glow overlay to match the correct frame
@@ -90,18 +89,22 @@ func HandleKeyPress():
 		points = PERFECT_SCORE
 		text = "PERFECT"
 		Signals.IncrementCombo.emit()
+		Signals.IncrementScore.emit(3) 
 	elif min_distance < GREAT_THRESHOLD:
 		points = GREAT_SCORE
 		text = "GREAT"
 		Signals.IncrementCombo.emit()
+		Signals.IncrementScore.emit(3)
 	elif min_distance < GOOD_THRESHOLD:
 		points = GOOD_SCORE
 		text = "GOOD"
 		Signals.IncrementCombo.emit()
+		Signals.IncrementScore.emit(2) 
 	elif min_distance < OK_THRESHOLD:
 		points = OK_SCORE
 		text = "OK"
 		Signals.IncrementCombo.emit()
+		Signals.IncrementScore.emit(1) 
 	else:
 		# Too far from the hit zone — count as a miss
 		Signals.ResetCombo.emit()
