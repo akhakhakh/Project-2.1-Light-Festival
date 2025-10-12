@@ -23,6 +23,10 @@ Signals="*res://objects/signals.gd"
 
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="rhythm-project"
+
 [input]
 
 button_Q={
