@@ -4,11 +4,12 @@ extends Node2D
 var note_scene = preload("res://middle-arrows/assets/scenes/Note.tscn")
 
 #Reference to nodes
-@onready var notes_container = $"NotesContainer (Node2D)"
-@onready var hit_zone = $"HitZone (Area2D)"
-@onready var score_label = $"UI (CanvasLayer)/ScoreLabel"
-@onready var combo_label = $"UI (CanvasLayer)/ComboLabel"
-@onready var feedback_label = $"UI (CanvasLayer)/FeedbackLabel"
+@onready var notes_container = $NotesContainer 
+@onready var hit_zone = $HitZone 
+@onready var score_label = $UI/ScoreLabel
+@onready var combo_label = $UI/ComboLabel
+@onready var feedback_label = $UI/FeedbackLabel
+@onready var music = $Music
 
 #Game variable
 var score = 0
@@ -18,11 +19,11 @@ var game_started = false
 #Timing variables
 var bpm = 120
 var beat_duration = 60.0 / bpm   #time between beats in seconds
-var note_speed = 40  #pixels per second
-var spawn_distance = 600  #distance aboce hit zone
+var note_speed = 300.0  #pixels per second
+var spawn_distance = 800.0  #distance aboce hit zone
 
-#Easy Mode beat pattern (in beats)
-var beat_pattern = [1,2,3,4.5,6,7,8,9.5,11,12,13,14.5,15,16,17,18,19.5]
+#Medium Mode beat pattern (in beats)
+var beat_pattern = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
 var current_beat_index = 0
 var game_time = 0.0
 
@@ -53,7 +54,7 @@ func _process(delta):
 	spawn_notes()
 	
 	#check for input
-	if Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_SPACE):
+	if Input.is_action_just_pressed("hit_middle_note"):
 		check_hit()
 
 func spawn_notes():
@@ -84,7 +85,7 @@ func update_ui():
 	combo_label.text = "Combo " + str(combo) + "x" 
 
 func hit_note(feedback, points, note):
-	score += points * (1 + combo + 0.1) #combo multiplier
+	score += points * (1 + combo * 0.1) #combo multiplier
 	combo += 1
 	show_feedback(feedback)
 	note.queue_free()
@@ -110,7 +111,7 @@ func show_feedback(text):
 		feedback_label.modulate = Color.RED
 	
 	#create a timer to clear feedback
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(4.0).timeout # stays 3 sec long
 	feedback_label.text = ""
 
 func check_hit():
@@ -125,18 +126,18 @@ func check_hit():
 			closest_distance = distance
 			closest_note = note
 	
-	if closest_note == null:
+	if closest_note == null or closest_distance > 150:
 		miss()
 		return
 	
 	#check accuracy based on distance
-	if closest_distance < 30:
+	if closest_distance < 40:
 		hit_note("Perfect!", 100, closest_note)
-	elif closest_distance < 60:
+	elif closest_distance < 70:
 		hit_note("Great!", 75, closest_note)
-	elif closest_distance < 90:
+	elif closest_distance < 100:
 		hit_note("Good", 50, closest_note)
-	elif closest_distance < 120:
+	elif closest_distance < 150:
 		hit_note("OK", 25, closest_note)
 	else:
 		miss()
