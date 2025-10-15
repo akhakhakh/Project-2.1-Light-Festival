@@ -1,48 +1,118 @@
 extends Node2D
 
-@export var move_interval := 0.2    # Seconds between moves
-@export var grid_width := 7         # Number of columns
-@export var grid_height := 11       # Number of rows
+@export var base_move_interval := 0.35   # Starting speed (faster than before)
+@export var grid_width := 7              # Number of columns
+@export var grid_height := 11            # Number of rows
+@export var starting_blocks := 3         # Initial block count
+@export var speed_increase := 0.88       # Multiplier per row (lower = faster progression)
+@export var first_block_loss_row := 5    # Row where player loses first block
+@export var second_block_loss_row := 7   # Row where player loses second block
 
-var locked_row_icons := []          # Array to store icons for locked rows
-var placed_blocks := []             # Array of arrays, each holds indices (columns) for placed blocks per row
+var locked_row_icons := []          
 var markers := []
 var icons := []
-var cur_row := grid_height - 1
-var cur_left := 0                   # Leftmost marker index for the row
-var cur_blocks := 3                 # Number of blocks left in row
-var cur_positions = []              
-var dir := 1                        # 1 = right, -1 = left
+var cur_row := 10                        # Start at bottom (row 10)
+var cur_left := 0                   
+var cur_blocks := 3                 
+var dir := 1                        
 var moved := 0.0
+var move_interval := base_move_interval
 var is_row_active := true
 var stack_history := []
 var game_over := false
+var max_blocks_available := 3            # Tracks maximum blocks available based on difficulty
 
 func _ready():
-	# Collect markers sorted row-major
+	# Collect all marker positions
+	var temp_markers = []
 	for child in get_children():
 		if child is Marker2D:
-			markers.append(child)
-	markers.sort_custom(func(a, b): return a.position.y < b.position.y or (a.position.y == b.position.y and a.position.x < b.position.x))
+			temp_markers.append(child)
+	
+	# Sort markers: top to bottom (small Y to large Y), then left to right (small X to large X)
+	temp_markers.sort_custom(func(a, b): 
+		if abs(a.position.y - b.position.y) > 1:  # Different rows
+			return a.position.y < b.position.y
+		else:  # Same row
+			return a.position.x < b.position.x
+	)
+	
+	# Take only the first grid_width * grid_height markers (in case of duplicates)
+	for i in range(min(grid_width * grid_height, temp_markers.size())):
+		markers.append(temp_markers[i])
+	
+	print("Total markers loaded: ", markers.size())
+	
+	# Get the three icon sprites
 	icons = [$Icon, $Icon2, $Icon3]
 	reset_row()
 
-func _compare_marker_pos(a, b):
-	# Sort markers by (Y, X)
-	if a.position.y == b.position.y:
-		return a.position.x < b.position.x
-	return a.position.y < b.position.y
+func get_max_blocks_for_row(row: int) -> int:
+	"""Calculate maximum blocks available based on current row"""
+	# Convert row number to "height from bottom" (10 = 0, 9 = 1, etc.)
+	var rows_from_bottom = 10 - row
+	
+	# Start with initial blocks
+	var max_blocks = starting_blocks
+	
+	# Check if we've passed the first block loss threshold
+	if rows_from_bottom >= (10 - first_block_loss_row):
+		max_blocks -= 1
+	
+	# Check if we've passed the second block loss threshold
+	if rows_from_bottom >= (10 - second_block_loss_row):
+		max_blocks -= 1
+	
+	# Ensure we always have at least 1 block
+	return max(1, max_blocks)
 
 func reset_row():
-	if cur_row == grid_height - 1 or stack_history.size() == 0:
-		cur_blocks = icons.size()
-		cur_left = 0
+	# Calculate maximum blocks available for this row
+	max_blocks_available = get_max_blocks_for_row(cur_row)
+	
+	# Determine block count for this row
+	if cur_row == 10:
+		# First row (bottom): start with starting_blocks
+		cur_blocks = starting_blocks
+	elif stack_history.size() > 0:
+		# Use the width from previous row, but cap it at max available
+		var previous_count = stack_history[-1]["count"]
+		cur_blocks = min(previous_count, max_blocks_available)
 	else:
-		cur_blocks = stack_history[-1]["count"]
-		cur_left = 0 # Always start the moving row from the leftmost column
-
+		cur_blocks = starting_blocks
+	
+	# Start from the left edge
+	cur_left = 0
+	dir = 1  # Start moving right
 	is_row_active = true
-	moved = 0
+	moved = 0.0
+	
+	# NEW SPEED CALCULATION - More aggressive exponential decrease
+	# Calculate how many rows completed (0 at bottom, 10 at top)
+	var rows_completed = 10 - cur_row
+	
+	# Use exponential formula: base_interval * (speed_increase ^ rows_completed)
+	# This makes each row noticeably faster than the previous
+	move_interval = base_move_interval * pow(speed_increase, rows_completed)
+	
+	# Apply ADDITIONAL multipliers at difficulty thresholds for dramatic speed boosts
+	if cur_row <= second_block_loss_row:
+		# At row 7 and above (counting from bottom), multiply speed significantly
+		move_interval *= 0.65
+	elif cur_row <= first_block_loss_row:
+		# At row 5 and above, apply moderate speed boost
+		move_interval *= 0.80
+	
+	# Ensure minimum speed cap for top rows (prevents going too slow)
+	if cur_row <= 2:
+		move_interval = min(move_interval, 0.08)  # Cap at very fast speed for top rows
+	
+	print("Row ", cur_row, " - Blocks: ", cur_blocks, " - Max Available: ", max_blocks_available, " - Speed: ", move_interval)
+	
+	update_icon_positions()
+
+func update_icon_positions():
+	# Show and position the active blocks
 	for k in range(icons.size()):
 		if k < cur_blocks:
 			icons[k].show()
@@ -51,32 +121,36 @@ func reset_row():
 			icons[k].hide()
 
 func set_icon_pos_by_positions(i, row, col):
+	# Calculate marker index: row * width + column
 	var idx = row * grid_width + col
-	icons[i].global_position = markers[idx].global_position
+	if idx >= 0 and idx < markers.size():
+		icons[i].global_position = markers[idx].global_position
+	else:
+		print("Warning: Invalid marker index ", idx)
 
 func _process(delta):
 	if game_over or !is_row_active:
 		return
+	
 	moved += delta
-	if moved > move_interval:
-		moved = 0
+	if moved >= move_interval:
+		moved = 0.0
 		move_row()
 
 func move_row():
-	# Move left or right for the current block row
-	if dir == 1 and cur_left + cur_blocks < grid_width:
-		cur_left += 1
-	elif dir == -1 and cur_left > 0:
-		cur_left -= 1
-	if cur_left == 0:
+	# Move in current direction
+	var next_left = cur_left + dir
+	
+	# Check boundaries and reverse if needed
+	if next_left < 0:
+		next_left = 0
 		dir = 1
-	elif cur_left + cur_blocks == grid_width:
+	elif next_left > grid_width - cur_blocks:
+		next_left = grid_width - cur_blocks
 		dir = -1
-	for k in range(cur_blocks):
-		icons[k].show()
-		set_icon_pos_by_positions(k, cur_row, cur_left + k)
-	for k in range(cur_blocks, icons.size()):
-		icons[k].hide()
+	
+	cur_left = next_left
+	update_icon_positions()
 
 func _unhandled_input(event):
 	if is_row_active and event.is_action_pressed("ui_accept") and not game_over:
@@ -84,41 +158,85 @@ func _unhandled_input(event):
 
 func stack_row():
 	is_row_active = false
-
-	# List indices for blocks in the current row
-	var block_indices = []
+	print("Stacking at row ", cur_row, " position ", cur_left)
+	
+	# Get current block positions
+	var current_positions = []
 	for j in range(cur_blocks):
-		block_indices.append(cur_left + j)
-
-	# Compare with previous survivors, only keep individually aligned blocks
+		current_positions.append(cur_left + j)
+	
+	var surviving_positions = []
+	
+	# ARCADE STACKER LOGIC: Calculate overlap with previous row
 	if stack_history.size() > 0:
 		var prev_positions = stack_history[-1]["positions"]
-		var survivors = []
-		for idx in block_indices:
-			if idx in prev_positions:
-				survivors.append(idx)
-		if survivors.size() == 0:
+		print("Previous positions: ", prev_positions)
+		print("Current positions: ", current_positions)
+		
+		# Find overlapping blocks (survivors)
+		for pos in current_positions:
+			if pos in prev_positions:
+				surviving_positions.append(pos)
+		
+		print("Surviving positions: ", surviving_positions)
+		
+		# GAME OVER: No overlap at all
+		if surviving_positions.size() == 0:
+			print("No survivors - Game Over!")
 			return end_game(false)
-		block_indices = survivors
-
-	# Visually lock icons for stacked row
-	for j in range(block_indices.size()):
-		var icon_instances = icons[j % icons.size()].duplicate()
-		icon_instances.global_position = markers[cur_row * grid_width + block_indices[j]].global_position
-		add_child(icon_instances)
-		locked_row_icons.append(icon_instances)
+		
+		# DIFFICULTY: Cap surviving blocks at max available for next row
+		# This enforces block loss at specific rows
+		if surviving_positions.size() > max_blocks_available:
+			# Keep only the max allowed blocks (from the left side)
+			surviving_positions = surviving_positions.slice(0, max_blocks_available)
+			print("Blocks reduced to ", max_blocks_available, " due to difficulty cap")
+	else:
+		# First row: all blocks survive
+		surviving_positions = current_positions
+		print("First row - all blocks survive: ", surviving_positions)
+	
+	# Lock the surviving blocks visually
+	for pos in surviving_positions:
+		var icon_instance = icons[0].duplicate()
+		var marker_idx = cur_row * grid_width + pos
+		if marker_idx >= 0 and marker_idx < markers.size():
+			icon_instance.global_position = markers[marker_idx].global_position
+			icon_instance.show()
+			add_child(icon_instance)
+			locked_row_icons.append(icon_instance)
+	
+	# Hide moving icons
 	for icon in icons:
 		icon.hide()
-
-# Save only survivor columns for next round
-	stack_history.append({"positions": block_indices, "count": cur_blocks})
+	
+	# Save this row to history
+	stack_history.append({
+		"positions": surviving_positions, 
+		"count": surviving_positions.size()
+	})
+	
+	# Check win condition (reached the top = row 0)
 	if cur_row == 0:
+		print("Reached top - You Win!")
 		return end_game(true)
+	
+	# Move to next row UP (decrease row number from 10 -> 0)
 	cur_row -= 1
+	print("Moving to row ", cur_row)
+	
+	# Safety check
+	if cur_row < 0:
+		return end_game(true)
+	
 	reset_row()
 
 func end_game(win):
 	game_over = true
 	for icon in icons:
 		icon.hide()
-	print("You win!" if win else "Game Over!")
+	
+	if win:
+		print("YOU WIN! :D")
+	else:
+		print("GAME OVER :(")
