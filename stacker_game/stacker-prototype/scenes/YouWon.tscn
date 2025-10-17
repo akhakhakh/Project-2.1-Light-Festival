@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4fogotfu48ym"]
+[gd_scene load_steps=3 format=3 uid="uid://4fogotfu48ym"]
 
 [ext_resource type="Texture2D" uid="uid://cchv04s41e6jb" path="res://assets/you-won.png" id="1_c0876"]
 [ext_resource type="Script" uid="uid://cwb2fqaauf0i" path="res://scripts/YouWon.gd" id="2_dg83p"]
-[ext_resource type="Script" uid="uid://chq2d1pxegp7d" path="res://scripts/YouWonButton.gd" id="3_cqb2y"]
 
 [node name="YouWonScene" type="Node2D"]
 position = Vector2(-3, -31)
@@ -26,4 +25,3 @@ offset_left = 537.0
 offset_top = 427.0
 offset_right = 627.0
 offset_bottom = 511.0
-script = ExtResource("3_cqb2y")
