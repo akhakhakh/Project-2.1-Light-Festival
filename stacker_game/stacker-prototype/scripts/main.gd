@@ -21,6 +21,8 @@ var is_row_active := true
 var stack_history := []
 var game_over := false
 var max_blocks_available := 3            # Tracks maximum blocks available based on difficulty
+var score: int = 0
+
 
 func _ready():
 	# Collect all marker positions
@@ -46,7 +48,7 @@ func _ready():
 	# Get the three icon sprites
 	icons = [$Icon, $Icon2, $Icon3]
 	reset_row()
-
+	
 func get_max_blocks_for_row(row: int) -> int:
 	"""Calculate maximum blocks available based on current row"""
 	# Convert row number to "height from bottom" (10 = 0, 9 = 1, etc.)
@@ -180,10 +182,22 @@ func stack_row():
 		
 		print("Surviving positions: ", surviving_positions)
 		
+		# --- Scoring logic ---
+		if surviving_positions.size() == cur_blocks:
+			# Perfect placement
+			score += 1000
+			print("Perfect placement! +1000 points")
+		else:
+			# Imperfect (some lost)
+			score += 500
+			print("Imperfect placement! +500 points")
+		# --- End scoring logic ---
+
 		# GAME OVER: No overlap at all
 		if surviving_positions.size() == 0:
 			print("No survivors - Game Over!")
-			return end_game(false)
+			end_game(false)
+			return
 		
 		# DIFFICULTY: Cap surviving blocks at max available for next row
 		# This enforces block loss at specific rows
@@ -219,7 +233,8 @@ func stack_row():
 	# Check win condition (reached the top = row 0)
 	if cur_row == 0:
 		print("Reached top - You Win!")
-		return end_game(true)
+		end_game(true)
+		return 
 	
 	# Move to next row UP (decrease row number from 10 -> 0)
 	cur_row -= 1
@@ -227,16 +242,23 @@ func stack_row():
 	
 	# Safety check
 	if cur_row < 0:
-		return end_game(true)
+		end_game(true)
+		return
 	
 	reset_row()
 
-func end_game(win):
+func end_game(win: bool) -> void:
 	game_over = true
+
+	# Hide all active icons
 	for icon in icons:
 		icon.hide()
+
+	# Save the final score to the global singleton
+	Global.score = score
 	
-	if win:
-		print("YOU WIN! :D")
-	else:
-		print("GAME OVER :(")
+	# Choose the correct scene
+	var scene_path := "res://scenes/YouWon.tscn" if win else "res://scenes/GameOver.tscn"
+	 
+	# Replace the current scene safel
+	get_tree().change_scene_to_file(scene_path)
