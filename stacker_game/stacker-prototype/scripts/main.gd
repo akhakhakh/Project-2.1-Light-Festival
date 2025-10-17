@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var base_move_interval := 0.35   # Starting speed (faster than before)
+@export var base_move_interval := 0.25   # Faster starting speed (was 0.35)
 @export var grid_width := 7              # Number of columns
 @export var grid_height := 11            # Number of rows
 @export var starting_blocks := 3         # Initial block count
