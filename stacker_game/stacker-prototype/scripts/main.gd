@@ -22,6 +22,8 @@ var stack_history := []
 var game_over := false
 var max_blocks_available := 3            # Tracks maximum blocks available based on difficulty
 var score: int = 0
+var perfect_streak : int = 0
+var score_multiplier: float = 1.0
 
 
 func _ready():
@@ -183,14 +185,36 @@ func stack_row():
 		print("Surviving positions: ", surviving_positions)
 		
 		# --- Scoring logic ---
+		var lost_blocks = cur_blocks - surviving_positions.size()
+		
 		if surviving_positions.size() == cur_blocks:
 			# Perfect placement
-			score += 1000
-			print("Perfect placement! +1000 points")
+			perfect_streak += 1
+			
+			# If 5 or more perfect in a row, activate 1.5x multiplier
+			if perfect_streak >= 5:
+				score_multiplier = 1.5
+			else:
+				score_multiplier = 1.0
+			
+			var points = int(1000 * score_multiplier)
+			score += points
+			print("Perfect placement! +" + str(points) + " points (x" + str(score_multiplier) + " multiplier)")
+			
+		elif surviving_positions.size() > 0 :
+			# Imperfect (some lost, some survivied)
+			perfect_streak = 0 # reset stack
+			score_multiplier = 1.0
+			
+			var points = int((500 - lost_blocks * 250) * score_multiplier)
+			score += points
+			print("Imperfect placement! +" + str(points) + " points (-" + str(lost_blocks * 250) + " penalty)")
+		
 		else:
-			# Imperfect (some lost)
-			score += 500
-			print("Imperfect placement! +500 points")
+			# No overlap (game over handled later)
+			print("No surviviors - Game Over!")
+			end_game(false)
+			return
 		# --- End scoring logic ---
 
 		# GAME OVER: No overlap at all
