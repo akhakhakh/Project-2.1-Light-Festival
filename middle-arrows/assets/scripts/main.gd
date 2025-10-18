@@ -19,11 +19,19 @@ var game_started = false
 #Timing variables
 var bpm = 120
 var beat_duration = 60.0 / bpm   #time between beats in seconds
-var note_speed = 300.0  #pixels per second
-var spawn_distance = 800.0  #distance aboce hit zone
+var note_speed = 200.0  #pixels per second
+var spawn_distance = 1200.0  #distance aboce hit zone
 
 #Medium Mode beat pattern (in beats)
-var beat_pattern = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
+var beat_pattern = [ 0.0,    # Start
+	4.0,    # 2 sec later
+	8.0,    # 2 sec later
+	12.0,   # 2 sec later
+	16.0,   # 2 sec later
+	20.0,   # 2 sec later
+	24.0,   # 2 sec later
+	28.0,   # 2 sec later
+	30.0, 30.5, 31.0, 31.5, 32.0]
 var current_beat_index = 0
 var game_time = 0.0
 

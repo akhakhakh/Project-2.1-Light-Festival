@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5awevy5pfi88" path="res://middle-arrows/assets/scripts/main.gd" id="1_qholi"]
 [ext_resource type="Texture2D" uid="uid://bn6ytnv50ehkh" path="res://assets/arrows.webp" id="2_taj72"]
-[ext_resource type="AudioStream" uid="uid://mpj20m4ueuba" path="res://music/829398__josefpres__piano-loops-191-octave-long-loop-120-bpm.wav" id="3_id0uw"]
+[ext_resource type="AudioStream" uid="uid://bej0cei3aryf" path="res://music/Rhythm Hell.wav" id="3_id0uw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id0uw"]
 size = Vector2(53, 53)
