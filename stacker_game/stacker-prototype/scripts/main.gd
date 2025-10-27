@@ -157,7 +157,7 @@ func move_row():
 	update_icon_positions()
 
 func _unhandled_input(event):
-	if is_row_active and event.is_action_pressed("ui_accept") and not game_over:
+	if is_row_active and event.is_action_pressed("ui_down") and not game_over:
 		stack_row()
 
 func stack_row():
