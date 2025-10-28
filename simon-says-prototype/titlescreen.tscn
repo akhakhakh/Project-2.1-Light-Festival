@@ -1,47 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8daxtoyarjfy"]
 
 [ext_resource type="Script" uid="uid://x2wrv5ywdiy2" path="res://titlescreen.gd" id="1_cjnew"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjnew"]
-bg_color = Color(0.724643, 0.724643, 0.724642, 1)
+[ext_resource type="Texture2D" uid="uid://bsd7jrhswnu5l" path="res://titlescreenpng.png" id="2_goadl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goadl"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_cjnew")
 
-[node name="Panel" type="Panel" parent="."]
-offset_left = 297.0
-offset_top = 66.0
-offset_right = 827.0
-offset_bottom = 204.0
-size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_cjnew")
-metadata/_edit_group_ = true
-
-[node name="TextEdit" type="Label" parent="Panel"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -108.0
-offset_top = -28.0
-offset_right = 108.0
-offset_bottom = 28.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 26
-text = "    Simon Says"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 178)
+scale = Vector2(5.04688, 5.04688)
+texture = ExtResource("2_goadl")
 
 [node name="Panel2" type="Panel" parent="."]
 offset_left = 420.0
-offset_top = 311.0
+offset_top = 345.0
 offset_right = 711.0
-offset_bottom = 372.0
+offset_bottom = 406.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_goadl")
+metadata/_edit_group_ = true
 
 [node name="Button" type="Button" parent="Panel2"]
 texture_filter = 1

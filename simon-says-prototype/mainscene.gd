@@ -12,26 +12,69 @@ var buttons: Array[Button] = []
 # Button sound array stores the sound effects that play for each color. Red == 0, Green == 1, Blue == 2, Yellow == 3.
 var buttonSounds: Array[AudioStreamPlayer] = []
 
+# Particles that play when a button is pressed
+var buttonParticles: Array[CPUParticles2D] = []
+
 # Input enabled variable checks to se when inputs are active or not.
 var input_enabled: bool = false
 
 # Integer points increases after every successful sequence input.
 var points: int = 0
 
+# Milestone booleans
+var reached_5_points = false
+var reached_10_points = false
+var reached_20_points = false
+
 #Points text
 @onready var label: Label = $Panel/Label
+
 #Game Over screen text.
 @onready var game_over_text: Label = $GameOverText
 
+# Sound that plays when a milestone is reached
+@onready var combo: AudioStreamPlayer = $Combo
 
+# Background filled with stars using a shader
+@onready var background: ColorRect = $Background
 
+# Text that appears when a milestone is met
+@onready var combo_message: Label = $ComboMessage
 
 # The _ready() function is called upon scene initialization.
 func _ready():
 	buttons = [$RedButton, $GreenButton, $BlueButton, $YellowButton]
 	buttonSounds = [$RedSound, $GreenSound, $BlueSound, $YellowSound]
+	buttonParticles = [$RedParticles, $GreenParticles, $BlueParticles, $YellowParticles]
 	start_game()
 
+
+func _process(float):
+	var mat = background.material
+	
+	if points == 5 && reached_5_points == false:
+		display_combo_text()
+		var tween = create_tween()
+		tween.tween_property(mat, "shader_parameter/near_stars_color", Color.from_rgba8(254, 144, 0, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(mat, "shader_parameter/far_stars_color", Color.from_rgba8(255, 202, 142, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		combo.play()
+		reached_5_points = true
+
+	if points == 10 && reached_10_points == false:
+		display_combo_text()
+		var tween = create_tween()
+		tween.tween_property(mat, "shader_parameter/near_stars_color", Color.from_rgba8(255, 38, 121, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(mat, "shader_parameter/far_stars_color", Color.from_rgba8(255, 155, 177, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		combo.play()
+		reached_10_points = true
+		
+	if points == 20 && reached_20_points == false:
+		display_combo_text()
+		var tween = create_tween()
+		tween.tween_property(mat, "shader_parameter/near_stars_color", Color.from_rgba8(168, 159, 255, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(mat, "shader_parameter/far_stars_color", Color.from_rgba8(153, 255, 184, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		combo.play()
+		reached_10_points = true
 
 # Starts the first sequence.
 func start_game():
@@ -62,15 +105,21 @@ func play_sequence():
 # The buttons are rectangles that can be lightened briefly to indicate flashing.
 func flash_button(button: Button):
 	var color_rect = button.get_node("ColorRect") as ColorRect
-	var original_color = color_rect.color
-	var flashing_color = original_color.lightened(0.2)
-	
-	color_rect.color = flashing_color
+	var mat = color_rect.material
 	input_enabled = false
-	await get_tree().create_timer(0.3).timeout
-	color_rect.color = original_color
+
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/flash_strength", 0.5, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(mat, "shader_parameter/flash_strength", 0.0, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	await tween.finished
 	input_enabled = true
 
+# Particles attached to each button will be emitted
+func emit_particles(buttonParticles : CPUParticles2D):
+	buttonParticles.emitting = false
+	buttonParticles.restart() 
+	buttonParticles.emitting = true
 
 # This function is called when the button that corresponds to the parameter integer is pressed.
 func _on_button_pressed(idx: int):
@@ -82,6 +131,7 @@ func _on_button_pressed(idx: int):
 	
 	# Before anything else, plays the sound and flashes the button.
 	await play_sound(buttonSounds[idx])
+	await emit_particles(buttonParticles[idx])
 	await flash_button(buttons[idx])
 	
 	
@@ -98,25 +148,52 @@ func _on_button_pressed(idx: int):
 			
 	# The player chose the wrong step in the sequence.
 	else:
-		input_enabled = false
-		points = 0
-		label.text = "Points: 0"
-		print("Game Over!")
-		game_over_text.visible = true
-		game_over_text.text = "Game Over! Game restarting in 3"
-		await get_tree().create_timer(1.0).timeout
-		game_over_text.text = "Game Over! Game restarting in 2"
-		await get_tree().create_timer(1.0).timeout
-		game_over_text.text = "Game Over! Game restarting in 1"
-		await get_tree().create_timer(1.0).timeout
-		game_over_text.visible = false
-		start_game()
+		lose_game()
 
+func lose_game():
+	input_enabled = false
+	return_background_to_white()
+	points = 0
+	label.text = "Points: 0"
+	print("Game Over!")
+	game_over_text.visible = true
+	game_over_text.text = "Game Over! Game restarting in 3"
+	await get_tree().create_timer(1.0).timeout
+	game_over_text.text = "Game Over! Game restarting in 2"
+	await get_tree().create_timer(1.0).timeout
+	game_over_text.text = "Game Over! Game restarting in 1"
+	await get_tree().create_timer(1.0).timeout
+	game_over_text.visible = false
+	start_game()
 
+func return_background_to_white():
+	reached_5_points = false
+	reached_10_points = false
+	reached_20_points = false
+	
+	var mat = background.material
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/near_stars_color", Color.from_rgba8(255, 255, 255, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(mat, "shader_parameter/far_stars_color", Color.from_rgba8(255, 255, 255, 255), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
 # Plays the mp3 file corresponding to the color.
 func play_sound(buttonSound: AudioStreamPlayer):
 	buttonSound.play()
 
+func display_combo_text():
+	combo_message.visible = true
+	
+	var tween_movement = create_tween()
+	tween_movement.tween_property(combo_message, "position", Vector2(combo_message.position.x, 200.0), 1.0)
+	
+	var tween_fade_out = create_tween()
+	tween_fade_out.tween_property(combo_message, "modulate:a", 0.0, 1.0)
+	
+	await get_tree().create_timer(1.0).timeout
+	combo_message.visible = false
+	
+	var tween_fade_in = create_tween()
+	tween_fade_in.tween_property(combo_message, "modulate:a", 1.0, 1.0)
 
 func add_point():
 	points += 1
