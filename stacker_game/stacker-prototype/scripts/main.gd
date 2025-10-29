@@ -160,6 +160,14 @@ func _unhandled_input(event):
 	if is_row_active and event.is_action_pressed("ui_accept") and not game_over:
 		stack_row()
 
+func update_streak(is_perfect: bool):
+	if is_perfect:
+		perfect_streak += 1
+	else:
+		perfect_streak = 0
+
+	print("Current streak: " + str(perfect_streak))
+
 func stack_row():
 	is_row_active = false
 	print("Stacking at row ", cur_row, " position ", cur_left)
@@ -189,21 +197,20 @@ func stack_row():
 		
 		if surviving_positions.size() == cur_blocks:
 			# Perfect placement
-			perfect_streak += 1
+			update_streak(true)
+			
+			
 			
 			# If 5 or more perfect in a row, activate 1.5x multiplier
-			if perfect_streak >= 5:
-				score_multiplier = 1.5
-			else:
-				score_multiplier = 1.0
+			score_multiplier = 1.5 if perfect_streak >= 5 else 1.0
 			
 			var points = int(1000 * score_multiplier)
 			score += points
 			print("Perfect placement! +" + str(points) + " points (x" + str(score_multiplier) + " multiplier)")
 			
 		elif surviving_positions.size() > 0 :
-			# Imperfect (some lost, some survivied)
-			perfect_streak = 0 # reset stack
+			# Imperfect (some lost)
+			update_streak(false)
 			score_multiplier = 1.0
 			
 			var points = int((500 - lost_blocks * 250) * score_multiplier)
