@@ -153,18 +153,16 @@ func _on_button_pressed(idx: int):
 func lose_game():
 	input_enabled = false
 	return_background_to_white()
+	LeaderboardManager.current_player_score = points
+	
+	if LeaderboardManager.current_player_name != "":
+		if points > 0:
+			LeaderboardManager.add_score(LeaderboardManager.current_player_name, points)
+			print("Saved score for", LeaderboardManager.current_player_name, ":", points)
+
 	points = 0
 	label.text = "Points: 0"
-	print("Game Over!")
-	game_over_text.visible = true
-	game_over_text.text = "Game Over! Game restarting in 3"
-	await get_tree().create_timer(1.0).timeout
-	game_over_text.text = "Game Over! Game restarting in 2"
-	await get_tree().create_timer(1.0).timeout
-	game_over_text.text = "Game Over! Game restarting in 1"
-	await get_tree().create_timer(1.0).timeout
-	game_over_text.visible = false
-	start_game()
+	get_tree().change_scene_to_file("res://game_over.tscn")
 
 func return_background_to_white():
 	reached_5_points = false
@@ -199,22 +197,31 @@ func add_point():
 	points += 1
 	label.text = "Points: " + str(points)
 
-
 # Red == 0
 func _on_red_button_pressed() -> void:
 	_on_button_pressed(0)
-
 
 # Green == 1
 func _on_green_button_pressed() -> void:
 	_on_button_pressed(1)
 
-
 # Blue == 2
 func _on_blue_button_pressed() -> void:
 	_on_button_pressed(2)
 
-
 # Yellow == 3
 func _on_yellow_button_pressed() -> void:
 	_on_button_pressed(3)
+
+func _input(event):
+	if event.is_action_pressed("red_button"):
+		_on_red_button_pressed()
+
+	elif event.is_action_pressed("green_button"):
+		_on_green_button_pressed()
+
+	elif event.is_action_pressed("blue_button"):
+		_on_blue_button_pressed()
+
+	elif event.is_action_pressed("yellow_button"):
+		_on_yellow_button_pressed()
