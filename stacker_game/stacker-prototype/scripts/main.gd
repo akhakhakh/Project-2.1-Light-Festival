@@ -29,12 +29,12 @@ var score: int = 0                  # Player's total score
 var perfect_streak : int = 0        # Consecutive perfect stacks
 var score_multiplier: float = 1.0   # Streak bonus multiplier (1.5x at 5+ perfect)
 var score_label: Label = null       # Score display label
+var has_played_streak_sound = false # Checks and plays sound if you have a streak of 5 perfect stack
 
 # ===== BONUS SECTION =====
 var bonus_label: Label = null           # "BONUS SECTION" text label
 var bonus_message_shown := false        # Whether bonus message has been shown
-var is_paused_for_bonus := false        # Whether game is paused for bonus message
-
+var is_paused_for_bonus := false        # Whether game is paused for bonus message 
 
 func _ready():	
 	var temp_markers = []
@@ -116,7 +116,7 @@ func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2
 	var multiplier_label = null
 	if multiplier_text != "":
 		multiplier_label = Label.new()
-		multiplier_label.position =  popup.position + Vector2(90, 0)
+		multiplier_label.position =  popup.position + Vector2(105, 0)
 		multiplier_label.add_theme_font_size_override("font_size", 28)
 		multiplier_label.add_theme_color_override("font_color", Color(1, 1, 0))
 		multiplier_label.text = multiplier_text
@@ -222,6 +222,12 @@ func move_row():
 func _unhandled_input(event):
 	if is_row_active and event.is_action_pressed("ui_down") and not game_over and not is_paused_for_bonus:
 		stack_row()
+		
+		if perfect_streak >= 5 and not has_played_streak_sound:
+			$AudioPerfectStreak.play()
+			has_played_streak_sound = true
+		else:
+			$AudioDrop.play()
 
 func update_streak(is_perfect: bool):
 	if is_perfect:
@@ -237,6 +243,7 @@ func update_streak(is_perfect: bool):
 			print("Streak broken at " + str(perfect_streak) + " perfects.")
 		perfect_streak = 0
 		score_multiplier = 1.0
+		has_played_streak_sound = false
 
 	print("Current streak: " + str(perfect_streak))
 
@@ -274,7 +281,7 @@ func stack_row():
 			score += points
 			print("Perfect placement! +" + str(points) + " points (x" + str(score_multiplier) + " multiplier)")
 			
-			 # Trigger particles for each block in the row
+			# trigger the particles for each block in the row
 			for i in range(cur_blocks):
 				var icon = icons[i]
 				if icon.has_node("CPUParticles2D"):
@@ -395,6 +402,12 @@ func stack_row():
 			icon_instance.show()
 			add_child(icon_instance)
 			locked_row_icons.append(icon_instance)
+	
+		# Trigger particles only on perfect stack
+		if surviving_positions.size() == cur_blocks:
+			if icon_instance.has_node("CPUParticles2D"):
+				var p = icon_instance.get_node("CPUParticles2D")
+				p.restart()
 	
 	# Hide moving blocks
 	for icon in icons:

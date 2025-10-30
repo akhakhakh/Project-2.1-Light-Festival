@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cchv04s41e6jb"
-path="res://.godot/imported/you-won.png-0ac33dec01ea9eb12fc08776ae7a0f3b.ctex"
+uid="uid://cakmx6hg642u5"
+path="res://.godot/imported/game_over.png-d3dc1210304ecaab7bc3f281cfa0d72f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/you-won.png"
-dest_files=["res://.godot/imported/you-won.png-0ac33dec01ea9eb12fc08776ae7a0f3b.ctex"]
+source_file="res://assets/game_over.png"
+dest_files=["res://.godot/imported/game_over.png-d3dc1210304ecaab7bc3f281cfa0d72f.ctex"]
 
 [params]
 
