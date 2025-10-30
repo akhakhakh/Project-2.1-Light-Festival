@@ -66,7 +66,7 @@ func _ready():
 	
 	# Create bonus message (hidden initially)
 	bonus_label = Label.new()
-	bonus_label.position = Vector2(350, 350)
+	bonus_label.position = Vector2(370, 80)
 	bonus_label.add_theme_font_size_override("font_size", 60)
 	bonus_label.add_theme_color_override("font_color", Color(1, 1, 0))
 	bonus_label.text = "BONUS AREA"
@@ -123,50 +123,6 @@ func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2
 		add_child(multiplier_label)
 	
 	animate_and_remove_popup(popup, multiplier_label)
-	
-func show_multiplier_particles(at_position: Vector2):
-	var particles = CPUParticles2D.new()
-	particles.position = at_position
-	particles.one_shot = true
-	particles.amount = 30
-	particles.lifetime = 0.5
-	particles.speed_scale = 1.5
-	particles.emitting = true
-	particles.z_index = 10
-	
-	# Particle material
-	var mat = ParticleProcessMaterial.new()
-	mat.initial_velocity = 100
-	mat.angle = 0
-	mat.angle_random = 180
-	mat.gravity = Vector2.ZERO  # no gravity
-	mat.direction = Vector2.UP
-	mat.angle = 0
-	particles.process_material = mat
-	
-	# Add a color ramp for the particles
-	var grad = Gradient.new()
-	grad.colors = [Color(0.823, 0.34, 0.482, 1.0), Color(1, 0.5, 0, 0)]  # yellow to transparent 
-	var ramp = GradientTexture2D.new()
-	ramp.gradient = grad
-	mat.color_ramp = ramp
-	
-	# Simple tiny texture for visibility
-	var img = Image.create(4, 4, false, Image.FORMAT_RGBA8)
-	img.lock()
-	for x in range(4):
-		for y in range(4):
-			img.set_pixel(x, y, Color(0.823, 0.34, 0.482, 1.0))
-	img.unlock()
-	var tex = ImageTexture.create_from_image(img)
-	particles.texture = tex
-	
-	add_child(particles)
-	
-	## Free particles after lifetime
-	var timer = get_tree().create_timer(particles.lifetime)
-	await timer.timeout
-	particles.queue_free()
 	
 func animate_and_remove_popup(popup: Label, multiplier_label: Label):
 	# Animate popup moving up and fading out
@@ -318,6 +274,13 @@ func stack_row():
 			score += points
 			print("Perfect placement! +" + str(points) + " points (x" + str(score_multiplier) + " multiplier)")
 			
+			 # Trigger particles for each block in the row
+			for i in range(cur_blocks):
+				var icon = icons[i]
+				if icon.has_node("CPUParticles2D"):
+					var p = icon.get_node("CPUParticles2D")
+					p.restart()
+			
 		elif surviving_positions.size() > 0 :
 			update_streak(false)
 			
@@ -381,14 +344,6 @@ func stack_row():
 				print("Recovering! +", final_points, " points")
 				
 			else:
-				# Perfect stack: continue streak
-				perfect_streak += 1
-				
-				if perfect_streak >= 5:
-					score_multiplier = 1.5
-				else:
-					score_multiplier = 1.0
-				
 				var base_points = 0
 				if surviving_positions.size() == 3:
 					base_points = 500
@@ -480,6 +435,9 @@ func end_game(win: bool) -> void:
 		icon.hide()
 
 	Global.score = score
+	
+	var timer = get_tree().create_timer(0.2)
+	await timer.timeout
 	
 	var scene_path := "res://scenes/YouWon.tscn" if win else "res://scenes/GameOver.tscn"
 	get_tree().change_scene_to_file(scene_path)
