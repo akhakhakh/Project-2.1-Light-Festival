@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://bedji5i8xcckc"]
+
+[ext_resource type="Script" uid="uid://brpgbb0ly5u7b" path="res://leaderboard_screen.gd" id="1_kp546"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://PixelifySans-VariableFont_wght.ttf" id="1_pj4ud"]
+
+[node name="LeaderboardScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kp546")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -324.0
+offset_right = 214.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Leaderboard" type="Label" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pj4ud")
+theme_override_font_sizes/font_size = 32
+text = "LEADERBOARD
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Name"
+
+[node name="Name2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Score"
+
+[node name="LeaderboardList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Label" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 354.0
+offset_right = 968.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 32
+text = "Press 
+To go back"
+
+[node name="Yellow" type="Polygon2D" parent="."]
+position = Vector2(289, 4)
+color = Color(0.96869355, 0.8167091, 2.3102762e-06, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)

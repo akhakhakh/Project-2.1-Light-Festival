@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	# Display the final score stored in the global singleton
 	if score_label:
-		score_label.text = "Score: " + str(Global.score)
+		score_label.text = "You got " + str(Global.score) + "pts!"
 	else:
 		push_error("ScoreLabel node not found!")
 
@@ -18,4 +18,4 @@ func _ready():
 
 func _on_restart_pressed():
 	# Replace current scene with the main game
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")

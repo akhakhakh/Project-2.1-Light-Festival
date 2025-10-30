@@ -476,7 +476,7 @@ texture = ExtResource("3_sugp2")
 position = Vector2(-3.7646484, 0.016723633)
 emitting = false
 amount = 60
-lifetime = 1.4000000000000001
+lifetime = 1.4
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
@@ -497,7 +497,7 @@ texture = ExtResource("3_sugp2")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Icon2"]
 emitting = false
 amount = 60
-lifetime = 1.4000000000000001
+lifetime = 1.4
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
@@ -518,7 +518,7 @@ texture = ExtResource("3_sugp2")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Icon3"]
 emitting = false
 amount = 60
-lifetime = 1.4000000000000001
+lifetime = 1.4
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0

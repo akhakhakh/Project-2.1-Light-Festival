@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready():
 	if score_label:
-		score_label.text = "Score: " + str(Global.score)
+		score_label.text = "You got " + str(Global.score) + "pts!"
 	else:
 		push_error("ScoreLabel node not found!")
 

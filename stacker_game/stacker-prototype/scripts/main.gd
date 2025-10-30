@@ -433,8 +433,14 @@ func end_game(win: bool) -> void:
 
 	for icon in icons:
 		icon.hide()
-
+		
+	LeaderboardManager.current_player_score = score
 	Global.score = score
+	
+	if LeaderboardManager.current_player_name != "":
+		if score > 0:
+			LeaderboardManager.add_score(LeaderboardManager.current_player_name, score)
+			print("Saved score for ", LeaderboardManager.current_player_name, ": ", score)
 	
 	var timer = get_tree().create_timer(0.2)
 	await timer.timeout
