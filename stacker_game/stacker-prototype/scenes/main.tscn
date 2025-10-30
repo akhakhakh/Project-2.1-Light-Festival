@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://2cef4l75q32f"]
 
 [ext_resource type="Script" uid="uid://q4r3vqb1iyv5" path="res://scripts/main.gd" id="1_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://bpr5lu21h54nt" path="res://assets/black-bg.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bs1bt6bkt5ycp" path="res://assets/black_bg.jpg" id="2_tefeu"]
 [ext_resource type="Texture2D" uid="uid://dd0pppatpqbpi" path="res://assets/block.png" id="3_sugp2"]
 [ext_resource type="AudioStream" uid="uid://diyfmc8sfxwxb" path="res://sounds/bgm.wav" id="4_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://b77q7rariimfk" path="res://sounds/stack_sound.wav" id="5_tbgi4"]
@@ -25,7 +25,7 @@ script = ExtResource("1_1bvp3")
 [node name="BlackBg" type="Sprite2D" parent="."]
 position = Vector2(576, 333)
 scale = Vector2(0.5984375, 0.6018519)
-texture = ExtResource("1_ig7tw")
+texture = ExtResource("2_tefeu")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(483, 625)
@@ -524,7 +524,6 @@ lifetime = 1.4
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
-fixed_fps = 50
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 30.0

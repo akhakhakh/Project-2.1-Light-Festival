@@ -116,7 +116,7 @@ func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2
 	var multiplier_label = null
 	if multiplier_text != "":
 		multiplier_label = Label.new()
-		multiplier_label.position =  popup.position + Vector2(90, 0)
+		multiplier_label.position =  popup.position + Vector2(105, 0)
 		multiplier_label.add_theme_font_size_override("font_size", 28)
 		multiplier_label.add_theme_color_override("font_color", Color(1, 1, 0))
 		multiplier_label.text = multiplier_text
@@ -402,6 +402,12 @@ func stack_row():
 			icon_instance.show()
 			add_child(icon_instance)
 			locked_row_icons.append(icon_instance)
+	
+		# Trigger particles only on perfect stack
+		if surviving_positions.size() == cur_blocks:
+			if icon_instance.has_node("CPUParticles2D"):
+				var p = icon_instance.get_node("CPUParticles2D")
+				p.restart()
 	
 	# Hide moving blocks
 	for icon in icons:
