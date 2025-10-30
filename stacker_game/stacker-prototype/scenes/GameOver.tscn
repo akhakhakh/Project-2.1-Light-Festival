@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4hbqnbfcm6vb"]
+[gd_scene load_steps=4 format=3 uid="uid://c4hbqnbfcm6vb"]
 
 [ext_resource type="Texture2D" uid="uid://cakmx6hg642u5" path="res://assets/game-over.png" id="1_qae0b"]
 [ext_resource type="Script" uid="uid://ce5gkmkegulau" path="res://scripts/GameOver.gd" id="2_vuicl"]
+[ext_resource type="AudioStream" uid="uid://o387ylba5gj7" path="res://sounds/game_over_audio.wav" id="3_vuicl"]
 
 [node name="GameOverScene" type="Node2D"]
 script = ExtResource("2_vuicl")
@@ -24,5 +25,9 @@ offset_left = 533.0
 offset_top = 378.0
 offset_right = 624.0
 offset_bottom = 462.0
+
+[node name="AudioLose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vuicl")
+autoplay = true
 
 [connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]

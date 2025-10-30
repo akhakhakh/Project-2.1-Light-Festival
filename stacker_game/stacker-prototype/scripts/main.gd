@@ -100,7 +100,7 @@ func show_bonus_message():
 func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2):
 	# Create points label (green for positive, red for negative)
 	var popup = Label.new()
-	popup.position = position
+	popup.position = _popup_pos
 	popup.add_theme_font_size_override("font_size", 36)
 	
 	if points >= 0:
@@ -116,15 +116,58 @@ func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2
 	var multiplier_label = null
 	if multiplier_text != "":
 		multiplier_label = Label.new()
-		multiplier_label.position = Vector2(position.x + 80, position.y)
+		multiplier_label.position =  popup.position + Vector2(90, 0)
 		multiplier_label.add_theme_font_size_override("font_size", 28)
 		multiplier_label.add_theme_color_override("font_color", Color(1, 1, 0))
 		multiplier_label.text = multiplier_text
 		add_child(multiplier_label)
 	
 	animate_and_remove_popup(popup, multiplier_label)
-
-
+	
+func show_multiplier_particles(at_position: Vector2):
+	var particles = CPUParticles2D.new()
+	particles.position = at_position
+	particles.one_shot = true
+	particles.amount = 30
+	particles.lifetime = 0.5
+	particles.speed_scale = 1.5
+	particles.emitting = true
+	particles.z_index = 10
+	
+	# Particle material
+	var mat = ParticleProcessMaterial.new()
+	mat.initial_velocity = 100
+	mat.angle = 0
+	mat.angle_random = 180
+	mat.gravity = Vector2.ZERO  # no gravity
+	mat.direction = Vector2.UP
+	mat.angle = 0
+	particles.process_material = mat
+	
+	# Add a color ramp for the particles
+	var grad = Gradient.new()
+	grad.colors = [Color(0.823, 0.34, 0.482, 1.0), Color(1, 0.5, 0, 0)]  # yellow to transparent 
+	var ramp = GradientTexture2D.new()
+	ramp.gradient = grad
+	mat.color_ramp = ramp
+	
+	# Simple tiny texture for visibility
+	var img = Image.create(4, 4, false, Image.FORMAT_RGBA8)
+	img.lock()
+	for x in range(4):
+		for y in range(4):
+			img.set_pixel(x, y, Color(0.823, 0.34, 0.482, 1.0))
+	img.unlock()
+	var tex = ImageTexture.create_from_image(img)
+	particles.texture = tex
+	
+	add_child(particles)
+	
+	## Free particles after lifetime
+	var timer = get_tree().create_timer(particles.lifetime)
+	await timer.timeout
+	particles.queue_free()
+	
 func animate_and_remove_popup(popup: Label, multiplier_label: Label):
 	# Animate popup moving up and fading out
 	var tween = create_tween()
@@ -224,16 +267,22 @@ func _unhandled_input(event):
 	if is_row_active and event.is_action_pressed("ui_down") and not game_over and not is_paused_for_bonus:
 		stack_row()
 
-<<<<<<< HEAD
 func update_streak(is_perfect: bool):
 	if is_perfect:
 		perfect_streak += 1
+		score_multiplier = 1.5 if perfect_streak >= 5 else 1.0
+		if perfect_streak >= 5:
+			print("1.5x multiplier active! (Streak:", perfect_streak, ")")
+		else:
+			score_multiplier = 1.0
+			
 	else:
+		if perfect_streak > 0:
+			print("Streak broken at " + str(perfect_streak) + " perfects.")
 		perfect_streak = 0
+		score_multiplier = 1.0
 
 	print("Current streak: " + str(perfect_streak))
-=======
->>>>>>> 5aea2229ac0b4534bf8d0c2069e95cc89312fdb3
 
 func stack_row():
 	is_row_active = false
@@ -244,7 +293,7 @@ func stack_row():
 		current_positions.append(cur_left + j)
 	
 	var surviving_positions = []
-	var popup_position = Vector2(450, 400)
+	var popup_position = Vector2(725, 500)
 	
 	if stack_history.size() > 0:
 		# Check overlap with previous row
@@ -260,37 +309,28 @@ func stack_row():
 		
 		var missed_blocks = cur_blocks - surviving_positions.size()
 		
-<<<<<<< HEAD
+		var lost_blocks = cur_blocks - surviving_positions.size()  
+		
 		if surviving_positions.size() == cur_blocks:
-			# Perfect placement
 			update_streak(true)
-			
-			
-			
-			# If 5 or more perfect in a row, activate 1.5x multiplier
-			score_multiplier = 1.5 if perfect_streak >= 5 else 1.0
 			
 			var points = int(1000 * score_multiplier)
 			score += points
 			print("Perfect placement! +" + str(points) + " points (x" + str(score_multiplier) + " multiplier)")
 			
 		elif surviving_positions.size() > 0 :
-			# Imperfect (some lost)
 			update_streak(false)
-			score_multiplier = 1.0
 			
 			var points = int((500 - lost_blocks * 250) * score_multiplier)
 			score += points
 			print("Imperfect placement! +" + str(points) + " points (-" + str(lost_blocks * 250) + " penalty)")
 		
 		else:
-			# No overlap (game over handled later)
 			print("No surviviors - Game Over!")
-=======
+
 		# Game over if missed 3 blocks
 		if missed_blocks >= 3:
 			print("Missed 3 blocks - Game Over!")
->>>>>>> 5aea2229ac0b4534bf8d0c2069e95cc89312fdb3
 			end_game(false)
 			return
 		
