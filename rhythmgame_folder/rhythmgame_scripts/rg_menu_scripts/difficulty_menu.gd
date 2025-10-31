@@ -35,6 +35,7 @@ func play_exit_animation():
 
 func _on_easy_button_pressed():
 	_play_button_sound()
+	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/easy_level/game_level.tscn")
 	print("Easy difficulty selected")
 	emit_signal("easy_selected")
 

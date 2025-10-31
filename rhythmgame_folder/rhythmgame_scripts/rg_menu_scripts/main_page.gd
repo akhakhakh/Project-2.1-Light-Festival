@@ -25,7 +25,7 @@ func _on_startup_page_ready():
 func _on_start_button_pressed():
 	_play_button_sound()
 	print("Transitioning to difficulty menu...")
-	get_tree().change_scene_to_file("res://rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
+	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
 
 func _on_leaderboard_button_pressed():
 	_play_button_sound()
