@@ -3,10 +3,12 @@ extends Control
 #communicate with main_page.gd
 signal start_button_pressed 
 signal leaderboard_button_pressed
+signal quit_button_pressed
 
 #reference to UI elements
-@onready var start_button = $StartButton
-@onready var leaderboard_button = $LeaderboardButton
+@onready var start_button = $VBoxContainer/StartButton
+@onready var leaderboard_button = $VBoxContainer/LeaderboardButton
+@onready var quit_button = $VBoxContainer/QuitButton
 @onready var background: TextureRect = $Background
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +19,7 @@ func _ready():
 	# Connect button signals to functions
 	start_button.connect("pressed", _on_start_button_pressed)
 	leaderboard_button.connect("pressed", _on_leaderboard_button_pressed)
+	quit_button.connect("pressed",_on_quit_button_pressed)
 	
 	#Set up initial focus for buttons/gamepad support
 	start_button.grab_focus()
@@ -30,6 +33,10 @@ func _on_start_button_pressed():
 func _on_leaderboard_button_pressed():
 	print("Leaderboard button pressed")
 	emit_signal("leaderboard_button_pressed")
+
+func _on_quit_button_pressed():
+	print("Game Quit")
+	emit_signal("quit_button_pressed")
 
 #styling 
 func _setup_fullscreen_layout():

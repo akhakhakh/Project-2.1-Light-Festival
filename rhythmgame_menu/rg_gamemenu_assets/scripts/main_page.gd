@@ -15,14 +15,20 @@ func _ready():
 
 func _on_startup_page_ready():
 	# Connect signals from startup page
-	startup_page.start_button_pressed.connect(_on_startup_start_button_pressed())
-	startup_page.leaderboard_button_pressed.connect(_on_startup_leaderboard_button_pressed())
+	startup_page.start_button_pressed.connect(_on_start_button_pressed())
+	startup_page.leaderboard_button_pressed.connect(_on_leaderboard_button_pressed())
+	startup_page.quit_button_pressed.connect(_on_quit_button_pressed())
 	
 	print("Startup Page signals connected successfully")
 
 
-func _on_startup_start_button_pressed():
+func _on_start_button_pressed():
 	print("Transitioning to difficulty selection...")
+	get_tree().change_scene_to_file("res://rhythmgame_menu/rg_gamemenu_assets/scenes/difficulty_menu.tscn")
 
-func _on_startup_leaderboard_button_pressed():
+func _on_leaderboard_button_pressed():
 	print("Opening leaderboard...")
+	#get_tree().change_scene_to_file(#add the leaderboard scene here)
+
+func _on_quit_button_pressed():
+	get_tree().quit()
