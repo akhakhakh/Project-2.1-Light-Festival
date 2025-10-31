@@ -29,8 +29,8 @@ script = ExtResource("1_cjnew")
 
 [node name="BlackBg" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_vhbaf")
-position = Vector2(578, 323.99997)
-scale = Vector2(0.5984375, 0.6018519)
+position = Vector2(576.25, 323.99997)
+scale = Vector2(0.60026044, 0.6018518)
 texture = ExtResource("3_t7v6v")
 
 [node name="Title" type="Sprite2D" parent="."]
