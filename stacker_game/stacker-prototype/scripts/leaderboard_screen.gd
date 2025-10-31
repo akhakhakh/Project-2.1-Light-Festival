@@ -11,19 +11,27 @@ func update_leaderboard():
 		child.queue_free()
 
 	var entries = LeaderboardManager.get_leaderboard()
+	var cur_player = LeaderboardManager.current_player_name
+	var custom_font = load("res://assets/PixelifySans-VariableFont_wght.ttf")
 
 	for entry in entries:
 		var row = HBoxContainer.new()
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var name_label = Label.new()
+		name_label.add_theme_font_override("font", custom_font)
 		name_label.text = entry["name"]
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var score_label = Label.new()
+		score_label.add_theme_font_override("font", custom_font)
 		score_label.text = str(entry["score"])
 		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		score_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		
+		if entry["name"] == cur_player:
+			name_label.add_theme_color_override("font_color", Color.GOLD)
+			score_label.add_theme_color_override("font_color", Color.GOLD)
 
 		row.add_child(name_label)
 		row.add_child(score_label)
@@ -32,4 +40,4 @@ func update_leaderboard():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("yellow_button"):
-		get_tree().change_scene_to_file("res://titlescreen.tscn")
+		get_tree().change_scene_to_file("res://scenes/TitleScreen.tscn")

@@ -10,12 +10,12 @@ func _ready():
 	else:
 		push_error("ScoreLabel node not found!")
 
-	# Connect restart button
-	if restart_button:
-		restart_button.pressed.connect(_on_restart_pressed)
-	else:
-		push_error("RestartButton node not found!")
+func _input(event):
+	if event.is_action_pressed("green_button"):
+		get_tree().change_scene_to_file("res://scenes/Main.tscn")
 
-func _on_restart_pressed():
-	# Replace current scene with the main game
-	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
+	elif event.is_action_pressed("yellow_button"):
+		get_tree().change_scene_to_file("res://scenes/TitleScreen.tscn")
+		
+	elif event.is_action_pressed("blue_button"):
+		get_tree().change_scene_to_file("res://scenes/LeaderboardScreen.tscn")

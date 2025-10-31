@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4fogotfu48ym"]
+[gd_scene load_steps=5 format=3 uid="uid://4fogotfu48ym"]
 
 [ext_resource type="Texture2D" uid="uid://cchv04s41e6jb" path="res://assets/you_won.png" id="1_c0876"]
 [ext_resource type="Script" uid="uid://cwb2fqaauf0i" path="res://scripts/YouWon.gd" id="2_dg83p"]
 [ext_resource type="AudioStream" uid="uid://c65ymcyo4almh" path="res://sounds/you_won_audio.wav" id="3_cqb2y"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="3_h7cfj"]
 
 [node name="YouWonScene" type="Node2D"]
 position = Vector2(-3, -31)
@@ -18,6 +19,7 @@ offset_left = 436.0
 offset_top = 335.0
 offset_right = 681.0
 offset_bottom = 386.0
+theme_override_fonts/font = ExtResource("3_h7cfj")
 theme_override_font_sizes/font_size = 36
 text = "You got"
 
@@ -30,3 +32,33 @@ offset_bottom = 511.0
 [node name="AudioWon" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cqb2y")
 autoplay = true
+
+[node name="Back" type="Label" parent="."]
+offset_left = 884.0
+offset_top = 545.0
+offset_right = 1050.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("3_h7cfj")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="LeaderBoard" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 540.0
+offset_right = 310.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("3_h7cfj")
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard"
+
+[node name="Yellow" type="Polygon2D" parent="."]
+position = Vector2(621, 344.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.96869355, 0.8167091, 2.3102762e-06, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[node name="Blue" type="Polygon2D" parent="."]
+position = Vector2(-117.99999, 341.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.09803922, 0, 0.9764706, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)

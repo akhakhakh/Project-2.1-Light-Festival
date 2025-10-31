@@ -1,11 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://2cef4l75q32f"]
+[gd_scene load_steps=13 format=3 uid="uid://dknfl4e0gmsyh"]
 
 [ext_resource type="Script" uid="uid://q4r3vqb1iyv5" path="res://scripts/main.gd" id="1_1bvp3"]
+[ext_resource type="Shader" uid="uid://cd6bnlw771x8h" path="res://assets/mainscene.gdshader" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://bs1bt6bkt5ycp" path="res://assets/black_bg.jpg" id="2_tefeu"]
 [ext_resource type="Texture2D" uid="uid://dd0pppatpqbpi" path="res://assets/block.png" id="3_sugp2"]
 [ext_resource type="AudioStream" uid="uid://diyfmc8sfxwxb" path="res://sounds/bgm.wav" id="4_jyhfs"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="5_jlsqs"]
 [ext_resource type="AudioStream" uid="uid://b77q7rariimfk" path="res://sounds/stack_sound.wav" id="5_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://j2d6ogkq78jc" path="res://sounds/perfect_streak.wav" id="6_tefeu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
+shader = ExtResource("2_o6xl0")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
 
 [sub_resource type="Curve" id="Curve_jyhfs"]
 _data = [Vector2(0.08536586, 1), 0.0, 0.0, 0, 0, Vector2(0.99390244, 0.06741583), 0.0, 0.0, 0, 0]
@@ -22,9 +38,10 @@ point_count = 2
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1bvp3")
 
-[node name="BlackBg" type="Sprite2D" parent="."]
-position = Vector2(576, 333)
-scale = Vector2(0.5984375, 0.6018519)
+[node name="Galaxy" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tipki")
+position = Vector2(576.75, 326)
+scale = Vector2(0.59973955, 0.6018519)
 texture = ExtResource("2_tefeu")
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -551,33 +568,31 @@ offset_right = 664.0
 offset_bottom = 647.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 738.0
-offset_top = 331.0
-offset_right = 844.0
-offset_bottom = 381.0
-theme_override_font_sizes/font_size = 32
-text = "Score:"
+offset_left = 730.0
+offset_top = 220.0
+offset_right = 853.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("5_jlsqs")
+theme_override_font_sizes/font_size = 40
+text = "Score"
 
 [node name="Top-Border2" type="ColorRect" parent="."]
 offset_left = 459.0
 offset_top = 164.0
 offset_right = 664.0
 offset_bottom = 173.0
-color = Color(1, 1, 0.039215688, 1)
 
-[node name="Left-Border2" type="ColorRect" parent="."]
+[node name="Right-Border2" type="ColorRect" parent="."]
 offset_left = 656.0
 offset_top = 173.0
 offset_right = 664.0
 offset_bottom = 306.0
-color = Color(1, 1, 0.039215688, 1)
 
-[node name="Left-Border3" type="ColorRect" parent="."]
+[node name="Left-Border2" type="ColorRect" parent="."]
 offset_left = 459.0
 offset_top = 173.0
 offset_right = 467.0
 offset_bottom = 306.0
-color = Color(1, 1, 0.039215688, 1)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jyhfs")
