@@ -2,7 +2,7 @@ extends Node
 
 var current_player_name: String = ""
 var current_player_score: int = 0
-const SAVE_PATH := "user://leaderboard.tres"
+const SAVE_PATH := "res://leaderboard_simonsays/"
 var leaderboard_data: LeaderboardData
 
 func _ready():

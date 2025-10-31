@@ -22,7 +22,7 @@ func _input(event):
 	elif event.is_action_pressed("green_button"):
 		confirm_letter()
 	elif event.is_action_pressed("yellow_button"):
-		get_tree().change_scene_to_file("res://titlescreen.tscn")
+		get_tree().change_scene_to_file("res://scenes_simonsays/titlescreen.tscn")
 
 func change_letter(direction: int):
 	var idx = alphabet.find(letters[current_index])
@@ -53,4 +53,4 @@ func confirm_name():
 	var name_chosen = "".join(letters)
 	LeaderboardManager.current_player_name = name_chosen
 	print("Player name set to:", name_chosen)
-	get_tree().change_scene_to_file("res://mainscene.tscn")
+	get_tree().change_scene_to_file("res://scenes_simonsays/mainscene.tscn")

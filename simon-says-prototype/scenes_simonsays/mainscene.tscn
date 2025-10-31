@@ -1,17 +1,17 @@
 [gd_scene load_steps=57 format=3 uid="uid://cxgkxkqfgpj8e"]
 
-[ext_resource type="Script" uid="uid://dbjt2vt1v05fs" path="res://mainscene.gd" id="1_wtdyi"]
-[ext_resource type="AudioStream" uid="uid://s8j6b3ud0b08" path="res://G note.mp3" id="2_sbvtr"]
-[ext_resource type="Shader" uid="uid://c1kges1flj2xr" path="res://button_color.gdshader" id="3_76yo1"]
-[ext_resource type="AudioStream" uid="uid://bcdiyrglymke8" path="res://A note.mp3" id="3_fl65m"]
-[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://PixelifySans-VariableFont_wght.ttf" id="4_8bn17"]
-[ext_resource type="AudioStream" uid="uid://1up4h6fr56vw" path="res://B note.mp3" id="4_76yo1"]
-[ext_resource type="AudioStream" uid="uid://dkg5h40n5gjl4" path="res://C note.mp3" id="5_8bn17"]
-[ext_resource type="Shader" uid="uid://7bal7t5lvchr" path="res://mainscene.gdshader" id="6_fl65m"]
-[ext_resource type="AudioStream" uid="uid://x81nur2c1grr" path="res://combo.wav" id="9_1ftms"]
+[ext_resource type="Script" uid="uid://dbjt2vt1v05fs" path="res://scripts_simonsays/mainscene.gd" id="1_p51wu"]
+[ext_resource type="Shader" uid="uid://7bal7t5lvchr" path="res://scripts_simonsays/mainscene.gdshader" id="2_vxrwn"]
+[ext_resource type="Shader" uid="uid://c1kges1flj2xr" path="res://scripts_simonsays/button_color.gdshader" id="3_p3fdl"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="4_8cdvp"]
+[ext_resource type="AudioStream" uid="uid://s8j6b3ud0b08" path="res://assets_simonsays/G note.mp3" id="5_pfkns"]
+[ext_resource type="AudioStream" uid="uid://bcdiyrglymke8" path="res://assets_simonsays/A note.mp3" id="6_jr2d7"]
+[ext_resource type="AudioStream" uid="uid://1up4h6fr56vw" path="res://assets_simonsays/B note.mp3" id="7_dii4n"]
+[ext_resource type="AudioStream" uid="uid://dkg5h40n5gjl4" path="res://assets_simonsays/C note.mp3" id="8_d20oq"]
+[ext_resource type="AudioStream" uid="uid://x81nur2c1grr" path="res://assets_simonsays/combo.wav" id="9_nverl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl65m"]
-shader = ExtResource("6_fl65m")
+shader = ExtResource("2_vxrwn")
 shader_parameter/dimensions = Vector2(1024, 600)
 shader_parameter/small_stars = 100.0
 shader_parameter/small_stars_far_size = 1.0
@@ -44,7 +44,7 @@ fill_from = Vector2(0, 0.00537634)
 fill_to = Vector2(0.209677, 0.00537634)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8bn17"]
-shader = ExtResource("3_76yo1")
+shader = ExtResource("3_p3fdl")
 shader_parameter/gradient = SubResource("GradientTexture2D_8bn17")
 shader_parameter/circle_color = Color(0.228978, 1.86507e-07, 6.61798e-08, 1)
 shader_parameter/circle_multiplier = 1.0
@@ -73,7 +73,7 @@ fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 0.231183)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ibrq"]
-shader = ExtResource("3_76yo1")
+shader = ExtResource("3_p3fdl")
 shader_parameter/gradient = SubResource("GradientTexture2D_0lhry")
 shader_parameter/circle_color = Color(0.0668745, 0.179524, 0, 1)
 shader_parameter/circle_multiplier = 1.0
@@ -108,7 +108,7 @@ fill_from = Vector2(1, 0)
 fill_to = Vector2(0.741935, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtreq"]
-shader = ExtResource("3_76yo1")
+shader = ExtResource("3_p3fdl")
 shader_parameter/gradient = SubResource("GradientTexture2D_4p23x")
 shader_parameter/circle_color = Color(5.17406e-07, 0, 0.332346, 1)
 shader_parameter/circle_multiplier = 1.0
@@ -147,7 +147,7 @@ fill_from = Vector2(1, 0.973118)
 fill_to = Vector2(1, 0.688172)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2dgxd"]
-shader = ExtResource("3_76yo1")
+shader = ExtResource("3_p3fdl")
 shader_parameter/gradient = SubResource("GradientTexture2D_lc52x")
 shader_parameter/circle_color = Color(0.279925, 0.279925, 9.62615e-08, 1)
 shader_parameter/circle_multiplier = 1.0
@@ -163,8 +163,8 @@ bg_color = Color(0.321728, 0.321728, 0.321728, 1)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.101124), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_wtdyi")
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_p51wu")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_fl65m")
@@ -304,7 +304,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_8bn17")
+theme_override_fonts/font = ExtResource("4_8cdvp")
 theme_override_font_sizes/font_size = 40
 text = "Points: 0"
 
@@ -314,24 +314,24 @@ offset_left = 278.0
 offset_top = 280.0
 offset_right = 912.0
 offset_bottom = 393.0
-theme_override_fonts/font = ExtResource("4_8bn17")
+theme_override_fonts/font = ExtResource("4_8cdvp")
 theme_override_font_sizes/font_size = 40
 text = "Game Over! Game restarting in 3"
 
 [node name="RedSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_sbvtr")
+stream = ExtResource("5_pfkns")
 
 [node name="GreenSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_fl65m")
+stream = ExtResource("6_jr2d7")
 
 [node name="BlueSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_76yo1")
+stream = ExtResource("7_dii4n")
 
 [node name="YellowSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_8bn17")
+stream = ExtResource("8_d20oq")
 
 [node name="Combo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_1ftms")
+stream = ExtResource("9_nverl")
 
 [node name="GreenParticles" type="CPUParticles2D" parent="."]
 position = Vector2(578, 141)
@@ -407,7 +407,7 @@ offset_left = 507.0
 offset_top = 274.0
 offset_right = 645.0
 offset_bottom = 351.0
-theme_override_fonts/font = ExtResource("4_8bn17")
+theme_override_fonts/font = ExtResource("4_8cdvp")
 theme_override_font_sizes/font_size = 64
 text = "Nice!"
 

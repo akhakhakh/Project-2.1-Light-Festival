@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://x81nur2c1grr"
-path="res://.godot/imported/combo.wav-a39939a3c4da65dc8b4a2cc5bbdb6ec4.sample"
+path="res://.godot/imported/combo.wav-f758bea0d06c16dac6150f8d39e5eee7.sample"
 
 [deps]
 
-source_file="res://combo.wav"
-dest_files=["res://.godot/imported/combo.wav-a39939a3c4da65dc8b4a2cc5bbdb6ec4.sample"]
+source_file="res://assets_simonsays/combo.wav"
+dest_files=["res://.godot/imported/combo.wav-f758bea0d06c16dac6150f8d39e5eee7.sample"]
 
 [params]
 

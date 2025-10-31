@@ -13,11 +13,10 @@ config_version=5
 config/name="Simon Says prototype"
 run/main_scene="uid://c8daxtoyarjfy"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
 
 [autoload]
 
-LeaderboardManager="*res://leaderboard_manager.gd"
+LeaderboardManager="*res://scripts_simonsays/leaderboard_manager.gd"
 
 [display]
 

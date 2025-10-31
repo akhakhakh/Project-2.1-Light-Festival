@@ -162,7 +162,7 @@ func lose_game():
 
 	points = 0
 	label.text = "Points: 0"
-	get_tree().change_scene_to_file("res://game_over.tscn")
+	get_tree().change_scene_to_file("res://scenes_simonsays/game_over.tscn")
 
 func return_background_to_white():
 	reached_5_points = false

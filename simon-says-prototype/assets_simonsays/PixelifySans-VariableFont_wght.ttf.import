@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cuy0sid5rllod"
-path="res://.godot/imported/PixelifySans-VariableFont_wght.ttf-f9410a2312f35abd5c8504c8ad5924d8.fontdata"
+path="res://.godot/imported/PixelifySans-VariableFont_wght.ttf-cce9d7f5cc1bfda742e98b4f6ea35aa1.fontdata"
 
 [deps]
 
-source_file="res://PixelifySans-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/PixelifySans-VariableFont_wght.ttf-f9410a2312f35abd5c8504c8ad5924d8.fontdata"]
+source_file="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/PixelifySans-VariableFont_wght.ttf-cce9d7f5cc1bfda742e98b4f6ea35aa1.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true

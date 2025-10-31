@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 func _input(event):
 	if event.is_action_pressed("red_button"):
-		get_tree().change_scene_to_file("res://mainscene.tscn")
+		get_tree().change_scene_to_file("res://scenes_simonsays/mainscene.tscn")
 
 	elif event.is_action_pressed("blue_button"):
-		get_tree().change_scene_to_file("res://titlescreen.tscn")
+		get_tree().change_scene_to_file("res://scenes_simonsays/titlescreen.tscn")
