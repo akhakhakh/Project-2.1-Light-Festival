@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpc13ucm0i8fg"]
+
+[ext_resource type="Script" uid="uid://gqt70fqb6nf2" path="res://rhythmgame_scripts/basic_level_script/game_ui.gd" id="1_kdhub"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://rhythmgame_assets/font/PixelifySans-VariableFont_wght.ttf" id="2_vrlbq"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kdhub")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 360.0
+offset_bottom = 71.0
+theme_override_constants/outline_size = 14
+theme_override_fonts/normal_font = ExtResource("2_vrlbq")
+theme_override_font_sizes/normal_font_size = 41
+text = "POINTS 0 "
+scroll_active = false
+
+[node name="ComboLabel" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 18.0
+offset_top = 72.0
+offset_right = 360.0
+offset_bottom = 125.0
+theme_override_constants/outline_size = 14
+theme_override_fonts/normal_font = ExtResource("2_vrlbq")
+theme_override_font_sizes/normal_font_size = 41
+text = "COMBO 0x "
+scroll_active = false
