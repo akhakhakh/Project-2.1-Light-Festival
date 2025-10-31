@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf2fi2c80seqv"]
+
+[ext_resource type="Script" uid="uid://b8xfp4aiex6yu" path="res://scripts_stacker/tutorial.gd" id="1_y4yex"]
+[ext_resource type="Shader" uid="uid://cd6bnlw771x8h" path="res://assets_stacker/mainscene.gdshader" id="2_aocj3"]
+[ext_resource type="Texture2D" uid="uid://bs1bt6bkt5ycp" path="res://assets_stacker/black_bg.jpg" id="3_qi6kb"]
+[ext_resource type="Texture2D" uid="uid://bub58bn62n8d" path="res://assets_stacker/tutorial(no-bg).png" id="4_5oit2"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_stacker/PixelifySans-VariableFont_wght.ttf" id="5_da63b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5f0c"]
+shader = ExtResource("2_aocj3")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_y4yex")
+
+[node name="Galaxy" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u5f0c")
+position = Vector2(576.7778, 325.125)
+scale = Vector2(0.60023147, 0.6002314)
+texture = ExtResource("3_qi6kb")
+
+[node name="Tutorial(noBg)" type="Sprite2D" parent="."]
+position = Vector2(574, 345.00003)
+scale = Vector2(1.0068359, 1.0034722)
+texture = ExtResource("4_5oit2")
+
+[node name="Play" type="Label" parent="."]
+offset_left = 923.0
+offset_top = 545.0
+offset_right = 1009.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("5_da63b")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="MainMenu" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 540.0
+offset_right = 276.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("5_da63b")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="Red" type="Polygon2D" parent="."]
+position = Vector2(563, 343.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.96862745, 0, 0, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[node name="Yellow" type="Polygon2D" parent="."]
+position = Vector2(-160, 336.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.96869355, 0.8167091, 2.3102762e-06, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)

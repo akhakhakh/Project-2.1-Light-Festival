@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.5", "Mobile")
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
-LeaderboardManager="*res://scripts/leaderboard_manager.gd"
+Global="*res://scripts_stacker/Global.gd"
+LeaderboardManager="*res://scripts_stacker/leaderboard_manager.gd"
 
 [display]
 
