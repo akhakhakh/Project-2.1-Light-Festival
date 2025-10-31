@@ -72,10 +72,10 @@ text = "Rhythm Game"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartUpPage"]
 layout_mode = 0
-offset_left = 458.0
-offset_top = 353.0
-offset_right = 736.0
-offset_bottom = 546.0
+offset_left = 445.0
+offset_top = 341.0
+offset_right = 723.0
+offset_bottom = 534.0
 theme_override_constants/separation = 17
 
 [node name="StartButton" type="Button" parent="CanvasLayer/StartUpPage/VBoxContainer"]
@@ -104,6 +104,38 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_uxver")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bx58v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sgmfo")
 text = "Quit"
+
+[node name="BlueButton" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(-154, 199)
+scale = Vector2(0.8269231, 0.84782606)
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(406, 344, 385, 343, 368, 353, 365, 368, 369, 379, 380, 388, 396, 389, 410, 384, 417, 374, 417, 362, 412, 350)
+
+[node name="Label" type="Label" parent="CanvasLayer/BlueButton"]
+offset_left = 434.13956
+offset_top = 340.87183
+offset_right = 601.5051
+offset_bottom = 390.87183
+theme_override_fonts/font = ExtResource("5_gl2rg")
+theme_override_font_sizes/font_size = 41
+text = "- Down"
+metadata/_edit_use_anchors_ = true
+
+[node name="GreenButton" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(-157, 149)
+scale = Vector2(0.8269231, 0.84782606)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(406, 344, 385, 343, 368, 353, 365, 368, 369, 379, 380, 388, 396, 389, 410, 384, 417, 374, 417, 362, 412, 350)
+
+[node name="Label" type="Label" parent="CanvasLayer/GreenButton"]
+offset_left = 434.13956
+offset_top = 340.87183
+offset_right = 601.5051
+offset_bottom = 390.87183
+theme_override_fonts/font = ExtResource("5_gl2rg")
+theme_override_font_sizes/font_size = 41
+text = "- Up"
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_apm6u")
