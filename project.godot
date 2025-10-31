@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Light Festival"
-run/main_scene="res://scenes/game_level.tscn"
+run/main_scene="uid://cqos6vxrtuce0"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
