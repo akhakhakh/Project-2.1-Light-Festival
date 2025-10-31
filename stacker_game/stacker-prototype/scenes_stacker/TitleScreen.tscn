@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://ogctm6lhna0j"]
+
+[ext_resource type="Script" uid="uid://dluivrr0hgebt" path="res://scripts_stacker/titlescreen.gd" id="1_mped7"]
+[ext_resource type="Shader" uid="uid://cd6bnlw771x8h" path="res://assets_stacker/mainscene.gdshader" id="2_63wrj"]
+[ext_resource type="Texture2D" uid="uid://bs1bt6bkt5ycp" path="res://assets_stacker/black_bg.jpg" id="3_hpwf3"]
+[ext_resource type="Texture2D" uid="uid://bbidq1n5j6bqm" path="res://assets_stacker/title.png" id="4_3jow3"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_stacker/PixelifySans-VariableFont_wght.ttf" id="5_nyjv4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhbaf"]
+shader = ExtResource("2_63wrj")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goadl"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mped7")
+
+[node name="BlackBg" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vhbaf")
+position = Vector2(576.25, 323.99997)
+scale = Vector2(0.60026044, 0.6018518)
+texture = ExtResource("3_hpwf3")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(570, 205)
+texture = ExtResource("4_3jow3")
+
+[node name="Play" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 345.0
+offset_right = 711.0
+offset_bottom = 406.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_goadl")
+metadata/_edit_group_ = true
+
+[node name="Play" type="Button" parent="Play"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -26.5
+offset_right = 141.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_nyjv4")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Leaderboard" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 465.0
+offset_right = 712.0
+offset_bottom = 526.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_goadl")
+metadata/_edit_group_ = true
+
+[node name="Leaderboard" type="Button" parent="Leaderboard"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -26.5
+offset_right = 141.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_nyjv4")
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard
+"
+
+[node name="Red" type="Polygon2D" parent="."]
+position = Vector2(0, 7)
+color = Color(1, 0, 0.019607844, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[node name="Green" type="Polygon2D" parent="."]
+position = Vector2(3, 125)
+color = Color(0, 1, 0.32156864, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[connection signal="pressed" from="Play/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Leaderboard/Leaderboard" to="." method="_on_leaderboard_pressed"]
