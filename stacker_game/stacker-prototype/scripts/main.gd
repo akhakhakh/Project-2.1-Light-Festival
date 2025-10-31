@@ -1,11 +1,11 @@
 extends Node2D
 
 # ===== GAME CONFIGURATION =====
-@export var base_move_interval := 0.2   # Starting speed in seconds (lower = faster)
+@export var base_move_interval := 0.3   # Starting speed in seconds (lower = faster)
 @export var grid_width := 7              # Number of columns in the game grid
 @export var grid_height := 21            # Number of rows in the game grid
 @export var starting_blocks := 3         # How many blocks the player starts with
-@export var speed_increase := 0.80       # Speed multiplier per row (lower = faster acceleration)
+@export var speed_increase := 0.90       # Speed multiplier per row (lower = faster acceleration)
 @export var bonus_message_duration := 2.0  # How long to show "BONUS SECTION" message
 @export var points_popup_duration := 1.0   # How long to show the points popup
 
@@ -63,7 +63,7 @@ func _ready():
 		if abs(a.position.y - b.position.y) > 1:
 			return a.position.y < b.position.y
 		else:
-			return a.position.x > b.position.x
+			return a.position.x < b.position.x
 	)
 	
 	for i in range(min(grid_width * grid_height, temp_markers.size())):
@@ -76,7 +76,7 @@ func _ready():
 		if child is ColorRect:
 			if "Border" in child.name:
 				bonus_area_rects.append(child)
-				child.visible = true
+				child.visible = false
 	
 	icons = [$Icon, $Icon2, $Icon3]
 	
@@ -270,10 +270,10 @@ func show_points_popup(points: int, multiplier_text: String, _popup_pos: Vector2
 	popup.add_theme_font_size_override("font_size", 48)
 	
 	if points >= 0:
-		popup.add_theme_color_override("font_color", Color(0, 1, 0))
+		popup.add_theme_color_override("font_color", Color.GREEN)
 		popup.text = "+" + str(points)
 	else:
-		popup.add_theme_color_override("font_color", Color(1, 0, 0))
+		popup.add_theme_color_override("font_color", Color.RED)
 		popup.text = str(points)
 	
 	add_child(popup)
@@ -335,7 +335,7 @@ func reset_row():
 	
 	var in_bonus = is_in_bonus_section(cur_row)
 	if in_bonus:
-		move_interval = move_interval / 4.0
+		move_interval = move_interval / 1.5
 		var bonus_rows_climbed = 5 - cur_row
 		var bonus_acceleration = pow(0.90, bonus_rows_climbed)
 		move_interval = move_interval * bonus_acceleration
