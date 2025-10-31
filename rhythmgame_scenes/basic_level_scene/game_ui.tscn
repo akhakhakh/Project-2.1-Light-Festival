@@ -1,7 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpc13ucm0i8fg"]
 
+<<<<<<< HEAD:rhythmgame_scenes/basic_level_scene/game_ui.tscn
 [ext_resource type="Script" uid="uid://gqt70fqb6nf2" path="res://rhythmgame_scripts/basic_level_script/game_ui.gd" id="1_kdhub"]
 [ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://rhythmgame_assets/font/PixelifySans-VariableFont_wght.ttf" id="2_vrlbq"]
+=======
+[ext_resource type="Script" uid="uid://gqt70fqb6nf2" path="res://level_handling/game_ui.gd" id="1_kdhub"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="2_vrlbq"]
+>>>>>>> d396be0b8f338e515052033438e8f48e8f7a28e2:level_handling/game_ui.tscn
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
