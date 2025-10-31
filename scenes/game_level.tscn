@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8f1ign6hpicr"]
+[gd_scene load_steps=9 format=3 uid="uid://cqos6vxrtuce0"]
 
 [ext_resource type="Shader" uid="uid://3s7ch1ol4pl6" path="res://assets/mainscene.gdshader" id="1_hjd5e"]
-[ext_resource type="PackedScene" uid="uid://dfdglmltorqae" path="res://objects/key_listener.tscn" id="2_hjd5e"]
+[ext_resource type="PackedScene" path="res://objects/key_listener.tscn" id="2_hjd5e"]
 [ext_resource type="Texture2D" uid="uid://bd8hqdafs1qc5" path="res://assets/black-background.png" id="2_oslck"]
-[ext_resource type="PackedScene" uid="uid://dpc13ucm0i8fg" path="res://level-handling/game_ui.tscn" id="3_oslck"]
-[ext_resource type="PackedScene" uid="uid://coqj034dvvbeu" path="res://objects/level_editor.tscn" id="4_1k01j"]
+[ext_resource type="PackedScene" uid="uid://dpc13ucm0i8fg" path="res://level_handling/game_ui.tscn" id="3_oslck"]
+[ext_resource type="PackedScene" path="res://objects/level_editor.tscn" id="4_1k01j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oslck"]
 shader = ExtResource("1_hjd5e")
