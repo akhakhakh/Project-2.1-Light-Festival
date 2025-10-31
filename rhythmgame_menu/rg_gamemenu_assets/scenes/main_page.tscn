@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://civ2pfgv3dchm"]
+[gd_scene load_steps=13 format=3 uid="uid://civ2pfgv3dchm"]
 
 [ext_resource type="Script" uid="uid://ceghp231ggbxo" path="res://rhythmgame_menu/rg_gamemenu_assets/scripts/main_page.gd" id="1_cc0qa"]
 [ext_resource type="Script" uid="uid://drlxc3aaln2e7" path="res://rhythmgame_menu/rg_gamemenu_assets/scripts/start_up_page.gd" id="2_omkak"]
 [ext_resource type="Texture2D" uid="uid://x5jnceo0jflh" path="res://rhythmgame_menu/rg_gamemenu_assets/images/neon_glitch.jpg" id="3_apm6u"]
 [ext_resource type="FontFile" uid="uid://dbhmrndrp70h0" path="res://rhythmgame_menu/rg_gamemenu_assets/font/game_over.ttf" id="4_gl2rg"]
+[ext_resource type="AudioStream" uid="uid://dpt2wsucjkya1" path="res://rhythmgame_menu/rg_gamemenu_assets/soundEffects/button_click.mp3" id="5_apm6u"]
+[ext_resource type="Script" uid="uid://o7yoiegrsp2v" path="res://rhythmgame_menu/rg_gamemenu_assets/scripts/button_sound.gd" id="5_omkak"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ydu"]
 bg_color = Color(0.18039216, 0.16078432, 0.30588236, 1)
@@ -101,6 +103,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_uxver")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bx58v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sgmfo")
 text = "Quit"
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_apm6u")
+script = ExtResource("5_omkak")
 
 [connection signal="pressed" from="CanvasLayer/StartUpPage/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartUpPage/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]

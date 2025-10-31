@@ -10,6 +10,7 @@ signal back_pressed
 @onready var medium_button = $MediumButton
 @onready var hard_button = $HardButton
 @onready var back_button = $BackButton
+@onready var button_sound = $ButtonSound
 
 #animation-ref
 @onready var animation_player = $AnimationPlayer
@@ -33,18 +34,26 @@ func play_exit_animation():
 	animation_player.play("bounce_out_to_right")
 
 func _on_easy_button_pressed():
+	_play_button_sound()
 	print("Easy difficulty selected")
 	emit_signal("easy_selected")
 
 func _on_medium_button_pressed():
+	_play_button_sound()
 	print("Medium difficulty selected")
 	emit_signal("medium_selected")
 
 func _on_hard_button_pressed():
+	_play_button_sound()
 	print("Hard difficulty selected")
 	emit_signal("hard_selected")
 
 func _on_back_button_pressed():
+	_play_button_sound()
 	print("Returning to Menu")
 	emit_signal("back_pressed")
 	get_tree().change_scene_to_file("res://rhythmgame_menu/rg_gamemenu_assets/scenes/main_page.tscn")
+
+func _play_button_sound():
+	if button_sound:
+		button_sound.play()

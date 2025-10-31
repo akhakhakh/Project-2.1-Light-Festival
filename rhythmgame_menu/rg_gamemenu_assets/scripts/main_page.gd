@@ -3,6 +3,7 @@ extends Node2D
 #Reference
 @onready var startup_page: Control
 @onready var difficulty_menu = preload("res://rhythmgame_menu/rg_gamemenu_assets/scenes/difficulty_menu.tscn")
+@onready var button_sound = $ButtonSound
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,12 +23,19 @@ func _on_startup_page_ready():
 
 
 func _on_start_button_pressed():
+	_play_button_sound()
 	print("Transitioning to difficulty menu...")
 	get_tree().change_scene_to_file("res://rhythmgame_menu/rg_gamemenu_assets/scenes/difficulty_menu.tscn")
 
 func _on_leaderboard_button_pressed():
+	_play_button_sound()
 	print("Opening leaderboard...")
 	#get_tree().change_scene_to_file(#add the leaderboard scene here)
 
 func _on_quit_button_pressed():
+	_play_button_sound()
 	get_tree().quit()
+
+func _play_button_sound():
+	if button_sound:
+		button_sound.play()
