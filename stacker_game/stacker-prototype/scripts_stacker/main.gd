@@ -325,8 +325,8 @@ func reset_row():
 		cur_blocks = starting_blocks
 	
 	# Reset position and movement
-	cur_left = 0
-	dir = 1
+	cur_left = randi() % (grid_width - cur_blocks + 1)
+	dir = 1 if randf() < 0.5 else -1
 	is_row_active = true
 	moved = 0.0
 	
