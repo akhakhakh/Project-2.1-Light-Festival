@@ -35,6 +35,9 @@ func _ready():
 			# Connect directly to the autoloaded BeatManager
 			BeatManager.connect("SpawnButton", _on_spawn_button)
 			print("BeatManager connected successfully!")
+			
+			# Start the music
+			BeatManager.StartMusic()
 		else:
 			print("ERROR: BeatManager not found! Check autoload settings.")
 
@@ -48,7 +51,6 @@ func _on_spawn_button(button_color: String) -> void:
 	var button_name = button_color + "_button"
 	
 	# Emit the signal to create the falling key
-	print("Emitting CreateFallingKey for: ", button_name)
 	Signals.CreateFallingKey.emit(button_name)
 
 # Records key press time when in edit mode

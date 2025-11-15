@@ -6,7 +6,7 @@ public partial class BeatManager : Node
 {
 	[Export] public AudioStream Music;
 	[Export] public float FallTime = 2.2f;       // time for notes to reach hit lane
-
+	[Export] public bool EasyMode = true;        // Enable easy mode (fewer notes)
 
 	//signal to spawn notes
 	[Signal] public delegate void SpawnButtonEventHandler(string buttonColor);
@@ -19,6 +19,9 @@ public partial class BeatManager : Node
 
 	//track which notes have been spawned
 	private int _nextNoteIndex = 0;
+
+	// Track if music has been started
+	private bool _musicStarted = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -40,7 +43,7 @@ public partial class BeatManager : Node
 		//start the music
 		_musicPlayer.Play();
 
-		GD.Print("BeatManager: Music Started");
+		GD.Print($"BeatManager: Music Started ({(EasyMode ? "Easy" : "Hard")} Mode - {_beatMap.Count} notes)");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,6 +63,26 @@ public partial class BeatManager : Node
 		}
 	}
 
+	public void StartMusic()
+	{
+		if (!_musicStarted)
+		{
+			_musicPlayer.Play();
+			_musicStarted = true;
+			GD.Print($"🎵 Music Started ({(EasyMode ? "Easy" : "Hard")} Mode - {_beatMap.Count} notes)");
+		}
+	}
+
+	// Public method to stop music (called on game over)
+	public void StopMusic()
+	{
+		if (_musicPlayer != null && _musicPlayer.Playing)
+		{
+			_musicPlayer.Stop();
+			GD.Print("Music stopped - Game Over");
+		}
+	}
+
 	private void LoadRhythmHellBeatMap()
 	{
 		//blue lane notes
@@ -74,18 +97,21 @@ public partial class BeatManager : Node
 		//yellow lane notes
 		float[] yellowTimes = { 4.07199983596802f, 8.06133346557617f, 12.0613334655762f, 26.5893333435059f, 27.4639995574951f };
 
-		//add all notes to beat map 
-		foreach (float t in blueTimes)
-			_beatMap.Add((t - FallTime, "blue"));
+		// Easy mode: only add every 3rd note (about 33% of notes)
+		int step = EasyMode ? 3 : 1;
 
-		foreach (float t in greenTimes)
-			_beatMap.Add((t - FallTime, "green"));
+		//add notes to beat map 
+		for (int i = 0; i < blueTimes.Length; i += step)
+			_beatMap.Add((blueTimes[i] - FallTime, "blue"));
 
-		foreach (float t in redTimes)
-			_beatMap.Add((t - FallTime, "red"));
+		for (int i = 0; i < greenTimes.Length; i += step)
+			_beatMap.Add((greenTimes[i] - FallTime, "green"));
 
-		foreach (float t in yellowTimes)
-			_beatMap.Add((t - FallTime, "yellow"));
+		for (int i = 0; i < redTimes.Length; i += step)
+			_beatMap.Add((redTimes[i] - FallTime, "red"));
+
+		for (int i = 0; i < yellowTimes.Length; i += step)
+			_beatMap.Add((yellowTimes[i] - FallTime, "yellow"));
 
 		//Sort by time so notes spawn in order
 		_beatMap.Sort((a, b) => a.time.CompareTo(b.time));

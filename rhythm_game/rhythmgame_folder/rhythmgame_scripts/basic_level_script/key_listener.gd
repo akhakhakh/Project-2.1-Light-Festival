@@ -149,6 +149,15 @@ func ShowScoreText(text: String, offset_y: int):
 	
 	
 func GameOver():
+	print("GameOver called!")
+	
+	# Stop the music
+	if has_node("/root/BeatManager"):
+		print("BeatManager found")
+		BeatManager.StopMusic()
+	else:
+		print("BeatManager NOT found")
+	
 	# Save current score to global for display
 	Global.total_score = total_score
 

@@ -52,6 +52,7 @@ func _on_hard_button_pressed():
 func _on_back_button_pressed():
 	_play_button_sound()
 	print("Returning to Menu")
+	
 	emit_signal("back_pressed")
 	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")
 
