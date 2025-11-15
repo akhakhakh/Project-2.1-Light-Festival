@@ -22,16 +22,15 @@ var level_info = {
 
 # Called when the scene starts
 func _ready():
-	# Load and play the song for the current level
-	$MusicPlayer.stream = level_info.get(current_level_name).get("music")
-	$MusicPlayer.play()
-	
 	if in_edit_mode:
-		# If editing, connect key press signals to record timing
+		# If editing, load and play music manually for recording
+		$MusicPlayer.stream = level_info.get(current_level_name).get("music")
+		$MusicPlayer.play()
+		# Connect key press signals to record timing
 		Signals.KeyListenerPress.connect(KeyListenerPress)
 	else:
-		# Connect to BeatManager spawn signal
-		# BeatManager is an autoload, not a singleton
+		# In play mode, BeatManager handles music playback
+		# Just connect to BeatManager's spawn signal
 		if has_node("/root/BeatManager"):
 			# Connect directly to the autoloaded BeatManager
 			BeatManager.connect("SpawnButton", _on_spawn_button)
@@ -49,6 +48,7 @@ func _on_spawn_button(button_color: String) -> void:
 	var button_name = button_color + "_button"
 	
 	# Emit the signal to create the falling key
+	print("Emitting CreateFallingKey for: ", button_name)
 	Signals.CreateFallingKey.emit(button_name)
 
 # Records key press time when in edit mode

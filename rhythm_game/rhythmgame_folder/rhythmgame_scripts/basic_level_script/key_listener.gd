@@ -130,8 +130,10 @@ func HandleKeyPress():
 
 # --- Spawns a falling note for this key lane ---
 func CreateFallingKey(button_name: String):
+	print("KeyListener ", key_name, " recieved ", button_name)
 	# Only create the note if it matches this key’s assigned name
 	if button_name == key_name:
+		print("Match! Spawning note for: ", key_name)
 		var fk_inst = falling_key.instantiate()
 		get_tree().get_root().call_deferred("add_child", fk_inst) # Add note to the scene tree safely
 		fk_inst.Setup(position.x, frame + 4)                      # Position and initialize the note
