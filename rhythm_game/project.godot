@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Project Light Festival"
 run/main_scene="uid://civ2pfgv3dchm"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Signals="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/signals.gd"
 Global="*res://rhythmgame_folder/rhythmgame_scripts/endingScreen_script/global.gd"
 <<<<<<<HEADSignals="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/signals.gd"
+BeatManager="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/BeatManager.cs"
 
 [display]
 
