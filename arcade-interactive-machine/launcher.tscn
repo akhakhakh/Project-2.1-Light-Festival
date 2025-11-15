@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3kxr5w4khfom"]
+
+[ext_resource type="Script" uid="uid://c0bkfrmlxosdj" path="res://launcher.gd" id="1_4emaf"]
+[ext_resource type="FontFile" uid="uid://bi6lujanrby48" path="res://PixelifySans-VariableFont_wght.ttf" id="2_cvfd6"]
+
+[node name="Launcher" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4emaf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 316.0
+offset_right = 843.0
+offset_bottom = 649.0
+grow_horizontal = 2
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cvfd6")
+theme_override_font_sizes/font_size = 48
+text = "Welcome! Please select a game:"
+
+[node name="Simon Says" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cvfd6")
+theme_override_font_sizes/font_size = 32
+text = "Simon Says"
+
+[node name="Stacker" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cvfd6")
+theme_override_font_sizes/font_size = 32
+text = "Stacker"
+
+[node name="Rhythm Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cvfd6")
+theme_override_font_sizes/font_size = 32
+text = "Rhythm Game"
+
+[node name="Red" type="Polygon2D" parent="."]
+position = Vector2(9, 11)
+color = Color(1, 0.023529412, 0, 1)
+polygon = PackedVector2Array(956, 164, 957, 159, 960, 152, 966, 149, 972, 146, 977, 145, 981, 144, 985, 144, 993, 143, 997, 144, 1001, 145, 1005, 147, 1009, 149, 1012, 151, 1016, 154, 1019, 157, 1021, 160, 1023, 164, 1025, 169, 1025, 173, 1025, 176, 1025, 182, 1025, 184, 1025, 187, 1023, 191, 1021, 194, 1019, 197, 1017, 199, 1016, 200, 1012, 202, 1007, 204, 1002, 206, 997, 206, 992, 206, 986, 205, 980, 205, 975, 202, 970, 200, 965, 194, 963, 192, 960, 189, 958, 185, 957, 182, 956, 178, 955, 174, 955, 170, 956, 167)
+
+[node name="Green" type="Polygon2D" parent="."]
+position = Vector2(13, 303)
+color = Color(0, 1, 0.16470589, 1)
+polygon = PackedVector2Array(956, 164, 957, 159, 960, 152, 966, 149, 972, 146, 977, 145, 981, 144, 985, 144, 993, 143, 997, 144, 1001, 145, 1005, 147, 1009, 149, 1012, 151, 1016, 154, 1019, 157, 1021, 160, 1023, 164, 1025, 169, 1025, 173, 1025, 176, 1025, 182, 1025, 184, 1025, 187, 1023, 191, 1021, 194, 1019, 197, 1017, 199, 1016, 200, 1012, 202, 1007, 204, 1002, 206, 997, 206, 992, 206, 986, 205, 980, 205, 975, 202, 970, 200, 965, 194, 963, 192, 960, 189, 958, 185, 957, 182, 956, 178, 955, 174, 955, 170, 956, 167)
+
+[node name="Blue" type="Polygon2D" parent="."]
+position = Vector2(13, 155)
+color = Color(0, 0.3647059, 1, 1)
+polygon = PackedVector2Array(956, 164, 957, 159, 960, 152, 966, 149, 972, 146, 977, 145, 981, 144, 985, 144, 993, 143, 997, 144, 1001, 145, 1005, 147, 1009, 149, 1012, 151, 1016, 154, 1019, 157, 1021, 160, 1023, 164, 1025, 169, 1025, 173, 1025, 176, 1025, 182, 1025, 184, 1025, 187, 1023, 191, 1021, 194, 1019, 197, 1017, 199, 1016, 200, 1012, 202, 1007, 204, 1002, 206, 997, 206, 992, 206, 986, 205, 980, 205, 975, 202, 970, 200, 965, 194, 963, 192, 960, 189, 958, 185, 957, 182, 956, 178, 955, 174, 955, 170, 956, 167)

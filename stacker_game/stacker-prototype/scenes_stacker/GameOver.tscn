@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4hbqnbfcm6vb"]
+
+[ext_resource type="Script" uid="uid://ce5gkmkegulau" path="res://scripts_stacker/GameOver.gd" id="1_d8mpk"]
+[ext_resource type="Texture2D" uid="uid://cakmx6hg642u5" path="res://assets_stacker/game_over.png" id="2_wu2do"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_stacker/PixelifySans-VariableFont_wght.ttf" id="3_katqe"]
+[ext_resource type="AudioStream" uid="uid://o387ylba5gj7" path="res://sounds_stacker/game_over_audio.wav" id="4_3lyid"]
+
+[node name="GameOverScene" type="Node2D"]
+script = ExtResource("1_d8mpk")
+
+[node name="GameOverImage" type="Sprite2D" parent="."]
+position = Vector2(575.5, 324.49997)
+scale = Vector2(0.59843755, 0.5972222)
+texture = ExtResource("2_wu2do")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 427.0
+offset_top = 308.0
+offset_right = 652.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("3_katqe")
+theme_override_font_sizes/font_size = 36
+text = "You got"
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 533.0
+offset_top = 378.0
+offset_right = 624.0
+offset_bottom = 462.0
+mouse_filter = 2
+
+[node name="Back" type="Label" parent="."]
+offset_left = 884.0
+offset_top = 545.0
+offset_right = 1050.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("3_katqe")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="Yellow" type="Polygon2D" parent="."]
+position = Vector2(621, 344.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.96869355, 0.8167091, 2.3102762e-06, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[node name="AudioLose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3lyid")
+autoplay = true
+
+[node name="LeaderBoard" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 540.0
+offset_right = 310.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("3_katqe")
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard"
+
+[node name="Blue" type="Polygon2D" parent="."]
+position = Vector2(-117.99999, 341.00003)
+scale = Vector2(0.59843755, 0.5972222)
+color = Color(0.09803922, 0, 0.9764706, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]

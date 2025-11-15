@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkg5h40n5gjl4"
+path="res://.godot/imported/C note.mp3-f73335133ed5d7a8c7c8fae5474ea2f0.mp3str"
+
+[deps]
+
+source_file="res://assets_simonsays/C note.mp3"
+dest_files=["res://.godot/imported/C note.mp3-f73335133ed5d7a8c7c8fae5474ea2f0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

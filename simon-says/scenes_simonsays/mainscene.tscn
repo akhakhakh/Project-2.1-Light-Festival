@@ -1,0 +1,417 @@
+[gd_scene load_steps=57 format=3 uid="uid://cxgkxkqfgpj8e"]
+
+[ext_resource type="Script" uid="uid://dbjt2vt1v05fs" path="res://scripts_simonsays/mainscene.gd" id="1_p51wu"]
+[ext_resource type="Shader" uid="uid://7bal7t5lvchr" path="res://scripts_simonsays/mainscene.gdshader" id="2_vxrwn"]
+[ext_resource type="Shader" uid="uid://c1kges1flj2xr" path="res://scripts_simonsays/button_color.gdshader" id="3_p3fdl"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="4_8cdvp"]
+[ext_resource type="AudioStream" uid="uid://s8j6b3ud0b08" path="res://assets_simonsays/G note.mp3" id="5_pfkns"]
+[ext_resource type="AudioStream" uid="uid://bcdiyrglymke8" path="res://assets_simonsays/A note.mp3" id="6_jr2d7"]
+[ext_resource type="AudioStream" uid="uid://1up4h6fr56vw" path="res://assets_simonsays/B note.mp3" id="7_dii4n"]
+[ext_resource type="AudioStream" uid="uid://dkg5h40n5gjl4" path="res://assets_simonsays/C note.mp3" id="8_d20oq"]
+[ext_resource type="AudioStream" uid="uid://x81nur2c1grr" path="res://assets_simonsays/combo.wav" id="9_nverl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fl65m"]
+shader = ExtResource("2_vxrwn")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 100.0
+shader_parameter/small_stars_far_size = 1.0
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 10.0
+shader_parameter/large_stars_far_size = 1.0
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(1, 1, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sbvtr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5lfti"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn5c8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtb1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtdyi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fl65m"]
+
+[sub_resource type="Gradient" id="Gradient_76yo1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8bn17"]
+gradient = SubResource("Gradient_76yo1")
+fill_from = Vector2(0, 0.00537634)
+fill_to = Vector2(0.209677, 0.00537634)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8bn17"]
+shader = ExtResource("3_p3fdl")
+shader_parameter/gradient = SubResource("GradientTexture2D_8bn17")
+shader_parameter/circle_color = Color(0.228978, 1.86507e-07, 6.61798e-08, 1)
+shader_parameter/circle_multiplier = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/rotation = Transform2D(1, -1, 1, 1, 0, 0)
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ofsq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ibrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lhry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ftms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bn17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76yo1"]
+
+[sub_resource type="Gradient" id="Gradient_1ftms"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0lhry"]
+gradient = SubResource("Gradient_1ftms")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 0.231183)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ibrq"]
+shader = ExtResource("3_p3fdl")
+shader_parameter/gradient = SubResource("GradientTexture2D_0lhry")
+shader_parameter/circle_color = Color(0.0668745, 0.179524, 0, 1)
+shader_parameter/circle_multiplier = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/rotation = Transform2D(1, -1, 1, 1, 0, 0)
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sl4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ek7m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gyya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1mr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dgxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lc52x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8b8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtreq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4p23x"]
+
+[sub_resource type="Gradient" id="Gradient_4ofsq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4p23x"]
+gradient = SubResource("Gradient_4ofsq")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.741935, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtreq"]
+shader = ExtResource("3_p3fdl")
+shader_parameter/gradient = SubResource("GradientTexture2D_4p23x")
+shader_parameter/circle_color = Color(5.17406e-07, 0, 0.332346, 1)
+shader_parameter/circle_multiplier = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/rotation = Transform2D(1, -1, 1, 1, 0, 0)
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkysf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5au1j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ewkxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbpqh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7qwr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28t8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvxvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_312mw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2c5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xf0pi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sm3u2"]
+
+[sub_resource type="Gradient" id="Gradient_j8b8d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lc52x"]
+gradient = SubResource("Gradient_j8b8d")
+fill_from = Vector2(1, 0.973118)
+fill_to = Vector2(1, 0.688172)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dgxd"]
+shader = ExtResource("3_p3fdl")
+shader_parameter/gradient = SubResource("GradientTexture2D_lc52x")
+shader_parameter/circle_color = Color(0.279925, 0.279925, 9.62615e-08, 1)
+shader_parameter/circle_multiplier = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/rotation = Transform2D(1, -1, 1, 1, 0, 0)
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtdyi"]
+bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="Curve" id="Curve_1ftms"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.101124), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_p51wu")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fl65m")
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedButton" type="Button" parent="."]
+offset_left = 333.0
+offset_top = 221.0
+offset_right = 430.0
+offset_bottom = 400.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sbvtr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5lfti")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dn5c8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xtb1e")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wtdyi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fl65m")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RedButton"]
+material = SubResource("ShaderMaterial_8bn17")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.17584, 0.00651154, 0, 1)
+
+[node name="GreenButton" type="Button" parent="."]
+offset_left = 453.0
+offset_top = 95.0
+offset_right = 700.0
+offset_bottom = 178.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4ofsq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0ibrq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0lhry")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1ftms")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8bn17")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_76yo1")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="GreenButton"]
+material = SubResource("ShaderMaterial_0ibrq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.04311, 0.292175, 4.81308e-08, 1)
+
+[node name="BlueButton" type="Button" parent="."]
+offset_left = 730.0
+offset_top = 228.0
+offset_right = 829.0
+offset_bottom = 403.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5sl4u")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3ek7m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8gyya")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_x1mr1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dgxd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lc52x")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_j8b8d")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_jtreq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4p23x")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="BlueButton"]
+material = SubResource("ShaderMaterial_jtreq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0.0975703, 0.274262, 1)
+
+[node name="YellowButton" type="Button" parent="."]
+offset_left = 453.0
+offset_top = 445.0
+offset_right = 700.0
+offset_bottom = 528.0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xkysf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_5au1j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ewkxy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_jbpqh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_r7qwr")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_28t8q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qvxvv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_312mw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_w2c5i")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_xf0pi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sm3u2")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="YellowButton"]
+material = SubResource("ShaderMaterial_2dgxd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.289837, 0.275972, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 255.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wtdyi")
+
+[node name="Label" type="Label" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_8cdvp")
+theme_override_font_sizes/font_size = 40
+text = "Points: 0"
+
+[node name="GameOverText" type="Label" parent="."]
+visible = false
+offset_left = 278.0
+offset_top = 280.0
+offset_right = 912.0
+offset_bottom = 393.0
+theme_override_fonts/font = ExtResource("4_8cdvp")
+theme_override_font_sizes/font_size = 40
+text = "Game Over! Game restarting in 3"
+
+[node name="RedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pfkns")
+
+[node name="GreenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jr2d7")
+
+[node name="BlueSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dii4n")
+
+[node name="YellowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_d20oq")
+
+[node name="Combo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_nverl")
+
+[node name="GreenParticles" type="CPUParticles2D" parent="."]
+position = Vector2(578, 141)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1ftms")
+color = Color(2.83971e-06, 0.715167, 0.0460849, 1)
+
+[node name="YellowParticles" type="CPUParticles2D" parent="."]
+position = Vector2(578, 479)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1ftms")
+color = Color(0.791541, 0.743066, 2.69532e-06, 1)
+
+[node name="RedParticles" type="CPUParticles2D" parent="."]
+position = Vector2(385, 315)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1ftms")
+color = Color(0.835718, 3.22476e-06, 7.70092e-07, 1)
+
+[node name="BlueParticles" type="CPUParticles2D" parent="."]
+position = Vector2(772, 309)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1ftms")
+color = Color(0.340429, 0.581316, 1, 1)
+
+[node name="ComboMessage" type="Label" parent="."]
+visible = false
+offset_left = 507.0
+offset_top = 274.0
+offset_right = 645.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("4_8cdvp")
+theme_override_font_sizes/font_size = 64
+text = "Nice!"
+
+[connection signal="pressed" from="RedButton" to="." method="_on_red_button_pressed"]
+[connection signal="pressed" from="GreenButton" to="." method="_on_green_button_pressed"]
+[connection signal="pressed" from="BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="YellowButton" to="." method="_on_yellow_button_pressed"]
