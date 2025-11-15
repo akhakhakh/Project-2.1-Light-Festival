@@ -44,6 +44,7 @@ _data = {
 texture = ExtResource("1_2gc7i")
 hframes = 4
 vframes = 3
+region_rect = Rect2(0, 0, 4066, 6137)
 script = ExtResource("2_lfl67")
 
 [node name="RandomSpawnTimer" type="Timer" parent="."]
@@ -56,6 +57,7 @@ texture = ExtResource("1_2gc7i")
 hframes = 4
 vframes = 3
 frame = 4
+region_rect = Rect2(0, 0, 4066, 6137)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
