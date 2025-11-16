@@ -100,7 +100,7 @@ public partial class BeatManager : Node
 		//yellow lane notes
 		float[] yellowTimes = { 4.07199983596802f, 8.06133346557617f, 12.0613334655762f, 26.5893333435059f, 27.4639995574951f };
 
-		// Easy mode
+		// Normal mode
 		int step = 1;
 
 		//add notes to beat map 
