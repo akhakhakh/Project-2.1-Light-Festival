@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqos6vxrtuce0"]
+[gd_scene load_steps=11 format=3 uid="uid://cqos6vxrtuce0"]
 
 [ext_resource type="Shader" uid="uid://3s7ch1ol4pl6" path="res://rhythmgame_folder/rhythmgame_scripts/mainscene.gdshader" id="1_hjd5e"]
 [ext_resource type="PackedScene" uid="uid://c0ee0lmjynuay" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/key_listener.tscn" id="2_hjd5e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drw43fxeypwus" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/game_ui.tscn" id="3_oslck"]
 [ext_resource type="PackedScene" uid="uid://coqj034dvvbeu" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/level_editor.tscn" id="4_1k01j"]
 [ext_resource type="Script" uid="uid://ban60xss3716x" path="res://rhythmgame_folder/rhythmgame_scripts/easy_level_script/level_editor.gd" id="6_iu53m"]
+[ext_resource type="AudioStream" uid="uid://bej0cei3aryf" path="res://rhythmgame_folder/rhythmgame_assets/music/Rhythm Hell.wav" id="7_elto7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oslck"]
 shader = ExtResource("1_hjd5e")
@@ -89,3 +90,6 @@ environment = SubResource("Environment_i5mjo")
 
 [node name="LevelEditor" parent="." instance=ExtResource("4_1k01j")]
 script = ExtResource("6_iu53m")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_elto7")

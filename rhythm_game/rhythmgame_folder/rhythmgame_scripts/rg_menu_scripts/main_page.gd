@@ -11,9 +11,9 @@ func _ready():
 	startup_page = $CanvasLayer/StartUpPage
 	startup_page.ready.connect(_on_startup_page_ready)
 	
-	#Stop music
-	if has_node("/root/BeatManager"):
-		BeatManager.StopMusic()
+	##Stop music
+	#if has_node("/root/BeatManager"):
+		#BeatManager.StopMusic()
 	
 	print("Main scene loaded - Pixel Rhythm Game")
 

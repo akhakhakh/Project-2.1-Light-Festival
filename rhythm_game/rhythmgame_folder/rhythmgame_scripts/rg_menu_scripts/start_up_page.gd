@@ -24,6 +24,10 @@ func _ready():
 	#Set up initial focus for buttons/gamepad support
 	start_button.grab_focus()
 	
+	#Stop music
+	if has_node("/root/BeatManager"):
+		BeatManager.StopMusic()
+	
 	print("Startup page loded successfully!")
 
 func _on_start_button_pressed():

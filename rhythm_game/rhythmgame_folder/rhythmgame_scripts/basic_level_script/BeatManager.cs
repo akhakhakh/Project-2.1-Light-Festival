@@ -8,10 +8,13 @@ public partial class BeatManager : Node
 	[Export] public float FallTime = 2.2f;       // time for notes to reach hit lane
 	[Export] public bool EasyMode = true;        // Enable easy mode (fewer notes)
 	[Export] public float GlobalOffset = 1.4f;  // in secs
-	[Export] public float TimingScale = 1.0f; 	// multiplier to fix drift (no change)
+	[Export] public float TimingScale = 1.0f;   // multiplier to fix drift (no change)
 
 	//signal to spawn notes
 	[Signal] public delegate void SpawnButtonEventHandler(string buttonColor);
+
+	public enum MusicMode { None, Menu, Gameplay };
+	public MusicMode CurrentMode { get; private set; } = MusicMode.None;
 
 	//music player
 	private AudioStreamPlayer _musicPlayer;
@@ -42,11 +45,7 @@ public partial class BeatManager : Node
 		//load the beat map for Rhythm Hell
 		LoadRhythmHellBeatMap();
 
-		//start the music
-		_musicPlayer.Play();
-		_musicStarted = true;
-
-		GD.Print($"BeatManager: Music Started ({(EasyMode ? "Easy" : "Hard")} Mode - {_beatMap.Count} notes)");
+		GD.Print($"BeatManager ready. Waiting to start Music)");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -136,12 +135,12 @@ public partial class BeatManager : Node
 	// }
 
 	private void AddNotes(float[] times, string color, int step)
-    {
-        for (int i = 0; i < times.Length; i += step)
+	{
+		for (int i = 0; i < times.Length; i += step)
 		{
 			//apply timing scale + global offset
 			float spawnTime = (times[i] * TimingScale) - FallTime + GlobalOffset;
 			_beatMap.Add((spawnTime, color));
-        }
-    }
+		}
+	}
 }

@@ -14,7 +14,7 @@ var fk_output_arr = [[], [], [], []]
 
 # Level configuration data
 var level_info = {
-	"RHYTHM_HELL" = {
+	"RHYTHM_HELL" : {
 		# Music file for this level
 		"music": load("res://rhythmgame_folder/rhythmgame_assets/music/Rhythm Hell.wav")
 	}
@@ -33,11 +33,13 @@ func _ready():
 		# Just connect to BeatManager's spawn signal
 		if has_node("/root/BeatManager"):
 			# Connect directly to the autoloaded BeatManager
-			BeatManager.connect("SpawnButton", _on_spawn_button)
+			var bm = get_node("/root/BeatManager")
+			bm.connect("SpawnButton", Callable(self, "_on_spawn_button"))
+			bm.StartMusic()
 			print("BeatManager connected successfully!")
 			
 			# Start the music
-			BeatManager.StartMusic()
+			#BeatManager.StartMusic()
 		else:
 			print("ERROR: BeatManager not found! Check autoload settings.")
 
