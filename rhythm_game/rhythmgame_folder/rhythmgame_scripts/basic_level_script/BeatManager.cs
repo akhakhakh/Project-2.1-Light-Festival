@@ -7,6 +7,8 @@ public partial class BeatManager : Node
 	[Export] public AudioStream Music;
 	[Export] public float FallTime = 2.2f;       // time for notes to reach hit lane
 	[Export] public bool EasyMode = true;        // Enable easy mode (fewer notes)
+	[Export] public float GlobalOffset = 1.4f;  // in secs
+	[Export] public float TimingScale = 1.0f; 	// multiplier to fix drift (no change)
 
 	//signal to spawn notes
 	[Signal] public delegate void SpawnButtonEventHandler(string buttonColor);
@@ -42,6 +44,7 @@ public partial class BeatManager : Node
 
 		//start the music
 		_musicPlayer.Play();
+		_musicStarted = true;
 
 		GD.Print($"BeatManager: Music Started ({(EasyMode ? "Easy" : "Hard")} Mode - {_beatMap.Count} notes)");
 	}
@@ -97,25 +100,48 @@ public partial class BeatManager : Node
 		//yellow lane notes
 		float[] yellowTimes = { 4.07199983596802f, 8.06133346557617f, 12.0613334655762f, 26.5893333435059f, 27.4639995574951f };
 
-		// Easy mode: only add every 3rd note (about 33% of notes)
-		int step = EasyMode ? 3 : 1;
+		// Easy mode
+		int step = 1;
 
 		//add notes to beat map 
-		for (int i = 0; i < blueTimes.Length; i += step)
-			_beatMap.Add((blueTimes[i] - FallTime, "blue"));
+		// for (int i = 0; i < blueTimes.Length; i += step)
+		// 	_beatMap.Add((blueTimes[i] - FallTime + GlobalOffset, "blue"));
 
-		for (int i = 0; i < greenTimes.Length; i += step)
-			_beatMap.Add((greenTimes[i] - FallTime, "green"));
+		// for (int i = 0; i < greenTimes.Length; i += step)
+		// 	_beatMap.Add((greenTimes[i] - FallTime + GlobalOffset, "green"));
 
-		for (int i = 0; i < redTimes.Length; i += step)
-			_beatMap.Add((redTimes[i] - FallTime, "red"));
+		// for (int i = 0; i < redTimes.Length; i += step)
+		// 	_beatMap.Add((redTimes[i] - FallTime + GlobalOffset, "red"));
 
-		for (int i = 0; i < yellowTimes.Length; i += step)
-			_beatMap.Add((yellowTimes[i] - FallTime, "yellow"));
+		// for (int i = 0; i < yellowTimes.Length; i += step)
+		// 	_beatMap.Add((yellowTimes[i] - FallTime + GlobalOffset, "yellow"));
+
+		AddNotes(blueTimes, "blue", step);
+		AddNotes(greenTimes, "green", step);
+		AddNotes(redTimes, "red", step);
+		AddNotes(yellowTimes, "yellow", step);
 
 		//Sort by time so notes spawn in order
 		_beatMap.Sort((a, b) => a.time.CompareTo(b.time));
 
 		GD.Print($"Loaded {_beatMap.Count} notes for Rhythm Hell");
 	}
+
+	// private float FindNearestBeat(float time, float bpm = 120f)
+	// {
+	// 	float beatLength = 30f / bpm; // secs per beat
+	// 	int nearestBeatIndex = (int)Math.Round(time / beatLength);
+
+	// 	return nearestBeatIndex * beatLength;
+	// }
+
+	private void AddNotes(float[] times, string color, int step)
+    {
+        for (int i = 0; i < times.Length; i += step)
+		{
+			//apply timing scale + global offset
+			float spawnTime = (times[i] * TimingScale) - FallTime + GlobalOffset;
+			_beatMap.Add((spawnTime, color));
+        }
+    }
 }

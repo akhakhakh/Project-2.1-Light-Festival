@@ -1,6 +1,6 @@
 extends Node2D
 
-# Determines whether the game runs in edit (recording) mode or play mode
+# Modes
 const in_edit_mode: bool = false
 
 # The name of the current level being played
@@ -41,7 +41,7 @@ func _ready():
 		else:
 			print("ERROR: BeatManager not found! Check autoload settings.")
 
-# Called when BeatManager wants to spawn a falling key
+# Called when BeatManager wants to spawn a falling key - PLAY MODE
 func _on_spawn_button(button_color: String) -> void:
 	print("Spawn signal received for: ", button_color)
 	
@@ -53,12 +53,12 @@ func _on_spawn_button(button_color: String) -> void:
 	# Emit the signal to create the falling key
 	Signals.CreateFallingKey.emit(button_name)
 
-# Records key press time when in edit mode
+# Records key press time when in EDIT MODE
 func KeyListenerPress(_button_name: String, array_num: int):
 	# Save the current playback time adjusted by the fall delay
 	var spawn_time = $MusicPlayer.get_playback_position() - fk_fall_time
 	fk_output_arr[array_num].append(spawn_time)
-
+	
 # Called when the music finishes playing
 func _on_music_player_finished():
 	print("Song finished!")
