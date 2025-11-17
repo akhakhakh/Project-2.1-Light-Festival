@@ -7,7 +7,7 @@ public partial class BeatManager : Node
 	[Export] public AudioStream Music;
 	[Export] public float FallTime = 2.2f;       // time for notes to reach hit lane
 	[Export] public bool NormalMode = true;        // Enable normal mode (normal notes)
-	[Export] public float GlobalOffset = 1.4f;  // in secs
+	[Export] public float GlobalOffset = 1.4f;  // in secs [1.4f OG]
 	[Export] public float TimingScale = 1.0f;   // multiplier to fix drift (no change)
 
 	//signal to spawn notes
@@ -100,7 +100,7 @@ public partial class BeatManager : Node
 		float[] yellowTimes = { 4.07199983596802f, 8.06133346557617f, 12.0613334655762f, 26.5893333435059f, 27.4639995574951f };
 
 		// Normal mode
-		int step = 1;
+		int step = 1; //default is 1
 
 		AddNotes(blueTimes, "blue", step);
 		AddNotes(greenTimes, "green", step);
