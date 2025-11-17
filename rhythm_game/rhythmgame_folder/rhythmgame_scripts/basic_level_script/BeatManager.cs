@@ -6,7 +6,7 @@ public partial class BeatManager : Node
 {
 	[Export] public AudioStream Music;
 	[Export] public float FallTime = 2.2f;       // time for notes to reach hit lane
-	[Export] public bool EasyMode = true;        // Enable easy mode (fewer notes)
+	[Export] public bool NormalMode = true;        // Enable normal mode (normal notes)
 	[Export] public float GlobalOffset = 1.4f;  // in secs
 	[Export] public float TimingScale = 1.0f;   // multiplier to fix drift (no change)
 
@@ -71,7 +71,7 @@ public partial class BeatManager : Node
 		{
 			_musicPlayer.Play();
 			_musicStarted = true;
-			GD.Print($"🎵 Music Started ({(EasyMode ? "Easy" : "Hard")} Mode - {_beatMap.Count} notes)");
+			GD.Print($"🎵 Music Started ({(NormalMode ? "Normal" : "Hard")} Mode - {_beatMap.Count} notes)");
 		}
 	}
 
@@ -102,19 +102,6 @@ public partial class BeatManager : Node
 		// Normal mode
 		int step = 1;
 
-		//add notes to beat map 
-		// for (int i = 0; i < blueTimes.Length; i += step)
-		// 	_beatMap.Add((blueTimes[i] - FallTime + GlobalOffset, "blue"));
-
-		// for (int i = 0; i < greenTimes.Length; i += step)
-		// 	_beatMap.Add((greenTimes[i] - FallTime + GlobalOffset, "green"));
-
-		// for (int i = 0; i < redTimes.Length; i += step)
-		// 	_beatMap.Add((redTimes[i] - FallTime + GlobalOffset, "red"));
-
-		// for (int i = 0; i < yellowTimes.Length; i += step)
-		// 	_beatMap.Add((yellowTimes[i] - FallTime + GlobalOffset, "yellow"));
-
 		AddNotes(blueTimes, "blue", step);
 		AddNotes(greenTimes, "green", step);
 		AddNotes(redTimes, "red", step);
@@ -125,14 +112,6 @@ public partial class BeatManager : Node
 
 		GD.Print($"Loaded {_beatMap.Count} notes for Rhythm Hell");
 	}
-
-	// private float FindNearestBeat(float time, float bpm = 120f)
-	// {
-	// 	float beatLength = 30f / bpm; // secs per beat
-	// 	int nearestBeatIndex = (int)Math.Round(time / beatLength);
-
-	// 	return nearestBeatIndex * beatLength;
-	// }
 
 	private void AddNotes(float[] times, string color, int step)
 	{
