@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqos6vxrtuce0"]
+[gd_scene load_steps=12 format=3 uid="uid://cqos6vxrtuce0"]
 
 [ext_resource type="Shader" uid="uid://3s7ch1ol4pl6" path="res://rhythmgame_folder/rhythmgame_scripts/mainscene.gdshader" id="1_35whw"]
 [ext_resource type="Texture2D" uid="uid://bd8hqdafs1qc5" path="res://rhythmgame_folder/rhythmgame_assets/images/black-background.png" id="2_7ag4c"]
 [ext_resource type="PackedScene" uid="uid://c0ee0lmjynuay" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/key_listener.tscn" id="3_6n4w6"]
+[ext_resource type="Texture2D" uid="uid://cjncnnvv3xnay" path="res://rhythmgame_folder/rhythmgame_assets/images/deep-sea-gray-pearl-black-hand-drawn-organic-round-blot-circle-speech-cycle-gradient-blob-bubble-art-free-png.png" id="4_7ag4c"]
 [ext_resource type="PackedScene" uid="uid://drw43fxeypwus" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/game_ui.tscn" id="4_ri1pi"]
 [ext_resource type="PackedScene" uid="uid://coqj034dvvbeu" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/level_editor.tscn" id="5_fx0by"]
 [ext_resource type="Script" uid="uid://ban60xss3716x" path="res://rhythmgame_folder/rhythmgame_scripts/easy_level_script/level_editor.gd" id="6_vthfi"]
@@ -54,28 +55,41 @@ texture = ExtResource("2_7ag4c")
 centered = false
 
 [node name="BlueButton" parent="." instance=ExtResource("3_6n4w6")]
-position = Vector2(-109, 271)
-scale = Vector2(1.3938997, 1.3938996)
+modulate = Color(0.9999569, 0.08368004, 0.11239467, 1)
+position = Vector2(-108.99999, 269)
+scale = Vector2(0.21990341, 0.2241892)
+texture = ExtResource("4_7ag4c")
+hframes = 1
+vframes = 1
 key_name = "blue_button"
 
 [node name="GreenButton" parent="." instance=ExtResource("3_6n4w6")]
-position = Vector2(-15, 272)
-scale = Vector2(1.3448045, 1.3448044)
-frame = 1
+modulate = Color(6.8345666e-06, 0.94750494, 0.48401868, 1)
+position = Vector2(-17.792599, 267.8324)
+scale = Vector2(0.21024343, 0.22952916)
+texture = ExtResource("4_7ag4c")
+hframes = 1
+vframes = 1
 region_rect = Rect2(-581.5791, 5531.378, 2287.7573, 1845.5859)
 key_name = "green_button"
 
 [node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
-position = Vector2(71.00001, 268)
-scale = Vector2(1.3471831, 1.3471828)
-frame = 2
+modulate = Color(1, 1, 0.27058825, 1)
+position = Vector2(68.89019, 268.5)
+scale = Vector2(0.21205607, 0.23142858)
+texture = ExtResource("4_7ag4c")
+hframes = 1
+vframes = 1
 region_rect = Rect2(-1081.4253, 5531.378, 2191.6328, 1826.3613)
 key_name = "red_button"
 
 [node name="YellowButton" parent="." instance=ExtResource("3_6n4w6")]
-position = Vector2(155, 271)
-scale = Vector2(1.3559085, 1.3559084)
-frame = 3
+modulate = Color(0.07340311, 0.3035403, 0.96624607, 1)
+position = Vector2(155.46451, 267.5355)
+scale = Vector2(0.21448858, 0.23734573)
+texture = ExtResource("4_7ag4c")
+hframes = 1
+vframes = 1
 region_rect = Rect2(-1735.0703, 5512.1533, 2306.982, 1922.4854)
 key_name = "yellow_button"
 
