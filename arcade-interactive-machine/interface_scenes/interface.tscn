@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvyal3s7daq3f"]
+[gd_scene load_steps=8 format=3 uid="uid://dvyal3s7daq3f"]
 
 [ext_resource type="Shader" uid="uid://cliomwmllqkbs" path="res://interface_scripts/background.gdshader" id="1_wrpha"]
 [ext_resource type="Script" uid="uid://cbiygisoai8v2" path="res://interface_scenes/interface.gd" id="1_y0vtu"]
 [ext_resource type="VideoStream" uid="uid://bd2nd3ck7ls06" path="res://interface_assets/simon says preview video.ogv" id="2_ptwgj"]
 [ext_resource type="Texture2D" uid="uid://ccsvcpesjvsgg" path="res://interface_assets/arrow-35388_1280.png" id="3_ptwgj"]
+[ext_resource type="VideoStream" path="res://interface_assets/stacker preview video.ogv" id="4_no8la"]
+[ext_resource type="VideoStream" uid="uid://bbeesco0bd0j6" path="res://interface_assets/rhythm game preview video.ogv" id="4_trtjb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi7g3"]
 shader = ExtResource("1_wrpha")
@@ -89,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-stream = ExtResource("2_ptwgj")
+stream = ExtResource("4_trtjb")
 autoplay = true
 expand = true
 loop = true
@@ -120,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-stream = ExtResource("2_ptwgj")
+stream = ExtResource("4_no8la")
 autoplay = true
 expand = true
 loop = true
