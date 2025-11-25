@@ -33,3 +33,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("clear_leaderboard"):
 		clear_leaderboard()
 		print("Leaderboard cleared")
+
+func get_high_score() -> int:
+	if leaderboard_data.entries.is_empty():
+		return 0
+
+	var highest := 0
+	for entry in leaderboard_data.entries:
+		if entry.score > highest:
+			highest = entry.score
+	return highest
