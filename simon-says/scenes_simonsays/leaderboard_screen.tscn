@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bedji5i8xcckc"]
 
 [ext_resource type="Script" uid="uid://brpgbb0ly5u7b" path="res://scripts_simonsays/leaderboard_screen.gd" id="1_71m3v"]
-[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="2_vbdet"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="2_vbdet"]
 
 [node name="LeaderboardScreen" type="Control"]
 layout_mode = 3
@@ -44,11 +44,13 @@ theme_override_constants/separation = 250
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vbdet")
 theme_override_font_sizes/font_size = 32
 text = "Name"
 
 [node name="Name2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vbdet")
 theme_override_font_sizes/font_size = 32
 text = "Score"
 
@@ -61,6 +63,7 @@ offset_left = 928.0
 offset_top = 354.0
 offset_right = 968.0
 offset_bottom = 374.0
+theme_override_fonts/font = ExtResource("2_vbdet")
 theme_override_font_sizes/font_size = 32
 text = "Press 
 To go back"

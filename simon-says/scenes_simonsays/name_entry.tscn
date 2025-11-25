@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://co4srbajlaa1c"]
+[gd_scene load_steps=3 format=3 uid="uid://co4srbajlaa1c"]
 
 [ext_resource type="Script" uid="uid://c3vj1eqs5gsve" path="res://scripts_simonsays/name_entry.gd" id="1_3nvxc"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="2_7yjrp"]
 
 [node name="name_entry" type="Control"]
 layout_mode = 3
@@ -28,6 +29,7 @@ theme_override_constants/separation = 60
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 48
 text = "ENTER YOUR NAME"
 horizontal_alignment = 1
@@ -51,6 +53,7 @@ theme_override_font_sizes/font_size = 32
 
 [node name="Instructions" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 24
 text = "Red + Blue to choose change letter,
 Green to confirm letter"
@@ -62,6 +65,7 @@ offset_left = 927.0
 offset_top = 490.0
 offset_right = 1085.0
 offset_bottom = 571.0
+theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 32
 text = "Press 
 To go back"
