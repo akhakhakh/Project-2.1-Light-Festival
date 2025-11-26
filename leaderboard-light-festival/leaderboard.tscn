@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=3 uid="uid://lqqxptb2oorv"]
+
+[ext_resource type="Script" uid="uid://2qtjqocfxigu" path="res://leaderboard_screen.gd" id="1_3ilyb"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ilyb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="SimonSaysContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SimonSaysContainer"]
+layout_mode = 2
+
+[node name="SimonSays" type="Label" parent="HBoxContainer/SimonSaysContainer/VBoxContainer"]
+layout_mode = 2
+text = "Simon Says"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SimonSaysContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="SSName" type="Label" parent="HBoxContainer/SimonSaysContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="SSScore" type="Label" parent="HBoxContainer/SimonSaysContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score"
+
+[node name="Rows" type="VBoxContainer" parent="HBoxContainer/SimonSaysContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RhythmGameContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RhythmGameContainer"]
+layout_mode = 2
+
+[node name="RhythmGame" type="Label" parent="HBoxContainer/RhythmGameContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rhythm Game"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RhythmGameContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="RGName" type="Label" parent="HBoxContainer/RhythmGameContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="RGScore" type="Label" parent="HBoxContainer/RhythmGameContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score"
+
+[node name="StackerContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/StackerContainer"]
+layout_mode = 2
+
+[node name="Stacker" type="Label" parent="HBoxContainer/StackerContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stacker"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/StackerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="SGName" type="Label" parent="HBoxContainer/StackerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="SGScore" type="Label" parent="HBoxContainer/StackerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Leaderboards"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
