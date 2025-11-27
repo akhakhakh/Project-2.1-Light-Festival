@@ -2,7 +2,7 @@ extends Node2D
 
 # ===== GAME CONFIGURATION =====
 @export var base_move_interval := 0.3   # Starting speed in seconds (lower = faster)
-@export var grid_width := 7              # Number of columns in the game grid
+@export var grid_width := 9              # Number of columns in the game grid
 @export var grid_height := 21            # Number of rows in the game grid
 @export var starting_blocks := 3         # How many blocks the player starts with
 @export var speed_increase := 0.90       # Speed multiplier per row (lower = faster acceleration)
@@ -76,7 +76,7 @@ func _ready():
 		if child is ColorRect:
 			if "Border" in child.name:
 				bonus_area_rects.append(child)
-				child.visible = false
+				child.visible = true
 	
 	icons = [$Icon, $Icon2, $Icon3]
 	
@@ -606,6 +606,9 @@ func stack_row():
 		if marker_idx >= 0 and marker_idx < markers.size():
 			icon_instance.global_position = markers[marker_idx].global_position
 			icon_instance.show()
+			
+			# set colour based on cur_row
+			var colour_value = float(cur_row) / float(grid_height)
 			add_child(icon_instance)
 			locked_row_icons.append(icon_instance)
 	
