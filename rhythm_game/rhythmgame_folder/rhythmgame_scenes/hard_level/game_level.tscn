@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjncnnvv3xnay" path="res://rhythmgame_folder/rhythmgame_assets/images/deep-sea-gray-pearl-black-hand-drawn-organic-round-blot-circle-speech-cycle-gradient-blob-bubble-art-free-png.png" id="4_po420"]
 [ext_resource type="PackedScene" uid="uid://drw43fxeypwus" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/game_ui.tscn" id="5_qfrwo"]
 [ext_resource type="PackedScene" uid="uid://coqj034dvvbeu" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/level_editor.tscn" id="6_hnbph"]
-[ext_resource type="Script" uid="uid://ban60xss3716x" path="res://rhythmgame_folder/rhythmgame_scripts/easy_level_script/level_editor.gd" id="7_8o335"]
+[ext_resource type="Script" uid="uid://dvacud0akwn8e" path="res://rhythmgame_folder/rhythmgame_scripts/hard_level_script/level_editor.gd" id="7_7cj8k"]
 [ext_resource type="AudioStream" uid="uid://bej0cei3aryf" path="res://rhythmgame_folder/rhythmgame_assets/music/Rhythm Hell.wav" id="8_aa51p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oslck"]
@@ -103,7 +103,7 @@ offset_bottom = -82.0
 environment = SubResource("Environment_i5mjo")
 
 [node name="LevelEditor" parent="." instance=ExtResource("6_hnbph")]
-script = ExtResource("7_8o335")
+script = ExtResource("7_7cj8k")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_aa51p")

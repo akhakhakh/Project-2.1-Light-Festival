@@ -58,8 +58,10 @@ func _on_spawn_button(button_color: String) -> void:
 # Records key press time when in EDIT MODE
 func KeyListenerPress(_button_name: String, array_num: int):
 	# Save the current playback time adjusted by the fall delay
+	#print(array_num)
 	var spawn_time = $MusicPlayer.get_playback_position() - fk_fall_time
 	fk_output_arr[array_num].append(spawn_time)
+	print("Recorded timings: ", fk_output_arr)
 	
 # Called when the music finishes playing
 func _on_music_player_finished():

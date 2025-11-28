@@ -107,3 +107,5 @@ script = ExtResource("6_vthfi")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_o6q6s")
+
+[connection signal="finished" from="MusicPlayer" to="LevelEditor" method="_on_music_player_finished"]

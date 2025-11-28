@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dt02suuej453h"
+path="res://.godot/imported/fixedGlee Cast - Jingle Bells (Official Audio).wav-cbe68a42868e0807b5c6c70d9d5316ca.sample"
+
+[deps]
+
+source_file="res://rhythmgame_folder/rhythmgame_assets/music/fixedGlee Cast - Jingle Bells (Official Audio).wav"
+dest_files=["res://.godot/imported/fixedGlee Cast - Jingle Bells (Official Audio).wav-cbe68a42868e0807b5c6c70d9d5316ca.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

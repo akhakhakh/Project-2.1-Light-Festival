@@ -48,6 +48,7 @@ func _on_medium_button_pressed():
 
 func _on_hard_button_pressed():
 	_play_button_sound()
+	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/hard_level/game_level.tscn")
 	print("Hard difficulty selected")
 	emit_signal("hard_selected")
 
