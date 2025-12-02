@@ -38,7 +38,6 @@ public partial class BeatManager_JingleBells : Node
 		//load music - UPDATE THIS PATH to your Jingle Bells audio file
 		if (Music == null)
 		{
-			// IMPORTANT: Update this path to point to your Jingle Bells (Glee version) audio file
 			Music = GD.Load<AudioStream>("res://rhythmgame_folder/rhythmgame_assets/music/fixedGlee Cast - Jingle Bells (Official Audio).wav");
 		}
 		_musicPlayer.Stream = Music;

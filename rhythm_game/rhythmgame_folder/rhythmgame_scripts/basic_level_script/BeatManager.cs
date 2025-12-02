@@ -34,7 +34,7 @@ public partial class BeatManager : Node
 		//create music player
 		_musicPlayer = new AudioStreamPlayer();
 		AddChild(_musicPlayer);
-
+		
 		//load music if not assigned 
 		if (Music == null)
 		{
