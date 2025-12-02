@@ -26,9 +26,19 @@ func _on_red_button_pressed() -> void:
 func _on_blue_button_pressed() -> void:
 	_on_button_pressed(1)
 
+func _on_yellow_button_pressed() -> void:
+	_on_button_pressed(2)
+
+func _on_green_button_pressed() -> void:
+	_on_button_pressed(3)
+	
 # Optional: handle keyboard input
 func _input(event):
 	if event.is_action_pressed("button_W"):
 		_on_red_button_pressed()
 	elif event.is_action_pressed("button_E"):
 		_on_blue_button_pressed()
+	elif event.is_action_pressed("button_S"):  
+		_on_yellow_button_pressed()
+	elif event.is_action_pressed("button_A"): 
+		_on_green_button_pressed()
