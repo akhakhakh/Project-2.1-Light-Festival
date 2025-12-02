@@ -31,7 +31,10 @@ var reached_20_points = false
 var highscore_reached = false
 
 #Points text
-@onready var label: Label = $Panel/Label
+@onready var points_label: Label = $PointsBackground/Points
+
+#ID text
+@onready var id: Label = $ID_Background/ID
 
 #Game Over screen text.
 @onready var game_over_text: Label = $GameOverText
@@ -54,6 +57,7 @@ func _ready():
 	buttonSounds = [$RedSound, $GreenSound, $BlueSound, $YellowSound]
 	buttonParticles = [$RedParticles, $GreenParticles, $BlueParticles, $YellowParticles]
 	celebrationParticles = [$CelebrationHighscore1, $CelebrationHighscore2, $CelebrationHighscore3, $CelebrationHighscore4, $CelebrationHighscore5, $CelebrationHighscore6, $CelebrationHighscore7]
+	id.text = LeaderboardManager.current_player_name
 	start_game()
 
 
@@ -169,7 +173,7 @@ func lose_game():
 			print("Saved score for", LeaderboardManager.current_player_name, ":", points)
 
 	points = 0
-	label.text = "Points: 0"
+	points_label.text = "Points: 0"
 	get_tree().change_scene_to_file("res://scenes_simonsays/game_over.tscn")
 
 func return_background_to_white():
@@ -203,7 +207,7 @@ func display_combo_text():
 
 func add_point():
 	points += 1
-	label.text = "Points: " + str(points)
+	points_label.text = "Points: " + str(points)
 	
 	if points > LeaderboardManager.get_high_score():
 		if highscore_reached == false:

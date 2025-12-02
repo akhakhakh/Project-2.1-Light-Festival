@@ -25,38 +25,26 @@ offset_right = 224.0
 offset_bottom = 438.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 100
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 48
-text = "ENTER YOUR NAME"
+text = "YOUR GENERATED ID:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ID" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_7yjrp")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
 
 [node name="Instructions" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 24
-text = "Red + Blue to choose change letter,
-Green to confirm letter"
+text = "Press Green to Start Game"
 horizontal_alignment = 1
 
 [node name="Back" type="Label" parent="."]

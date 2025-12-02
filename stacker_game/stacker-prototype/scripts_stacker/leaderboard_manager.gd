@@ -1,43 +1,41 @@
 extends Node
 
-const SHARED_JSON := "C:/Users/aradk/Documents/GitHub/Project-2.1-Light-Festival/leaderboard.json"
-
-var simon_says_entries: Array = []
+var current_player_name: String = ""
+var current_player_score: int = 0
+const SAVE_PATH := "user://leaderboard_stacker.tres"
+var leaderboard_data: LeaderboardData
 
 func _ready():
-	load_shared_json()
+	load_leaderboard()
 
+func load_leaderboard():
+	if FileAccess.file_exists(SAVE_PATH):
+		leaderboard_data = ResourceLoader.load(SAVE_PATH)
+	else:
+		leaderboard_data = LeaderboardData.new()
+		save_leaderboard()
 
-func load_shared_json():
-	simon_says_entries.clear()
+func save_leaderboard():
+	ResourceSaver.save(leaderboard_data, SAVE_PATH)
 
-	if not FileAccess.file_exists(SHARED_JSON):
-		print("❌ JSON not found:", SHARED_JSON)
-		return
+func add_score(username: String, score: int):
+	leaderboard_data.add_entry(username, score)
+	save_leaderboard()
 
-	var file := FileAccess.open(SHARED_JSON, FileAccess.READ)
-	if file == null:
-		print("❌ Cannot open JSON:", SHARED_JSON)
-		return
+func get_leaderboard() -> Array:
+	return leaderboard_data.entries
 
-	var text := file.get_as_text()
-	file.close()
+func username_exists(username: String) -> bool:
+	for entry in leaderboard_data.entries:
+		if entry["name"] == username:
+			return true
+	return false
 
-	if text == "":
-		print("⚠️ JSON file empty")
-		return
+func clear_leaderboard():
+	leaderboard_data.entries.clear()
+	save_leaderboard()
 
-	var parsed: Variant = JSON.parse_string(text)
-	if typeof(parsed) != TYPE_ARRAY:
-		print("❌ JSON not an array")
-		return
-
-	# Filter only entries for SimonSays
-	for entry in parsed:
-		if entry.has("game") and entry["game"] == "SimonSays":
-			simon_says_entries.append(entry)
-
-	# Sort by score (DESC)
-	simon_says_entries.sort_custom(func(a, b): return int(b["score"]) - int(a["score"]))
-
-	print("✅ SimonSays entries loaded:", simon_says_entries)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("clear_leaderboard"):
+		clear_leaderboard()
+		print("Leaderboard cleared")
