@@ -43,23 +43,28 @@ func _input(event):
 
 # --- Main loop that checks for missed notes ---
 func _process(_delta):
-	if falling_key_queue.size() > 0:
-		for fk in falling_key_queue:
-			if is_instance_valid(fk) and fk.has_passed:
-				falling_key_queue.erase(fk)
-				fk.queue_free()
-				ShowScoreText("MISS", -20)
-				Signals.ResetCombo.emit()
+	for i in range(falling_key_queue.size() - 1, -1, -1):
+		var fk = falling_key_queue[i]
+		
+		# skip invalid or already handled notes
+		if not is_instance_valid(fk):
+			falling_key_queue.remove_at(i)
+			continue
+			
+		if fk.has_passed and not fk.handled:
+			fk.handled = true                      # mark immediately to prevent duplicates
+			falling_key_queue.remove_at(i)
+			fk.queue_free()
+			
+			ShowScoreText("MISS", -20)
+			Signals.ResetCombo.emit()
+			
+			Global.miss_count += 1
+			print("Miss count:", Global.miss_count)
+			
+			if Global.miss_count >= 5:
+				GameOver()
 				
-				# Increase miss count globally
-				Global.miss_count += 1
-				print("Miss count:", Global.miss_count)
-
-				# Check if player has 5 misses
-				if Global.miss_count >= 5:
-					GameOver()
-
-
 # --- Function called when player presses the key ---
 func HandleKeyPress():
 	# If there are no notes in this lane, do nothing
@@ -119,11 +124,16 @@ func HandleKeyPress():
 	total_score += points
 	print("Score:", total_score, "| Hit:", text, "| Distance:", min_distance)
 
-	# Remove the hit note from the queue and the scene
+	# If we successfully hit a note, remove it AND mark it handled so it can't be counted as a miss
 	if is_instance_valid(nearest_key):
-		falling_key_queue.erase(nearest_key)
+		# Mark handled so the _process miss-check won't also count it
+		nearest_key.handled = true
+		# Remove from queue and free
+		var idx = falling_key_queue.find(nearest_key)
+		if idx != -1:
+			falling_key_queue.remove_at(idx)
 		nearest_key.queue_free()
-
+			
 	# Show floating text (e.g., "PERFECT", "GOOD", etc.)
 	ShowScoreText(text, -20) 
 

@@ -22,6 +22,8 @@ var level_info = {
 
 # Called when the scene starts
 func _ready():
+	Global.reset_game_stats()
+	
 	if in_edit_mode:
 		# If editing, load and play music manually for recording
 		$MusicPlayer.stream = level_info.get(current_level_name).get("music")

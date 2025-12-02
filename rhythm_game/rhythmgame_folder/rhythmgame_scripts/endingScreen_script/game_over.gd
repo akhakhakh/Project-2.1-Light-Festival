@@ -8,6 +8,7 @@ func _ready():
 
 # Called by your colored buttons or keys
 func _on_button_pressed(index: int) -> void:
+	BeatManager.Reset()
 	match index:
 		0:
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/easy_level/game_level.tscn")

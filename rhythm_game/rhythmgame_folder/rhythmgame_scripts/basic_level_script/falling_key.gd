@@ -8,6 +8,9 @@ var init_y_pos: float = -360
 # Used to check if the key has already passed the "perfect hit" zone
 var has_passed: bool = false
 
+# Whether this note has already been handled (hit or miss)
+var handled: bool = false
+
 # The Y position on the screen where the player should hit the key
 var pass_threshold = 300.0
 
@@ -23,7 +26,7 @@ func _process(_delta):
 	global_position += Vector2(0, fall_speed)
 	
 	# When the key goes below the "hit" area and the timer is still running
-	if global_position.y > pass_threshold and not $Timer.is_stopped():
+	if global_position.y > pass_threshold and not $Timer.is_stopped() and not handled:
 		# Stop the timer and mark that the key has passed
 		# (used to detect misses)
 		$Timer.stop()
