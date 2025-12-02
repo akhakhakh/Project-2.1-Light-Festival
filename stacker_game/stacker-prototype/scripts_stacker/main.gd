@@ -25,12 +25,13 @@ var game_over := false              # Whether game has ended
 var just_missed := false            # True if player just missed (penalty-only, no points)
 var cur_row_colour: Color = Color.WHITE    
 var colour_palette := [
-	Color(1, 0.3, 0.3),
-	Color(0.3, 1, 0.3),
-	Color(0.3, 0.6, 1),
-	Color(1, 0.8, 0.3),
-	Color(0.8, 0.3, 1),
-	Color(0.3, 1, 1)
+	Color(0, 1, 1),   
+	Color(0, 0, 1),   
+	Color(1, 0.5, 0), 
+	Color(1, 1, 0),   
+	Color(0, 1, 0),   
+	Color(0.6, 0, 0.8), 
+	Color(1, 0, 0)    
 ]
 var last_colour_index := -1
 
@@ -50,6 +51,7 @@ var is_paused_for_bonus := false        # Whether game is paused for bonus messa
 var bonus_area_rects := []
 var is_in_bonus_zone := false
 var bonus_label_tween: Tween = null
+var bonus_mode_active := false
 
 # ===== HIGH SCORE ======
 var high_score_label: Label = null
@@ -160,12 +162,14 @@ func show_bonus_message():
 
 func activate_bonus_area_visuals():
 	is_in_bonus_zone = true
+	bonus_mode_active = true
 	
 	for rect in bonus_area_rects:
 		rect.visible = true
 		animate_rainbow_color(rect)
 		
 	start_bonus_label_pulse()
+	apply_rgb_to_all()
 
 
 func animate_rainbow_color(rect: ColorRect):
@@ -374,18 +378,17 @@ func reset_row():
 	if not is_in_bonus_section(cur_row) and is_in_bonus_zone:
 		deactivate_bonus_area_visuals()
 	
-	if cur_row == 20:
-		cur_row_colour = Color.WHITE_SMOKE
-	else:
-		var idx := randi() % colour_palette.size()
-		if idx == last_colour_index:
-			idx = (idx + 1) % colour_palette.size()
-		last_colour_index = idx
-		cur_row_colour = colour_palette[idx]
+	var idx := randi() % colour_palette.size()
+	if idx == last_colour_index:
+		idx = (idx + 1) % colour_palette.size()
+	last_colour_index = idx
+	cur_row_colour = colour_palette[idx]
 	
 	for icon in icons:
-		icon.modulate = cur_row_colour
-	print("Row ", cur_row, " - Blocks: ", cur_blocks, " - Speed: ", move_interval, " - Bonus: ", in_bonus)
+		if bonus_mode_active or is_in_bonus_section(cur_row):
+			animate_icon_rgb(icon)
+		else:
+			icon.modulate = cur_row_colour
 
 func update_icon_positions():
 	for k in range(icons.size()):
@@ -631,10 +634,7 @@ func stack_row():
 			add_child(icon_instance)
 			locked_row_icons.append(icon_instance)
 			
-			var placed_row: int = cur_row
-			print("Placed row:", placed_row, " bonus:", is_in_bonus_section(placed_row))
-			
-			if is_in_bonus_section(placed_row):
+			if bonus_mode_active or is_in_bonus_section(cur_row):
 				animate_icon_rgb(icon_instance)
 			else:
 				set_icon_colour(icon_instance, cur_row_colour)
@@ -676,7 +676,7 @@ func set_icon_colour(icon: Node2D, colour: Color) -> void:
 	icon.modulate = colour
 
 
-func animate_icon_rgb(icon: Node2D) -> void:	
+func animate_icon_rgb(icon: Node2D) -> void:
 	var tween := create_tween()
 	tween.set_loops()
 	tween.tween_property(icon, "modulate", Color.RED, 0.15)
@@ -685,6 +685,13 @@ func animate_icon_rgb(icon: Node2D) -> void:
 	tween.tween_property(icon, "modulate", Color.CYAN, 0.15)
 	tween.tween_property(icon, "modulate", Color.BLUE, 0.15)
 	tween.tween_property(icon, "modulate", Color.MAGENTA, 0.15)
+
+
+func apply_rgb_to_all():
+	for icon in icons:
+		animate_icon_rgb(icon)
+	for icon in locked_row_icons:
+		animate_icon_rgb(icon)
 
 func update_score_display():
 	if score_label != null:
