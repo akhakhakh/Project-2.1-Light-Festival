@@ -45,7 +45,7 @@ public partial class BeatManager : Node
 		//load the beat map for Rhythm Hell
 		LoadRhythmHellBeatMap();
 
-		GD.Print($"BeatManager ready. Waiting to start Music)");
+		GD.Print($"BeatManager ready. Waiting to start Music");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -122,6 +122,7 @@ public partial class BeatManager : Node
 			_beatMap.Add((spawnTime, color));
 		}
 	}
+<<<<<<< HEAD
 	
 		public void Reset()
 	{
@@ -136,4 +137,6 @@ public partial class BeatManager : Node
 
 		GD.Print("BeatManager reset");
 	}
+=======
+>>>>>>> a9fec61213adaaa64904d2d4423f66dbab4ed647
 }

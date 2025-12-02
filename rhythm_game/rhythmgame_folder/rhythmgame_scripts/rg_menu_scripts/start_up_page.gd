@@ -54,5 +54,5 @@ func _setup_fullscreen_layout():
 		background.size = screen_size
 
 func _input(event):
-	if event.is_action_pressed("confirm"):
+	if event.is_action_pressed("ui_accept"):
 		_on_start_button_pressed()

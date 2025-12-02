@@ -65,6 +65,18 @@ func _process(_delta):
 			if Global.miss_count >= 5:
 				GameOver()
 				
+<<<<<<< HEAD
+=======
+				# Increase miss count globally
+				Global.miss_count += 1
+				print("Miss count:", Global.miss_count)
+
+				# Check if player has 5 misses
+				if Global.miss_count >= 100:
+					GameOver()
+
+
+>>>>>>> a9fec61213adaaa64904d2d4423f66dbab4ed647
 # --- Function called when player presses the key ---
 func HandleKeyPress():
 	# If there are no notes in this lane, do nothing
@@ -165,6 +177,9 @@ func GameOver():
 	if has_node("/root/BeatManager"):
 		print("BeatManager found")
 		BeatManager.StopMusic()
+	elif has_node("/root/BeatManagerJingleBells"):
+		print("BeatManager_JingleBells found")
+		BeatManagerJingleBells.StopMusic()
 	else:
 		print("BeatManager NOT found")
 	
