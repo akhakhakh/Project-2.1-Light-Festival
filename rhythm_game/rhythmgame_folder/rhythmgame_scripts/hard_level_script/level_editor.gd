@@ -7,7 +7,7 @@ const in_edit_mode: bool = false
 var current_level_name = "JINGLE_BELLS"
 
 # Time (in seconds) it takes for a falling key to reach the hit line after spawning
-var fk_fall_time: float = .0  # Faster fall time for 186 BPM
+var fk_fall_time: float = 1.5  # Faster fall time for 186 BPM
 
 # Array to store recorded falling key timings when in edit mode
 var fk_output_arr = [[], [], [], []]
@@ -16,7 +16,7 @@ var fk_output_arr = [[], [], [], []]
 var level_info = {
 	"JINGLE_BELLS" : {
 		# Music file for this level
-		"music": load("res://rhythmgame_folder/rhythmgame_assets/music/fixedGlee Cast - Jingle Bells (Official Audio).wav")
+		"music": load("res://rhythmgame_folder/rhythmgame_assets/music/Jingle Bells.wav")
 	}
 }
 
