@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class BeatManager_JingleBells : Node
 {
 	[Export] public AudioStream Music;
-	[Export] public float FallTime = 2.4f;       // FASTER fall time for 186 BPM (was 2.2f)
+	[Export] public float FallTime = 2.5f;       // FASTER fall time for 186 BPM (was 2.2f)
 	[Export] public bool NormalMode = false;        // Enable normal mode (normal notes)
 	[Export] public float GlobalOffset = 1.2f;  // Adjusted offset for faster song
 	[Export] public float TimingScale = 1.0f;   // multiplier to fix drift (no change)

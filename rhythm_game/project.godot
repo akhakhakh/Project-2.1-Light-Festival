@@ -25,7 +25,6 @@ BeatManagerJingleBells="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]
