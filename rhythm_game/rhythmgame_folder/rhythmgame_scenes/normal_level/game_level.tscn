@@ -58,14 +58,14 @@ scale = Vector2(0.30312496, 0.3046296)
 texture = ExtResource("2_7ag4c")
 centered = false
 
-[node name="BlueButton" parent="." instance=ExtResource("3_6n4w6")]
+[node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(0.9999569, 0.08368004, 0.11239467, 1)
 position = Vector2(-108.99999, 269)
 scale = Vector2(0.21990341, 0.2241892)
 texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
-key_name = "blue_button"
+key_name = "red_button"
 
 [node name="GreenButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(6.8345666e-06, 0.94750494, 0.48401868, 1)
@@ -77,7 +77,7 @@ vframes = 1
 region_rect = Rect2(-581.5791, 5531.378, 2287.7573, 1845.5859)
 key_name = "green_button"
 
-[node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
+[node name="YellowButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(1, 1, 0.27058825, 1)
 position = Vector2(68.89019, 268.5)
 scale = Vector2(0.21205607, 0.23142858)
@@ -85,9 +85,9 @@ texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
 region_rect = Rect2(-1081.4253, 5531.378, 2191.6328, 1826.3613)
-key_name = "red_button"
+key_name = "yellow_button"
 
-[node name="YellowButton" parent="." instance=ExtResource("3_6n4w6")]
+[node name="BlueButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(0.07340311, 0.3035403, 0.96624607, 1)
 position = Vector2(155.46451, 267.5355)
 scale = Vector2(0.21448858, 0.23734573)
@@ -95,7 +95,7 @@ texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
 region_rect = Rect2(-1735.0703, 5512.1533, 2306.982, 1922.4854)
-key_name = "yellow_button"
+key_name = "blue_button"
 
 [node name="GameUI" parent="." instance=ExtResource("4_ri1pi")]
 offset_left = -260.0
