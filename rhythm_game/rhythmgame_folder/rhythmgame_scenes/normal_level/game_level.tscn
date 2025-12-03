@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqos6vxrtuce0"]
+[gd_scene load_steps=16 format=3 uid="uid://cqos6vxrtuce0"]
 
 [ext_resource type="Shader" uid="uid://3s7ch1ol4pl6" path="res://rhythmgame_folder/rhythmgame_scripts/mainscene.gdshader" id="1_35whw"]
 [ext_resource type="Texture2D" uid="uid://bd8hqdafs1qc5" path="res://rhythmgame_folder/rhythmgame_assets/images/black-background.png" id="2_7ag4c"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://coqj034dvvbeu" path="res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/level_editor.tscn" id="5_fx0by"]
 [ext_resource type="Script" uid="uid://ban60xss3716x" path="res://rhythmgame_folder/rhythmgame_scripts/easy_level_script/level_editor.gd" id="6_vthfi"]
 [ext_resource type="AudioStream" uid="uid://bej0cei3aryf" path="res://rhythmgame_folder/rhythmgame_assets/music/Rhythm Hell.wav" id="7_o6q6s"]
+[ext_resource type="Texture2D" uid="uid://f4lyjja2xnrv" path="res://rhythmgame_folder/rhythmgame_assets/sprites/a.png" id="9_vthfi"]
+[ext_resource type="Texture2D" uid="uid://u3rfgtchebkn" path="res://rhythmgame_folder/rhythmgame_assets/sprites/b.png" id="10_o6q6s"]
+[ext_resource type="Texture2D" uid="uid://bnybib224abmk" path="res://rhythmgame_folder/rhythmgame_assets/sprites/c.png" id="11_7qe80"]
+[ext_resource type="Texture2D" uid="uid://cdk05jedvrbxr" path="res://rhythmgame_folder/rhythmgame_assets/sprites/d.png" id="12_vgdxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oslck"]
 shader = ExtResource("1_35whw")
@@ -54,36 +58,36 @@ scale = Vector2(0.30312496, 0.3046296)
 texture = ExtResource("2_7ag4c")
 centered = false
 
-[node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
+[node name="BlueButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(0.9999569, 0.08368004, 0.11239467, 1)
 position = Vector2(-108.99999, 269)
 scale = Vector2(0.21990341, 0.2241892)
 texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
-key_name = "red_button"
+key_name = "blue_button"
 
-[node name="YellowButton" parent="." instance=ExtResource("3_6n4w6")]
-modulate = Color(1, 1, 0.27058825, 1)
-position = Vector2(-17.792599, 267.8324)
+[node name="GreenButton" parent="." instance=ExtResource("3_6n4w6")]
+modulate = Color(6.8345666e-06, 0.94750494, 0.48401868, 1)
+position = Vector2(-17.792599, 266.83237)
 scale = Vector2(0.21024343, 0.22952916)
 texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
 region_rect = Rect2(-581.5791, 5531.378, 2287.7573, 1845.5859)
-key_name = "yellow_button"
+key_name = "green_button"
 
-[node name="GreenButton" parent="." instance=ExtResource("3_6n4w6")]
-modulate = Color(0, 0.9490196, 0.48235294, 1)
+[node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
+modulate = Color(1, 1, 0.27058825, 1)
 position = Vector2(68.89019, 268.5)
 scale = Vector2(0.21205607, 0.23142858)
 texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
 region_rect = Rect2(-1081.4253, 5531.378, 2191.6328, 1826.3613)
-key_name = "green_button"
+key_name = "red_button"
 
-[node name="BlueButton" parent="." instance=ExtResource("3_6n4w6")]
+[node name="YellowButton" parent="." instance=ExtResource("3_6n4w6")]
 modulate = Color(0.07340311, 0.3035403, 0.96624607, 1)
 position = Vector2(155.46451, 267.5355)
 scale = Vector2(0.21448858, 0.23734573)
@@ -91,7 +95,7 @@ texture = ExtResource("4_7ag4c")
 hframes = 1
 vframes = 1
 region_rect = Rect2(-1735.0703, 5512.1533, 2306.982, 1922.4854)
-key_name = "blue_button"
+key_name = "yellow_button"
 
 [node name="GameUI" parent="." instance=ExtResource("4_ri1pi")]
 offset_left = -260.0
@@ -108,4 +112,22 @@ script = ExtResource("6_vthfi")
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_o6q6s")
 
-[connection signal="finished" from="MusicPlayer" to="LevelEditor" method="_on_music_player_finished"]
+[node name="A" type="Sprite2D" parent="."]
+position = Vector2(-109, 268)
+scale = Vector2(0.12803951, 0.15285705)
+texture = ExtResource("9_vthfi")
+
+[node name="B" type="Sprite2D" parent="."]
+position = Vector2(-15, 267.00003)
+scale = Vector2(0.12109375, 0.11132814)
+texture = ExtResource("10_o6q6s")
+
+[node name="C" type="Sprite2D" parent="."]
+position = Vector2(68.124985, 268)
+scale = Vector2(0.10107428, 0.10546866)
+texture = ExtResource("11_7qe80")
+
+[node name="D" type="Sprite2D" parent="."]
+position = Vector2(158.25002, 266.5)
+scale = Vector2(0.09277342, 0.107421905)
+texture = ExtResource("12_vgdxf")

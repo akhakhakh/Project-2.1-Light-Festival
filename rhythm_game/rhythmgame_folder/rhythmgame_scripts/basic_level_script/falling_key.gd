@@ -1,7 +1,7 @@
 extends Sprite2D
 
 # Speeed at which the key falls down the screen
-@export var fall_speed: float = 3.5
+@export var fall_speed: float = 2.5
 # Starting Y position for the falling key (off-screen at the top)
 var init_y_pos: float = -360
 
