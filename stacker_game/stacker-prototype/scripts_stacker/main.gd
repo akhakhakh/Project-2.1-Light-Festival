@@ -599,10 +599,10 @@ func stack_row():
 		update_score_display()
 	
 	# Lock surviving blocks
-	for pos in surviving_positions:
-		var icon_instance = icons[0].duplicate()
+	for pos in surviving_positions: 
+		var icon_instance = icons[0].duplicate() 
 		var marker_idx = cur_row * grid_width + pos
-		
+	
 		if marker_idx >= 0 and marker_idx < markers.size():
 			icon_instance.global_position = markers[marker_idx].global_position
 			icon_instance.show()
@@ -611,10 +611,16 @@ func stack_row():
 	
 		# Trigger particles only on perfect stack
 		if surviving_positions.size() == cur_blocks:
-			if icon_instance.has_node("CPUParticles2D"):
-				var p = icon_instance.get_node("CPUParticles2D")
-				p.restart()
-	
+			for icon in icons:
+				if icon.has_node("CPUParticles2D"):
+					icon.get_node("CPUParticles2D").restart()
+
+		# IMPERFECT STACK → red particles
+		else:
+			for icon in icons:
+				if icon.has_node("CPUParticles2D_Red"):
+					icon.get_node("CPUParticles2D_Red").restart()
+				
 	# Hide moving blocks
 	for icon in icons:
 		icon.hide()
