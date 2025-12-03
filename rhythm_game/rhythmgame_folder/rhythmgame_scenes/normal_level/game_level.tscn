@@ -64,7 +64,7 @@ vframes = 1
 key_name = "blue_button"
 
 [node name="GreenButton" parent="." instance=ExtResource("3_6n4w6")]
-modulate = Color(6.8345666e-06, 0.94750494, 0.48401868, 1)
+modulate = Color(1, 1, 0.27058825, 1)
 position = Vector2(-17.792599, 267.8324)
 scale = Vector2(0.21024343, 0.22952916)
 texture = ExtResource("4_7ag4c")
@@ -74,7 +74,7 @@ region_rect = Rect2(-581.5791, 5531.378, 2287.7573, 1845.5859)
 key_name = "green_button"
 
 [node name="RedButton" parent="." instance=ExtResource("3_6n4w6")]
-modulate = Color(1, 1, 0.27058825, 1)
+modulate = Color(0, 0.9490196, 0.48235294, 1)
 position = Vector2(68.89019, 268.5)
 scale = Vector2(0.21205607, 0.23142858)
 texture = ExtResource("4_7ag4c")

@@ -103,6 +103,8 @@ _data = {
 [node name="DifficultyMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = -5.0
+offset_right = -5.0
 script = ExtResource("1_rgywp")
 
 [node name="Background" type="TextureRect" parent="."]
