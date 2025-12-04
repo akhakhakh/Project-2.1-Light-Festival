@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8daxtoyarjfy"]
+[gd_scene load_steps=5 format=3 uid="uid://c8daxtoyarjfy"]
 
 [ext_resource type="Script" uid="uid://x2wrv5ywdiy2" path="res://scripts_simonsays/titlescreen.gd" id="1_bu3ke"]
 [ext_resource type="Texture2D" uid="uid://bsd7jrhswnu5l" path="res://assets_simonsays/titlescreenpng.png" id="2_kcsrc"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="3_kcsrc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goadl"]
 
@@ -38,6 +39,7 @@ offset_right = 141.0
 offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_kcsrc")
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
@@ -64,6 +66,7 @@ offset_right = 141.0
 offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_kcsrc")
 theme_override_font_sizes/font_size = 32
 text = "Leaderboard
 "

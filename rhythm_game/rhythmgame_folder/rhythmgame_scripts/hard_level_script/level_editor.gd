@@ -34,6 +34,11 @@ func _ready():
 		if has_node("/root/BeatManagerJingleBells"):
 			var bm = get_node("/root/BeatManagerJingleBells")
 			bm.connect("SpawnButton", Callable(self, "_on_spawn_button"))
+			
+			#Connect to song finished signal
+			if bm.has_signal("SongFinished"):
+				bm.SongFinished.connect(_on_song_finished)
+				
 			bm.StartMusic()
 			print("BeatManager_JingleBells connected successfully!")
 		else:
@@ -50,6 +55,56 @@ func _on_spawn_button(button_color: String) -> void:
 	
 	# Emit the signal to create the falling key
 	Signals.CreateFallingKey.emit(button_name)
+	
+#Called when song finishes	
+func _on_song_finished():
+	print("Song finished signal received!")
+	
+	# Get total score from all key listeners
+	var final_score = get_total_score_from_all_keys()
+	
+	# Save to Global autoload
+	Global.final_score = final_score
+	Global.song_name = "Jingle Bells (Glee Version)"
+	
+	# Optional: Add more stats if you track them
+	if "max_combo" in Global:
+		Global.max_combo = 0  # Set this if you track combo
+	
+	print("\nFinal Results:")
+	print("  Score: ", final_score)
+	print("  Song: ", Global.song_name)
+	print("="*50 + "\n")
+	
+	# Wait a moment for final notes to finish animating
+	await get_tree().create_timer(1.5).timeout
+	
+	# Go to results screen
+	print("Transitioning to results screen...")
+	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/win_menu/win_scene.tscn")
+
+#Get total score from all key listeners using groups
+func get_total_score_from_all_keys() -> int:
+	var total_score = 0
+	
+	# Get all nodes in the "key_listeners" group
+	var key_listeners = get_tree().get_nodes_in_group("key_listeners")
+	
+	print("\n--- Calculating Total Score ---")
+	print("Found ", key_listeners.size(), " key listeners")
+	
+	# Sum up all scores
+	for kl in key_listeners:
+		if "total_score" in kl:
+			print("  ", kl.name, " score: ", kl.total_score)
+			total_score += kl.total_score
+		else:
+			print("  Warning: ", kl.name, " has no total_score variable!")
+	
+	print("Total Score: ", total_score)
+	print("-------------------------------\n")
+	
+	return total_score
 
 # Records key press time when in EDIT MODE
 func KeyListenerPress(_button_name: String, array_num: int):

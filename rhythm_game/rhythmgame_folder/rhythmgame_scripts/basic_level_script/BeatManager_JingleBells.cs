@@ -12,7 +12,10 @@ public partial class BeatManager_JingleBells : Node
 
 	//signal to spawn notes
 	[Signal] public delegate void SpawnButtonEventHandler(string buttonColor);
-
+	
+	//Signal for when song finishes
+	[Signal] public delegate void SongFinishedEventHandler();
+	
 	public enum MusicMode { None, Menu, Gameplay };
 	public MusicMode CurrentMode { get; private set; } = MusicMode.None;
 
@@ -25,8 +28,11 @@ public partial class BeatManager_JingleBells : Node
 	//track which notes have been spawned
 	private int _nextNoteIndex = 0;
 
-	// Track if music has been started
+	//Track if music has been started
 	private bool _musicStarted = false;
+	
+	//Track if music has been finished
+	private bool _songFinished = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,8 +40,11 @@ public partial class BeatManager_JingleBells : Node
 		//create music player
 		_musicPlayer = new AudioStreamPlayer();
 		AddChild(_musicPlayer);
+		
+		//Connect to finished signal
+		_musicPlayer.Finished += OnMusicFinished;
 
-		//load music - UPDATE THIS PATH to your Jingle Bells audio file
+		//load music
 		if (Music == null)
 		{
 			Music = GD.Load<AudioStream>("res://rhythmgame_folder/rhythmgame_assets/music/Jingle Bells.wav");
@@ -46,6 +55,30 @@ public partial class BeatManager_JingleBells : Node
 		LoadJingleBellsBeatMap();
 
 		GD.Print($"BeatManagerJingleBells ready. Waiting to start Music");
+	}
+	
+	//Called when the song is finished
+	private void OnMusicFinished()
+	{
+		if (_songFinished)
+			return; // Prevent multiple calls
+		
+		_songFinished = true;
+		GD.Print("Song finished! Preparing results...");
+		
+		// Emit signal to notify other scripts
+		EmitSignal(SignalName.SongFinished);
+		
+		// Wait 2 seconds for final notes to land, then go to results
+		GetTree().CreateTimer(2.0).Timeout += GoToResultsScreen;
+	}
+	
+	private void GoToResultsScreen()
+	{
+		GD.Print("Going to results screen...");
+		
+		// Change to your results/winning scene
+		GetTree().ChangeSceneToFile("res://rhythmgame_folder/rhythmgame_scenes/win_menu/win_scene.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

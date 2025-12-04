@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dbjt2vt1v05fs" path="res://scripts_simonsays/mainscene.gd" id="1_p51wu"]
 [ext_resource type="Shader" uid="uid://7bal7t5lvchr" path="res://scripts_simonsays/mainscene.gdshader" id="2_vxrwn"]
 [ext_resource type="Shader" uid="uid://c1kges1flj2xr" path="res://scripts_simonsays/button_color.gdshader" id="3_p3fdl"]
-[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="4_8cdvp"]
+[ext_resource type="FontFile" uid="uid://bxn6d8x8kbd7a" path="res://assets_simonsays/PixelifySans-VariableFont_wght.ttf" id="4_8cdvp"]
 [ext_resource type="AudioStream" uid="uid://s8j6b3ud0b08" path="res://assets_simonsays/G note.mp3" id="5_pfkns"]
 [ext_resource type="AudioStream" uid="uid://bcdiyrglymke8" path="res://assets_simonsays/A note.mp3" id="6_jr2d7"]
 [ext_resource type="AudioStream" uid="uid://1up4h6fr56vw" path="res://assets_simonsays/B note.mp3" id="7_dii4n"]
