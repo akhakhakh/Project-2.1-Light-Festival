@@ -34,7 +34,7 @@ public partial class BeatManager : Node
 		//create music player
 		_musicPlayer = new AudioStreamPlayer();
 		AddChild(_musicPlayer);
-
+		
 		//load music if not assigned 
 		if (Music == null)
 		{
@@ -122,8 +122,6 @@ public partial class BeatManager : Node
 			_beatMap.Add((spawnTime, color));
 		}
 	}
-<<<<<<< HEAD
-	
 		public void Reset()
 	{
 		_nextNoteIndex = 0;
@@ -137,6 +135,4 @@ public partial class BeatManager : Node
 
 		GD.Print("BeatManager reset");
 	}
-=======
->>>>>>> a9fec61213adaaa64904d2d4423f66dbab4ed647
 }

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ct6exumb0131s"
+path="res://.godot/imported/Jingle Bells.wav-1d3e77a2c3db47812b2032e8d9a1d792.sample"
+
+[deps]
+
+source_file="res://rhythmgame_folder/rhythmgame_assets/music/Jingle Bells.wav"
+dest_files=["res://.godot/imported/Jingle Bells.wav-1d3e77a2c3db47812b2032e8d9a1d792.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
