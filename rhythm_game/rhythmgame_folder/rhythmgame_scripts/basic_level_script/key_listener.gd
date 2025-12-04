@@ -3,6 +3,7 @@ extends Sprite2D
 # Preload scene references (these are external scenes used in the game)
 @onready var falling_key = preload("res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/falling_key.tscn")     # The falling note prefab
 @onready var score_text = preload("res://rhythmgame_folder/rhythmgame_scenes/basic_level_scene/score_press_text.tscn") # The floating score text prefab
+@onready var glow_overlay: Sprite2D = $GlowOverlay
 
 # Key name that this object listens for (e.g., "button_Q")
 @export var key_name: String = ""
@@ -25,21 +26,40 @@ const OK_SCORE := 20
 # Player’s total score for this lane
 var total_score: int = 0
 
+var _base_color: Color
+var _is_popping: bool = false
+
 # Called when the node enters the scene tree
 func _ready():
+	_base_color = modulate 
 	# Set up the glow overlay to match the correct frame
 	$GlowOverlay.frame = frame + 4
+	
+	# Start with glow invisible
+	glow_overlay.modulate.a = 0.0
 	
 	# Connect to global signal to spawn falling notes for this key
 	Signals.CreateFallingKey.connect(CreateFallingKey)
 
+func _circle_pop_effect() -> void:
+	if _is_popping:
+		return           
 
-# --- Handle input instantly (frame-independent) ---
+	_is_popping = true
+
+	for i in range(3):
+		modulate = Color(0.91, 0.577, 0.734, 0.988) 
+		await get_tree().create_timer(0.03).timeout
+		
+		modulate = _base_color                   
+		await get_tree().create_timer(0.03).timeout
+
+	_is_popping = false
+
 func _input(event):
 	# When the corresponding key is pressed, process the hit
 	if event.is_action_pressed(key_name):
 		HandleKeyPress()
-
 
 # --- Main loop that checks for missed notes ---
 func _process(_delta):
@@ -56,9 +76,8 @@ func _process(_delta):
 				print("Miss count:", Global.miss_count)
 
 				# Check if player has 5 misses
-				if Global.miss_count >= 5:
+				if Global.miss_count >= 100:
 					GameOver()
-
 
 # --- Function called when player presses the key ---
 func HandleKeyPress():
@@ -85,6 +104,8 @@ func HandleKeyPress():
 	# Play the key hit animation
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("key_hit")
+	
+	_circle_pop_effect()
 
 	# Default values before accuracy check
 	var text = "MISS"
@@ -130,8 +151,10 @@ func HandleKeyPress():
 
 # --- Spawns a falling note for this key lane ---
 func CreateFallingKey(button_name: String):
+	print("KeyListener ", key_name, " recieved ", button_name)
 	# Only create the note if it matches this key’s assigned name
 	if button_name == key_name:
+		print("Match! Spawning note for: ", key_name)
 		var fk_inst = falling_key.instantiate()
 		get_tree().get_root().call_deferred("add_child", fk_inst) # Add note to the scene tree safely
 		fk_inst.Setup(position.x, frame + 4)                      # Position and initialize the note
@@ -147,6 +170,18 @@ func ShowScoreText(text: String, offset_y: int):
 	
 	
 func GameOver():
+	print("GameOver called!")
+	
+	# Stop the music
+	if has_node("/root/BeatManager"):
+		print("BeatManager found")
+		BeatManager.StopMusic()
+	elif has_node("/root/BeatManagerJingleBells"):
+		print("BeatManager_JingleBells found")
+		BeatManagerJingleBells.StopMusic()
+	else:
+		print("BeatManager NOT found")
+	
 	# Save current score to global for display
 	Global.total_score = total_score
 

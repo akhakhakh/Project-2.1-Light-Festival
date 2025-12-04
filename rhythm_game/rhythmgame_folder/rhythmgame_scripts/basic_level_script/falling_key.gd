@@ -1,7 +1,7 @@
 extends Sprite2D
 
 # Speeed at which the key falls down the screen
-@export var fall_speed: float = 3.5
+@export var fall_speed: float = 3.0
 # Starting Y position for the falling key (off-screen at the top)
 var init_y_pos: float = -360
 
@@ -15,6 +15,51 @@ var pass_threshold = 300.0
 func _init():
 	# Disable processing by default — it starts moving only when set up
 	set_process(false)
+	
+func _ready():
+	# Automatically determine speed based on which BeatManager is present
+	determine_speed_from_active_beat_manager()
+	
+func determine_speed_from_active_beat_manager():
+	# Check which BeatManager is actually playing music
+	
+	# Check Jingle Bells BeatManager
+	if has_node("/root/BeatManagerJingleBells"):
+		var bm = get_node("/root/BeatManagerJingleBells")
+		# Check if THIS BeatManager is actually running
+		if is_beat_manager_active(bm):
+			fall_speed = 6.0
+			print("Active: Jingle Bells BeatManager")
+			return
+	
+	# Check Rhythm Hell BeatManager
+	if has_node("/root/BeatManager"):
+		var bm = get_node("/root/BeatManager")
+		if is_beat_manager_active(bm):
+			fall_speed = 5.0
+			print("Active: Rhythm Hell BeatManager")
+			return
+	
+	# Default fallback
+	fall_speed = 3.5
+	print("No active BeatManager found")
+
+func is_beat_manager_active(beat_manager) -> bool:
+	# For C# BeatManager, check if music is playing
+	# Try to access the music player child
+	var music_player = null
+	
+	# Get the AudioStreamPlayer child
+	for child in beat_manager.get_children():
+		if child is AudioStreamPlayer:
+			music_player = child
+			break
+	
+	if music_player != null:
+		# Check if this BeatManager's music is playing
+		return music_player.playing
+	
+	return false
 
 # Called every frame — this makes the key move down
 func _process(_delta):
