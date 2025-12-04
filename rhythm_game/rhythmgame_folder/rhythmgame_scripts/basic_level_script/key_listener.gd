@@ -40,6 +40,9 @@ func _ready():
 	
 	# Connect to global signal to spawn falling notes for this key
 	Signals.CreateFallingKey.connect(CreateFallingKey)
+	
+	#Add to group for easy access
+	add_to_group("key_listeners")
 
 func _circle_pop_effect() -> void:
 	if _is_popping:
