@@ -58,30 +58,21 @@ func _on_spawn_button(button_color: String) -> void:
 	
 #Called when song finishes	
 func _on_song_finished():
-	print("Song finished signal received!")
+	print("SONG FINISHED!")
 	
-	# Get total score from all key listeners
-	var final_score = get_total_score_from_all_keys()
+	# Just use Global's values directly!
+	print("\nFinal Results:")
+	print("  Score: ", Global.total_score)
+	print("  Misses: ", Global.miss_count)
 	
-	# Save to Global autoload
-	Global.final_score = final_score
+	# Save song name (if you want to display it on results screen)
 	Global.song_name = "Jingle Bells (Glee Version)"
 	
-	# Optional: Add more stats if you track them
-	if "max_combo" in Global:
-		Global.max_combo = 0  # Set this if you track combo
-	
-	print("\nFinal Results:")
-	print("  Score: ", final_score)
-	print("  Song: ", Global.song_name)
-	print("="*50 + "\n")
-	
-	# Wait a moment for final notes to finish animating
+	# Wait for final notes
 	await get_tree().create_timer(1.5).timeout
 	
 	# Go to results screen
-	print("Transitioning to results screen...")
-	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/win_menu/win_scene.tscn")
+	get_tree().change_scene_to_file("res://rhythmgame_folder/endingScreen/results_screen.tscn")
 
 #Get total score from all key listeners using groups
 func get_total_score_from_all_keys() -> int:
