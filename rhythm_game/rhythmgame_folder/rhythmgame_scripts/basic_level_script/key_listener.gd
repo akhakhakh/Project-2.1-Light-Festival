@@ -64,6 +64,25 @@ func _input(event):
 	if event.is_action_pressed(key_name):
 		HandleKeyPress()
 
+# --- Helper function to get the max allowed misses based on which BeatManager is currently playing ---
+func get_max_misses() -> int:
+	# Check BeatManager_JingleBells first
+	if has_node("/root/BeatManagerJingleBells"):
+		var bm = get_node("/root/BeatManagerJingleBells")
+		# Check if this BeatManager is actually playing music
+		if is_beat_manager_active(bm):
+			print("BeatManager_JingleBells is active")
+			return 15
+	
+	# Check regular BeatManager if Jingle Bells wasn't playing
+	if has_node("/root/BeatManager"):
+		var bm = get_node("/root/BeatManager")
+		if is_beat_manager_active(bm):
+			print("BeatManager is active")
+			return 5
+			
+	return 7
+
 # --- Main loop that checks for missed notes ---
 func _process(_delta):
 	for i in range(falling_key_queue.size() - 1, -1, -1):
@@ -86,8 +105,9 @@ func _process(_delta):
 			Global.miss_count += 1
 			print("Miss count:", Global.miss_count)
 
-			# Check if player has 5 misses
-			if Global.miss_count >= 5:
+			# Check if player has exceeded max misses (varies by BeatManager)
+			var max_misses = get_max_misses()
+			if Global.miss_count >= max_misses:
 				GameOver()
 
 # --- Function called when player presses the key ---
@@ -208,3 +228,16 @@ func GameOver():
 
 	# Change to GameOver scene
 	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/endingScreen_scene/game_over.tscn")
+	
+func is_beat_manager_active(beat_manager) -> bool:
+	if beat_manager == null:
+		return false
+	
+	# Check all children for AudioStreamPlayer
+	for child in beat_manager.get_children():
+		if child is AudioStreamPlayer:
+			# Check if it's playing
+			if child.is_playing():
+				return true
+	
+	return false
