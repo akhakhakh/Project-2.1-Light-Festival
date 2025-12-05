@@ -11,10 +11,10 @@ func _on_button_pressed(index: int) -> void:
 	BeatManager.Reset()
 	match index:
 		0:
-			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/easy_level/game_level.tscn")
+			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
 
 		1:
-			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/easy_level/game_level.tscn")
+			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")
 
 		_:
 			print("Invalid index: ", index)
@@ -38,7 +38,7 @@ func _input(event):
 		_on_red_button_pressed()
 	elif event.is_action_pressed("blue_button"):
 		_on_blue_button_pressed()
-	elif event.is_action_pressed("button_S"):  
+	elif event.is_action_pressed("green_button"):  
 		_on_yellow_button_pressed()
-	elif event.is_action_pressed("button_A"): 
+	elif event.is_action_pressed("yellow_button"): 
 		_on_green_button_pressed()

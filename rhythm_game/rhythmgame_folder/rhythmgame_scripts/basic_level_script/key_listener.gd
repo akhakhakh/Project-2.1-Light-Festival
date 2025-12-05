@@ -134,21 +134,25 @@ func HandleKeyPress():
 		text = "PERFECT"
 		Signals.IncrementCombo.emit()
 		Signals.IncrementScore.emit(3) 
+		Global.miss_count = 0
 	elif min_distance < GREAT_THRESHOLD:
 		points = GREAT_SCORE
 		text = "GREAT"
 		Signals.IncrementCombo.emit()
 		Signals.IncrementScore.emit(3)
+		Global.miss_count = 0
 	elif min_distance < GOOD_THRESHOLD:
 		points = GOOD_SCORE
 		text = "GOOD"
 		Signals.IncrementCombo.emit()
 		Signals.IncrementScore.emit(2) 
+		Global.miss_count = 0
 	elif min_distance < OK_THRESHOLD:
 		points = OK_SCORE
 		text = "OK"
 		Signals.IncrementCombo.emit()
 		Signals.IncrementScore.emit(1) 
+		Global.miss_count = 0
 	else:
 		# Too far from the hit zone — count as a miss
 		Signals.ResetCombo.emit()
