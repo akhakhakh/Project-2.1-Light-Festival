@@ -82,19 +82,13 @@ func _process(_delta):
 			ShowScoreText("MISS", -20)
 			Signals.ResetCombo.emit()
 			
+			# Increase miss count globally
 			Global.miss_count += 1
 			print("Miss count:", Global.miss_count)
-			
+
+			# Check if player has 5 misses
 			if Global.miss_count >= 5:
 				GameOver()
-			
-				# Increase miss count globally
-				Global.miss_count += 1
-				print("Miss count:", Global.miss_count)
-
-				# Check if player has 5 misses
-				if Global.miss_count >= 100:
-					GameOver()
 
 # --- Function called when player presses the key ---
 func HandleKeyPress():
@@ -202,7 +196,8 @@ func GameOver():
 	if has_node("/root/BeatManager"):
 		print("BeatManager found")
 		BeatManager.StopMusic()
-	elif has_node("/root/BeatManagerJingleBells"):
+	
+	if has_node("/root/BeatManagerJingleBells"):
 		print("BeatManager_JingleBells found")
 		BeatManagerJingleBells.StopMusic()
 	else:

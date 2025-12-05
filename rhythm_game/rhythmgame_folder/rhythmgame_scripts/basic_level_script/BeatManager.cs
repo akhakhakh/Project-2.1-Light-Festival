@@ -122,7 +122,8 @@ public partial class BeatManager : Node
 			_beatMap.Add((spawnTime, color));
 		}
 	}
-		public void Reset()
+	
+	public void Reset()
 	{
 		_nextNoteIndex = 0;
 		_musicStarted = false;
