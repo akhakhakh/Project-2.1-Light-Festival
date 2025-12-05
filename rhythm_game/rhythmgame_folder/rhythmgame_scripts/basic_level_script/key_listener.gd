@@ -72,7 +72,7 @@ func get_max_misses() -> int:
 		# Check if this BeatManager is actually playing music
 		if is_beat_manager_active(bm):
 			print("BeatManager_JingleBells is active")
-			return 15
+			return 10
 	
 	# Check regular BeatManager if Jingle Bells wasn't playing
 	if has_node("/root/BeatManager"):

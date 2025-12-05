@@ -32,7 +32,7 @@ func determine_speed_from_active_beat_manager():
 		# Check if THIS BeatManager is actually running
 		if is_beat_manager_active(bm):
 			fall_speed = 3.0
-			print("Active: Jingle Bells BeatManager - speed: 6.0")
+			print("Active: Jingle Bells BeatManager - speed: 3.0")
 			return
 	
 	# Check Rhythm Hell BeatManager
