@@ -641,10 +641,17 @@ func stack_row():
 	
 		# Trigger particles only on perfect stack
 		if surviving_positions.size() == cur_blocks:
-			if icon_instance.has_node("CPUParticles2D"):
-				var p = icon_instance.get_node("CPUParticles2D")
-				p.restart()
-	
+			for icon in icons:
+				if icon.has_node("CPUParticles2D"):
+					icon.get_node("CPUParticles2D").restart()
+
+		# imperfect -> red particles
+		else:
+			for icon in icons:
+				if icon.has_node("CPUParticles2D_Red"):
+					icon.get_node("CPUParticles2D_Red").restart()
+					
+
 	# Hide moving blocks
 	for icon in icons:
 		icon.hide()

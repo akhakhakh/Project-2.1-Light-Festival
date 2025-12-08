@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv8ott22psimk"]
+[gd_scene load_steps=19 format=3 uid="uid://dv8ott22psimk"]
 
 [ext_resource type="Script" uid="uid://q4r3vqb1iyv5" path="res://scripts_stacker/main.gd" id="1_i2nvn"]
 [ext_resource type="Shader" uid="uid://cd6bnlw771x8h" path="res://assets_stacker/mainscene.gdshader" id="2_gwiyq"]
@@ -60,12 +60,24 @@ shader_parameter/glow_size = 4.0
 _data = [Vector2(0.08536586, 1), 0.0, 0.0, 0, 0, Vector2(0.99390244, 0.06741583), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_i2nvn"]
+_data = [Vector2(0.09322034, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_tbgi4"]
 _data = [Vector2(0.07926831, 0.9887641), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_gwiyq"]
+_data = [Vector2(0.09322034, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_tefeu"]
 _data = [Vector2(0.08536586, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gmg3d"]
+_data = [Vector2(0.09322034, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Node2D" type="Node2D"]
@@ -667,6 +679,21 @@ scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_jyhfs")
 
+[node name="CPUParticles2D_Red" type="CPUParticles2D" parent="Icon"]
+emitting = false
+amount = 60
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_i2nvn")
+
 [node name="Icon2" type="Sprite2D" parent="."]
 position = Vector2(213.33798, 402.33798)
 rotation = 0.00443127
@@ -689,6 +716,22 @@ scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_tbgi4")
 
+[node name="CPUParticles2D_Red" type="CPUParticles2D" parent="Icon2"]
+emitting = false
+amount = 60
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_gwiyq")
+color = Color(0.87058824, 0.105882354, 0, 1)
+
 [node name="Icon3" type="Sprite2D" parent="."]
 position = Vector2(178.33798, 402.33798)
 rotation = 0.00443127
@@ -710,6 +753,22 @@ initial_velocity_max = 50.0
 scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_tefeu")
+
+[node name="CPUParticles2D_Red" type="CPUParticles2D" parent="Icon3"]
+emitting = false
+amount = 60
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_gmg3d")
+color = Color(0.87058824, 0.105882354, 0, 1)
 
 [node name="Left-Border" type="ColorRect" parent="."]
 offset_left = 436.0
