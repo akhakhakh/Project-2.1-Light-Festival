@@ -447,6 +447,10 @@ func _unhandled_input(event):
 func update_streak(is_perfect: bool):
 	if is_perfect:
 		perfect_streak += 1
+		
+		if perfect_streak == 5:
+			$Camera2D.shake(10)  #shake effect
+			
 		score_multiplier = 1.5 if perfect_streak >= 5 else 1.0
 		if perfect_streak >= 5:
 			print("1.5x multiplier active! (Streak:", perfect_streak, ")")
@@ -703,6 +707,7 @@ func apply_rgb_to_all():
 func update_score_display():
 	if score_label != null:
 		score_label.text = str(score)
+
 
 
 func end_game(win: bool) -> void:
