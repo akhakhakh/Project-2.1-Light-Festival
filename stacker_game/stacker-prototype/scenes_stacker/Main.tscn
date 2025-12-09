@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dv8ott22psimk"]
+[gd_scene load_steps=21 format=3 uid="uid://dv8ott22psimk"]
 
 [ext_resource type="Script" uid="uid://q4r3vqb1iyv5" path="res://scripts_stacker/main.gd" id="1_i2nvn"]
 [ext_resource type="Shader" uid="uid://cd6bnlw771x8h" path="res://assets_stacker/mainscene.gdshader" id="2_gwiyq"]
@@ -80,6 +80,10 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_gmg3d"]
 _data = [Vector2(0.09322034, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gwiyq"]
+offsets = PackedFloat32Array(0, 0.33695653, 0.65217394, 1)
+colors = PackedColorArray(0.7670247, 2.5268644e-06, 9.62615e-07, 1, 0.95173985, 0.7935643, 0.22533342, 1, 0.22352941, 0.7411765, 0.16862746, 1, 0, 0.50980395, 1, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_i2nvn")
@@ -841,3 +845,15 @@ autoplay = true
 position = Vector2(577, 323)
 limit_enabled = false
 script = ExtResource("10_gwiyq")
+
+[node name="FireworksParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 120
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+color_ramp = SubResource("Gradient_gwiyq")
