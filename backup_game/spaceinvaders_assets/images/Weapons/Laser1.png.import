@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c37lpeb1ls22w"
-path="res://.godot/imported/Laser.png-e5884c5ca530e6cd9b8ffb7f05c8602f.ctex"
+uid="uid://cji1b85mjdjnb"
+path="res://.godot/imported/Laser1.png-b7fc1804e47595c817dd1aa823fff2cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spaceinvaders_assets/images/Weapons/Laser.png"
-dest_files=["res://.godot/imported/Laser.png-e5884c5ca530e6cd9b8ffb7f05c8602f.ctex"]
+source_file="res://spaceinvaders_assets/images/Weapons/Laser1.png"
+dest_files=["res://.godot/imported/Laser1.png-b7fc1804e47595c817dd1aa823fff2cc.ctex"]
 
 [params]
 
