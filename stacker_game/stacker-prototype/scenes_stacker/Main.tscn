@@ -90,7 +90,7 @@ script = ExtResource("1_i2nvn")
 
 [node name="Galaxy" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tipki")
-position = Vector2(576.75, 326)
+position = Vector2(577, 322)
 scale = Vector2(0.59973955, 0.6018519)
 texture = ExtResource("3_gmg3d")
 
