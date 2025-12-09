@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctev4qgblin2u"
-path="res://.godot/imported/BunkerTopLeft-2.png-4afa5f245e749dd7072e9b0eafd910f1.ctex"
+uid="uid://3setah8cdakk"
+path="res://.godot/imported/Game-Background.png-739d03c3ad494b8532b5076c3a5de4c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spaceinvaders_assets/images/Bunker/BunkerTopLeft-2.png"
-dest_files=["res://.godot/imported/BunkerTopLeft-2.png-4afa5f245e749dd7072e9b0eafd910f1.ctex"]
+source_file="res://spaceinvaders_assets/images/Background/Game-Background.png"
+dest_files=["res://.godot/imported/Game-Background.png-739d03c3ad494b8532b5076c3a5de4c9.ctex"]
 
 [params]
 

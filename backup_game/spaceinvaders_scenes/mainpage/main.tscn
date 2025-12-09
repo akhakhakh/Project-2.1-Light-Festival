@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://x52tm03ns8q"]
+[gd_scene load_steps=12 format=3 uid="uid://x52tm03ns8q"]
 
 [ext_resource type="PackedScene" uid="uid://dtone6hpojcx1" path="res://spaceinvaders_scenes/characters/player.tscn" id="1_5atvj"]
 [ext_resource type="PackedScene" uid="uid://dfn1yx70sdynd" path="res://spaceinvaders_scenes/objects/bullet_catcher.tscn" id="2_rjmfx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b50iyg3b3yeh5" path="res://spaceinvaders_scripts/life_manager.gd" id="6_o6sgd"]
 [ext_resource type="Script" uid="uid://datg5v8owjty" path="res://spaceinvaders_scripts/points_counter.gd" id="7_dmpoh"]
 [ext_resource type="PackedScene" uid="uid://belx0qfvh4cii" path="res://spaceinvaders_scenes/mainpage/ui.tscn" id="8_5q44k"]
+[ext_resource type="Texture2D" uid="uid://3setah8cdakk" path="res://spaceinvaders_assets/images/Background/Game-Background.png" id="9_rjmfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uhrm"]
 size = Vector2(40, 617)
@@ -16,6 +17,11 @@ size = Vector2(40, 617)
 size = Vector2(1200, 64)
 
 [node name="main" type="Node"]
+
+[node name="Game-Background" type="Sprite2D" parent="."]
+position = Vector2(6.000002, 3.5000029)
+scale = Vector2(0.609375, 0.60148287)
+texture = ExtResource("9_rjmfx")
 
 [node name="Player" parent="." instance=ExtResource("1_5atvj")]
 position = Vector2(0, 302)
