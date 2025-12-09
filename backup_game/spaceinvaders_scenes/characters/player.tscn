@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://w08g0y32fhwp" path="res://spaceinvaders_scripts/player.gd" id="1_77cl3"]
 [ext_resource type="Texture2D" uid="uid://c6st3w61lkghw" path="res://spaceinvaders_assets/images/Player/Player.png" id="2_f8l71"]
 [ext_resource type="Script" uid="uid://ddpitmbqckbim" path="res://spaceinvaders_scripts/shooting.gd" id="3_a7kjc"]
-[ext_resource type="PackedScene" uid="uid://bojqq0wbhl785" path="res://spaceinvaders_scenes/objects/laser_red.tscn" id="4_3f3sk"]
+[ext_resource type="PackedScene" uid="uid://bojqq0wbhl785" path="res://spaceinvaders_scenes/objects/laser.tscn" id="4_3f3sk"]
 [ext_resource type="Texture2D" uid="uid://23ffdk47q6sr" path="res://spaceinvaders_assets/images/Player/Player-explosion1.png" id="5_4ium7"]
 [ext_resource type="Texture2D" uid="uid://d24au5mqccw34" path="res://spaceinvaders_assets/images/Player/Player-explosion2.png" id="6_lhcww"]
 [ext_resource type="Texture2D" uid="uid://cu8se10ivbqao" path="res://spaceinvaders_assets/images/Player/Player-explosion3.png" id="7_kjxdg"]
