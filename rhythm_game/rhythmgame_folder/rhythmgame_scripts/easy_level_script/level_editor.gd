@@ -4,26 +4,24 @@ extends Node2D
 const in_edit_mode: bool = false
 
 # The name of the current level being played
-var current_level_name = "RHYTHM_HELL"
+var current_level_name = "EASY_WE_WISH"
 
 # Time (in seconds) it takes for a falling key to reach the hit line after spawning
-var fk_fall_time: float = 2.2
+var fk_fall_time: float = 2.5  # Faster fall time for 186 BPM
 
 # Array to store recorded falling key timings when in edit mode
 var fk_output_arr = [[], [], [], []]
 
 # Level configuration data
 var level_info = {
-	"RHYTHM_HELL" : {
+	"EASY_WE_WISHS" : {
 		# Music file for this level
-		"music": load("res://rhythmgame_folder/rhythmgame_assets/music/Rhythm Hell.wav")
+		"music": load("res://rhythmgame_folder/rhythmgame_assets/music/WeWishYouAMerryChristmas.wav")
 	}
 }
 
 # Called when the scene starts
 func _ready():
-	Global.reset_game_stats()
-	
 	if in_edit_mode:
 		# If editing, load and play music manually for recording
 		$MusicPlayer.stream = level_info.get(current_level_name).get("music")
@@ -31,24 +29,25 @@ func _ready():
 		# Connect key press signals to record timing
 		Signals.KeyListenerPress.connect(KeyListenerPress)
 	else:
-		# In play mode, BeatManager handles music playback
-		# Just connect to BeatManager's spawn signal
-		if has_node("/root/BeatManager"):
-			# Connect directly to the autoloaded BeatManager
-			var bm = get_node("/root/BeatManager")
+		# In play mode, BeatManager_JingleBells handles music playback
+		# Connect to the BeatManager_JingleBells autoload
+		if has_node("/root/BeatManagerEasyLevel"):
+			var bm = get_node("/root/BeatManagerEasyLevel")
 			bm.connect("SpawnButton", Callable(self, "_on_spawn_button"))
-			bm.StartMusic()
-			print("BeatManager connected successfully!")
 			
-			# Start the music
-			#BeatManager.StartMusic()
+			#Connect to song finished signal
+			if bm.has_signal("SongFinished"):
+				bm.SongFinished.connect(_on_song_finished)
+				
+			bm.StartMusic()
+			print("BeatManager_EasyLevel connected successfully!")
 		else:
-			print("ERROR: BeatManager not found! Check autoload settings.")
+			print("ERROR: BeatManager_EasyLevel not found! Check autoload settings.")
+			print("Add BeatManager_EasyLevel.cs as an autoload in Project Settings")
 
 # Called when BeatManager wants to spawn a falling key - PLAY MODE
 func _on_spawn_button(button_color: String) -> void:
 	print("Spawn signal received for: ", button_color)
-	
 	# Convert color name to match KeyListener's expected format
 	# BeatManager sends: "blue", "green", "red", "yellow"
 	# KeyListener expects: "blue_button", "green_button", etc.
@@ -56,17 +55,34 @@ func _on_spawn_button(button_color: String) -> void:
 	
 	# Emit the signal to create the falling key
 	Signals.CreateFallingKey.emit(button_name)
+	
+#Called when song finishes	
+func _on_song_finished():
+	print("SONG FINISHED!")
+	
+	# Just use Global's values directly!
+	print("\nFinal Results:")
+	print("  Score: ", Global.total_score)
+	print("  Misses: ", Global.miss_count)
+	
+	# Save song name (if you want to display it on results screen)
+	Global.song_name = "We Wish You A Merry Christmas"
+	
+	# Wait for final notes
+	await get_tree().create_timer(1.5).timeout
+	
+	# Go to results screen
+	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/win_menu/win_scene.tscn")
 
 # Records key press time when in EDIT MODE
 func KeyListenerPress(_button_name: String, array_num: int):
-	# Save the current playback time adjusted by the fall delay
 	#print(array_num)
+	# Save the current playback time adjusted by the fall delay
 	var spawn_time = $MusicPlayer.get_playback_position() - fk_fall_time
 	fk_output_arr[array_num].append(spawn_time)
-	print("Recorded timings: ", fk_output_arr)
 	
 # Called when the music finishes playing
 func _on_music_player_finished():
-	print("Song finished!")
+	print("Easy We Wish finished!")
 	if in_edit_mode:
 		print("Recorded timings: ", fk_output_arr)

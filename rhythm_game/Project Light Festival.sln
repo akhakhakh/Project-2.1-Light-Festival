@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Light Festival", "Project Light Festival.csproj", "{B204F326-2664-4DC4-8C0E-26E1C1026727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Light Festival", "Project Light Festival.csproj", "{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{B204F326-2664-4DC4-8C0E-26E1C1026727}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{2AD532FA-F225-4811-83AF-F8ACCCCEE7F0}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

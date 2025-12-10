@@ -72,16 +72,16 @@ func get_max_misses() -> int:
 		# Check if this BeatManager is actually playing music
 		if is_beat_manager_active(bm):
 			print("BeatManager_JingleBells is active")
-			return 10
+			return 7
 	
-	# Check regular BeatManager if Jingle Bells wasn't playing
-	if has_node("/root/BeatManager"):
-		var bm = get_node("/root/BeatManager")
+	# Check Medium BeatManager if Jingle Bells wasn't playing
+	if has_node("/root/BeatManagerEasyLevel"):
+		var bm = get_node("/root/BeatManagerEasyLevel")
 		if is_beat_manager_active(bm):
-			print("BeatManager is active")
+			print("BeatManager_EasyLevel is active")
 			return 5
 			
-	return 7
+	return 6
 
 # --- Main loop that checks for missed notes ---
 func _process(_delta):
@@ -213,9 +213,13 @@ func GameOver():
 	print("GameOver called!")
 	
 	# Stop the music
-	if has_node("/root/BeatManager"):
-		print("BeatManager found")
-		BeatManager.StopMusic()
+	if has_node("/root/BeatManagerEasyLevel"):
+		print("BeatManager_EasyLevel found")
+		BeatManagerEasyLevel.StopMusic()
+	
+	if has_node("/root/BeatManagerMedium"):
+		print("BeatManager_Medium found")
+		BeatManagerMedium.StopMusic()
 	
 	if has_node("/root/BeatManagerJingleBells"):
 		print("BeatManager_JingleBells found")

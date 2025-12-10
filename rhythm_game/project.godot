@@ -21,7 +21,9 @@ Signals="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/signals.
 Global="*res://rhythmgame_folder/rhythmgame_scripts/endingScreen_script/global.gd"
 <<<<<<<HEADSignals="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/signals.gd"
 BeatManager="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/BeatManager.cs"
-BeatManagerJingleBells="*res://rhythmgame_folder/rhythmgame_scripts/basic_level_script/BeatManager_JingleBells.cs"
+BeatManagerJingleBells="*res://rhythmgame_folder/rhythmgame_scripts/hard_level_script/BeatManagerJingleBells.cs"
+BeatManagerMedium="*res://rhythmgame_folder/rhythmgame_scripts/medium_level_script/BeatManagerMedium.cs"
+BeatManagerEasyLevel="*res://rhythmgame_folder/rhythmgame_scripts/easy_level_script/BeatManagerEasyLevel.cs"
 
 [display]
 

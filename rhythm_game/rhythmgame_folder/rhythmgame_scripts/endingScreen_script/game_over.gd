@@ -8,12 +8,31 @@ func _ready():
 
 # Called by your colored buttons or keys
 func _on_button_pressed(index: int) -> void:
-	BeatManager.Reset()
+	if has_node("/root/BeatManagerEasyLevel"):
+		var bm = get_node("/root/BeatManagerEasyLevel")
+		if is_beat_manager_active(bm):
+			BeatManagerEasyLevel.Reset()
+			return
+	
+	if has_node("/root/BeatManagerMedium"):
+		var bm = get_node("/root/BeatManagerMedium")
+		if is_beat_manager_active(bm):
+			BeatManagerMedium.Reset()
+			return
+	
+	if has_node("/root/BeatManagerJingleBells"):
+		var bm = get_node("/root/BeatManagerJingleBells")
+		if is_beat_manager_active(bm):
+			BeatManagerJingleBells.Reset()
+			return
+			
 	match index:
 		0:
+			Global.reset_game_stats()
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
 
 		1:
+			Global.reset_game_stats()
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")
 
 		_:
@@ -31,6 +50,19 @@ func _on_yellow_button_pressed() -> void:
 
 func _on_green_button_pressed() -> void:
 	_on_button_pressed(3)
+	
+func is_beat_manager_active(beat_manager) -> bool:
+	if beat_manager == null:
+		return false
+	
+	# Check all children for AudioStreamPlayer
+	for child in beat_manager.get_children():
+		if child is AudioStreamPlayer:
+			# Check if it's playing
+			if child.is_playing():
+				return true
+	
+	return false
 	
 # Optional: handle keyboard input
 func _input(event):
