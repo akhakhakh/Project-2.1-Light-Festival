@@ -4,6 +4,8 @@ var current_player_name: String = ""
 var current_player_score: int = 0
 const SAVE_PATH := "user://leaderboard_stacker.tres"
 var leaderboard_data: LeaderboardData
+const SHARED_JSON := "C:/Users/aradk/Documents/GitHub/Project-2.1-Light-Festival/leaderboard.json"
+var game: String = "Stacker"
 
 func _ready():
 	load_leaderboard()
@@ -21,15 +23,11 @@ func save_leaderboard():
 func add_score(username: String, score: int):
 	leaderboard_data.add_entry(username, score)
 	save_leaderboard()
+	_update_shared_json(username, score, game)
 
 func get_leaderboard() -> Array:
 	return leaderboard_data.entries
 
-func username_exists(username: String) -> bool:
-	for entry in leaderboard_data.entries:
-		if entry["name"] == username:
-			return true
-	return false
 
 func clear_leaderboard():
 	leaderboard_data.entries.clear()
@@ -39,3 +37,32 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("clear_leaderboard"):
 		clear_leaderboard()
 		print("Leaderboard cleared")
+
+
+func _update_shared_json(name: String, score: int, game: String):
+	var data: Array = []
+	
+	if FileAccess.file_exists(SHARED_JSON):
+		var file = FileAccess.open(SHARED_JSON, FileAccess.READ)
+		if file:
+			var text = file.get_as_text()
+			file.close()
+			if text != "":
+				var parsed = JSON.parse_string(text)
+				if typeof(parsed) == TYPE_ARRAY:
+					data = parsed
+	
+	data.append({"name": name, "score": score, "game": game})
+	
+	var folder = SHARED_JSON.get_base_dir()
+	if not DirAccess.dir_exists_absolute(folder):
+		DirAccess.make_dir_absolute(folder)
+	
+	var file_save = FileAccess.open(SHARED_JSON, FileAccess.WRITE)
+	if file_save == null:
+		push_error("Cannot open JSON file at: " + SHARED_JSON)
+		return
+	
+	file_save.store_string(JSON.stringify(data))
+	file_save.close()
+	print("aSved score to shared JSON at:", SHARED_JSON)

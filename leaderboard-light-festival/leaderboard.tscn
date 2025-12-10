@@ -4,7 +4,7 @@
 [ext_resource type="VideoStream" uid="uid://bd2nd3ck7ls06" path="res://leaderboard_assets/simon says preview video.ogv" id="2_2t7te"]
 [ext_resource type="FontFile" uid="uid://bi6lujanrby48" path="res://leaderboard_assets/PixelifySans-VariableFont_wght.ttf" id="2_qjw78"]
 [ext_resource type="VideoStream" uid="uid://bbeesco0bd0j6" path="res://leaderboard_assets/rhythm game preview video.ogv" id="3_oli24"]
-[ext_resource type="VideoStream" uid="uid://bywxgjlqg0gk8" path="res://leaderboard_assets/stacker preview video.ogv" id="4_y1kwj"]
+[ext_resource type="VideoStream" uid="uid://blakf5fryfvl2" path="res://leaderboard_assets/stacker preview video.ogv" id="4_y1kwj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ilyb"]
 bg_color = Color(0.8666667, 0.7372549, 1, 0.09019608)
@@ -58,7 +58,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qjw78")
 text = "Score"
 
-[node name="Rows" type="VBoxContainer" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer"]
+[node name="SimonSaysRows" type="VBoxContainer" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="RhythmGameContainer" type="MarginContainer" parent="LeaderboardContainer"]
@@ -102,6 +102,9 @@ text = "Name"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qjw78")
 text = "Score"
+
+[node name="StackerRows" type="VBoxContainer" parent="LeaderboardContainer/StackerContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="SimonSays" type="Label" parent="."]
 layout_mode = 0
@@ -239,7 +242,7 @@ offset_top = 48.0
 offset_right = 980.0
 offset_bottom = 251.0
 
-[node name="RhythmGamePreviewVideo" type="VideoStreamPlayer" parent="video3"]
+[node name="StackerGamePreviewVideo" type="VideoStreamPlayer" parent="video3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -251,7 +254,7 @@ autoplay = true
 expand = true
 loop = true
 
-[node name="RhythmGamePreviewText2" type="Label" parent="."]
+[node name="StackerGamePreviewText" type="Label" parent="."]
 layout_mode = 0
 offset_left = 987.0
 offset_top = 47.0

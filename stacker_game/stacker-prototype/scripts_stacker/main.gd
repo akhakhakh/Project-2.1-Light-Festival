@@ -755,7 +755,8 @@ func end_game(win: bool) -> void:
 	high_score_tween.tween_property(high_score_label, "scale", Vector2(1.2, 1.2), 0.7)
 	high_score_tween.tween_property(high_score_label, "scale", Vector2(1.0, 1.0), 0.7)
 
-
+	score = 0
+	score_label.text = "0"
 	
 	var scene_path := "res://scenes_stacker/YouWon.tscn" if win else "res://scenes_stacker/GameOver.tscn"
 	get_tree().change_scene_to_file(scene_path)

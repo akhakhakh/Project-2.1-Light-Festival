@@ -11,7 +11,7 @@ func _ready():
 		push_error("ScoreLabel node not found!")
 
 func _input(event):
-	if event.is_action_pressed("green_button"):
+	if event.is_action_pressed("red_button"):
 		get_tree().change_scene_to_file("res://scenes_stacker/Main.tscn")
 
 	elif event.is_action_pressed("yellow_button"):

@@ -2,7 +2,8 @@ extends Control
 
 @onready var simon_entries_container := $LeaderboardContainer/SimonSaysContainer/VBoxContainer
 @onready var timer: Timer = $Timer
-@onready var rows: Node = $LeaderboardContainer/SimonSaysContainer/VBoxContainer/Rows
+@onready var simon_says_rows: Node = $LeaderboardContainer/SimonSaysContainer/VBoxContainer/SimonSaysRows
+@onready var stacker_rows: VBoxContainer = $LeaderboardContainer/StackerContainer/VBoxContainer/StackerRows
 @onready var countdown_timer: Timer = $TIMER/Panel/CountdownTimer
 @onready var timer_text: Label = $TIMER/Panel/TimerText
 
@@ -32,12 +33,18 @@ func _create_row(name: String, score: int) -> HBoxContainer:
 	return row
 	
 func update_all_leaderboards():
-	for c in rows.get_children(): c.queue_free()
-
+	for c in simon_says_rows.get_children(): c.queue_free()
+	for c in stacker_rows.get_children(): c.queue_free()
+	
 	# Simon Says
 	for entry in LeaderboardManager.simon_says_entries:
 		var row = _create_row(entry["name"], entry["score"])
-		rows.add_child(row)
+		simon_says_rows.add_child(row)
+	
+	# Stacker
+	for entry in LeaderboardManager.stacker_entries:
+		var row = _create_row(entry["name"], entry["score"])
+		stacker_rows.add_child(row)
 
 func _on_timer_timeout() -> void:
 	LeaderboardManager.load_shared_json()

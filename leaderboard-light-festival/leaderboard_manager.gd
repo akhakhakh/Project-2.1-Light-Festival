@@ -3,6 +3,7 @@ extends Node
 const SHARED_JSON := "C:/Users/aradk/Documents/GitHub/Project-2.1-Light-Festival/leaderboard.json"
 
 var simon_says_entries: Array = []
+var stacker_entries: Array = []
 
 func _ready():
 	load_shared_json()
@@ -10,6 +11,7 @@ func _ready():
 
 func load_shared_json():
 	simon_says_entries.clear()
+	stacker_entries.clear()
 	
 	if not FileAccess.file_exists(SHARED_JSON):
 		print("JSON not found:", SHARED_JSON)
@@ -37,10 +39,15 @@ func load_shared_json():
 		if entry.has("game") and entry["game"] == "SimonSays":
 			simon_says_entries.append(entry)
 	
+	# Filter only entires for Stacker
+	for entry in parsed:
+		if entry.has("game") and entry["game"] == "Stacker":
+			stacker_entries.append(entry)
 	# Sort by score (DESC)
-	simon_says_entries.sort_custom(func(a, b): return int(a["score"]) > int(b["score"])
-)
+	simon_says_entries.sort_custom(func(a, b): return int(a["score"]) > int(b["score"]))
+	stacker_entries.sort_custom(func(a, b): return int(a["score"]) > int(b["score"]))
 	print("SimonSays entries loaded:", simon_says_entries)
+	print("Stacker entries loaded:", stacker_entries)
 
 func reset_all_leaderboards():
 	var empty_array: Array = []
