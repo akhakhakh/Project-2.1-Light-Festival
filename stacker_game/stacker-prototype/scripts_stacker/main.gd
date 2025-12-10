@@ -660,7 +660,7 @@ func stack_row():
 			else:
 				set_icon_colour(icon_instance, cur_row_colour)
 	
-		# Trigger particles only on perfect stack
+		# Trigger particles only on perfect stack  
 		if surviving_positions.size() == cur_blocks:
 			for icon in icons:
 				if icon.has_node("CPUParticles2D"):
