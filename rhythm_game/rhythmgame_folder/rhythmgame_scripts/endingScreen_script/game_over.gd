@@ -8,31 +8,15 @@ func _ready():
 
 # Called by your colored buttons or keys
 func _on_button_pressed(index: int) -> void:
-	if has_node("/root/BeatManagerEasyLevel"):
-		var bm = get_node("/root/BeatManagerEasyLevel")
-		if is_beat_manager_active(bm):
-			BeatManagerEasyLevel.Reset()
-			return
-	
-	if has_node("/root/BeatManagerMedium"):
-		var bm = get_node("/root/BeatManagerMedium")
-		if is_beat_manager_active(bm):
-			BeatManagerMedium.Reset()
-			return
-	
-	if has_node("/root/BeatManagerJingleBells"):
-		var bm = get_node("/root/BeatManagerJingleBells")
-		if is_beat_manager_active(bm):
-			BeatManagerJingleBells.Reset()
-			return
-			
+	BeatManagerEasyLevel.Reset()
+	BeatManagerMedium.Reset()
+	BeatManagerJingleBells.Reset()
+	Global.reset_game_stats()
 	match index:
 		0:
-			Global.reset_game_stats()
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
 
 		1:
-			Global.reset_game_stats()
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")
 
 		_:
