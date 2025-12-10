@@ -175,21 +175,19 @@ func activate_bonus_area_visuals():
 	trigger_multiple_fireworks(10)
 
 func trigger_multiple_fireworks(count: int = 5):
+	var viewport_size = get_viewport_rect().size
+	
 	for i in range(count):
-		# Duplicate the particle node
 		var fx = $FireworksParticles.duplicate() as CPUParticles2D
 		
-		# Randomize position (adjust to your screen size)
 		fx.position = Vector2(
-			randf() * 900,  # width of the play area
-			randf() * 600   # height of the play area
+			randf() * viewport_size.x,
+			randf() * viewport_size.y
 		)
 		
-		# Add to scene
 		add_child(fx)
-		
-		# Trigger the burst
 		fx.restart()
+		
 		
 func animate_rainbow_color(rect: ColorRect):
 	var tween = create_tween()
