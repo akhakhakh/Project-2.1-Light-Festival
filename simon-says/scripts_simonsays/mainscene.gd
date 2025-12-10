@@ -24,6 +24,8 @@ var input_enabled: bool = false
 # Integer points increases after every successful sequence input.
 var points: int = 0
 
+var sequence_playing = false
+
 # Milestone booleans
 var reached_5_points = false
 var reached_10_points = false
@@ -104,6 +106,7 @@ func add_random_step():
 #Plays the full sequence by looping through the sequence with a 0.2 second delay for each step
 func play_sequence():
 	input_enabled = false
+	sequence_playing = true
 	for idx in sequence:
 		var button = buttons[idx]
 		var buttonSound = buttonSounds[idx]
@@ -111,6 +114,7 @@ func play_sequence():
 		await flash_button(button)
 		await get_tree().create_timer(0.2).timeout
 	player_index = 0
+	sequence_playing = false
 	input_enabled = true
 
 
@@ -140,6 +144,8 @@ func _on_button_pressed(idx: int):
 	if not input_enabled:
 		return
 	
+	if sequence_playing:
+		return
 	
 	# Before anything else, plays the sound and flashes the button.
 	await play_sound(buttonSounds[idx])
@@ -218,6 +224,7 @@ func add_point():
 
 
 func play_highscore_effect():
+	input_enabled = false
 	if highscore_reached == false:
 		for particle in celebrationParticles:
 			particle.emitting = true
