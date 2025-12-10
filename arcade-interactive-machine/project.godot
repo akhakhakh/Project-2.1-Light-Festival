@@ -21,6 +21,10 @@ window/size/mode=3
 window/stretch/mode="canvas_items"
 window/canvas_textures/default_texture_filter=1
 
+[dotnet]
+
+project/assembly_name="Arcade Interactive Machine"
+
 [gui]
 
 theme/custom_font="uid://bi6lujanrby48"

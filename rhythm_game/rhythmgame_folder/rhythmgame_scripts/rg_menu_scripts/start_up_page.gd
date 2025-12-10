@@ -24,6 +24,10 @@ func _ready():
 	#Set up initial focus for buttons/gamepad support
 	start_button.grab_focus()
 	
+	#Stop music
+	if has_node("/root/BeatManager"):
+		BeatManager.StopMusic()
+	
 	print("Startup page loded successfully!")
 
 func _on_start_button_pressed():
@@ -50,5 +54,5 @@ func _setup_fullscreen_layout():
 		background.size = screen_size
 
 func _input(event):
-	if event.is_action_pressed("confirm"):
+	if event.is_action_pressed("ui_accept"):
 		_on_start_button_pressed()
