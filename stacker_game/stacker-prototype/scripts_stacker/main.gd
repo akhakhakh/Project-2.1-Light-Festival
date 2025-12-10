@@ -2,7 +2,7 @@ extends Node2D
 
 # ===== GAME CONFIGURATION =====
 @export var base_move_interval := 0.3   # Starting speed in seconds (lower = faster)
-@export var grid_width := 7              # Number of columns in the game grid
+@export var grid_width := 9              # Number of columns in the game grid
 @export var grid_height := 21            # Number of rows in the game grid
 @export var starting_blocks := 3         # How many blocks the player starts with
 @export var speed_increase := 0.90       # Speed multiplier per row (lower = faster acceleration)
@@ -23,6 +23,17 @@ var is_row_active := true           # Whether blocks are moving
 var stack_history := []             # Previous stacks (positions and count)
 var game_over := false              # Whether game has ended
 var just_missed := false            # True if player just missed (penalty-only, no points)
+var cur_row_colour: Color = Color.WHITE    
+var colour_palette := [
+	Color(0, 1, 1),   
+	Color(0, 0, 1),   
+	Color(1, 0.5, 0), 
+	Color(1, 1, 0),   
+	Color(0, 1, 0),   
+	Color(0.6, 0, 0.8), 
+	Color(1, 0, 0)    
+]
+var last_colour_index := -1
 
 # ===== SCORING =====
 var score: int = 0                  # Player's total score
@@ -40,6 +51,7 @@ var is_paused_for_bonus := false        # Whether game is paused for bonus messa
 var bonus_area_rects := []
 var is_in_bonus_zone := false
 var bonus_label_tween: Tween = null
+var bonus_mode_active := false
 
 # ===== HIGH SCORE ======
 var high_score_label: Label = null
@@ -150,14 +162,33 @@ func show_bonus_message():
 
 func activate_bonus_area_visuals():
 	is_in_bonus_zone = true
+	bonus_mode_active = true
 	
 	for rect in bonus_area_rects:
 		rect.visible = true
 		animate_rainbow_color(rect)
 		
 	start_bonus_label_pulse()
+	apply_rgb_to_all()
 
+	# Trigger multiple fireworks
+	trigger_multiple_fireworks(10)
 
+func trigger_multiple_fireworks(count: int = 5):
+	var viewport_size = get_viewport_rect().size
+	
+	for i in range(count):
+		var fx = $FireworksParticles.duplicate() as CPUParticles2D
+		
+		fx.position = Vector2(
+			randf() * viewport_size.x,
+			randf() * viewport_size.y
+		)
+		
+		add_child(fx)
+		fx.restart()
+		
+		
 func animate_rainbow_color(rect: ColorRect):
 	var tween = create_tween()
 	tween.set_loops()
@@ -325,8 +356,8 @@ func reset_row():
 		cur_blocks = starting_blocks
 	
 	# Reset position and movement
-	cur_left = 0
-	dir = 1
+	cur_left = randi() % (grid_width - cur_blocks + 1)
+	dir = 1 if randf() < 0.5 else -1
 	is_row_active = true
 	moved = 0.0
 	
@@ -363,7 +394,18 @@ func reset_row():
 			
 	if not is_in_bonus_section(cur_row) and is_in_bonus_zone:
 		deactivate_bonus_area_visuals()
-
+	
+	var idx := randi() % colour_palette.size()
+	if idx == last_colour_index:
+		idx = (idx + 1) % colour_palette.size()
+	last_colour_index = idx
+	cur_row_colour = colour_palette[idx]
+	
+	for icon in icons:
+		if bonus_mode_active or is_in_bonus_section(cur_row):
+			animate_icon_rgb(icon)
+		else:
+			icon.modulate = cur_row_colour
 
 func update_icon_positions():
 	for k in range(icons.size()):
@@ -422,6 +464,10 @@ func _unhandled_input(event):
 func update_streak(is_perfect: bool):
 	if is_perfect:
 		perfect_streak += 1
+		
+		if perfect_streak == 5:
+			$Camera2D.shake(10)  #shake effect
+			
 		score_multiplier = 1.5 if perfect_streak >= 5 else 1.0
 		if perfect_streak >= 5:
 			print("1.5x multiplier active! (Streak:", perfect_streak, ")")
@@ -608,13 +654,25 @@ func stack_row():
 			icon_instance.show()
 			add_child(icon_instance)
 			locked_row_icons.append(icon_instance)
+			
+			if bonus_mode_active or is_in_bonus_section(cur_row):
+				animate_icon_rgb(icon_instance)
+			else:
+				set_icon_colour(icon_instance, cur_row_colour)
 	
 		# Trigger particles only on perfect stack
 		if surviving_positions.size() == cur_blocks:
-			if icon_instance.has_node("CPUParticles2D"):
-				var p = icon_instance.get_node("CPUParticles2D")
-				p.restart()
-	
+			for icon in icons:
+				if icon.has_node("CPUParticles2D"):
+					icon.get_node("CPUParticles2D").restart()
+
+		# imperfect -> red particles
+		else:
+			for icon in icons:
+				if icon.has_node("CPUParticles2D_Red"):
+					icon.get_node("CPUParticles2D_Red").restart()
+					
+
 	# Hide moving blocks
 	for icon in icons:
 		icon.hide()
@@ -642,9 +700,31 @@ func stack_row():
 	reset_row()
 
 
+func set_icon_colour(icon: Node2D, colour: Color) -> void:
+	icon.modulate = colour
+
+
+func animate_icon_rgb(icon: Node2D) -> void:
+	var tween := create_tween()
+	tween.set_loops()
+	tween.tween_property(icon, "modulate", Color.RED, 0.15)
+	tween.tween_property(icon, "modulate", Color.YELLOW, 0.15)
+	tween.tween_property(icon, "modulate", Color.GREEN, 0.15)
+	tween.tween_property(icon, "modulate", Color.CYAN, 0.15)
+	tween.tween_property(icon, "modulate", Color.BLUE, 0.15)
+	tween.tween_property(icon, "modulate", Color.MAGENTA, 0.15)
+
+
+func apply_rgb_to_all():
+	for icon in icons:
+		animate_icon_rgb(icon)
+	for icon in locked_row_icons:
+		animate_icon_rgb(icon)
+
 func update_score_display():
 	if score_label != null:
 		score_label.text = str(score)
+
 
 
 func end_game(win: bool) -> void:
