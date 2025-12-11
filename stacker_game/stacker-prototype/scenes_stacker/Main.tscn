@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b77q7rariimfk" path="res://sounds_stacker/stack_sound.wav" id="7_5jyyt"]
 [ext_resource type="AudioStream" uid="uid://j2d6ogkq78jc" path="res://sounds_stacker/perfect_streak.wav" id="8_jnr6r"]
 [ext_resource type="AudioStream" uid="uid://m3j4ckxvxo5i" path="res://sounds_stacker/countdown_sound.wav" id="9_yt78e"]
-[ext_resource type="Script" path="res://scripts_stacker/CameraShake.gd" id="10_gwiyq"]
+[ext_resource type="Script" uid="uid://cy8w37nyog3r2" path="res://scripts_stacker/CameraShake.gd" id="10_gwiyq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
 shader = ExtResource("2_gwiyq")
