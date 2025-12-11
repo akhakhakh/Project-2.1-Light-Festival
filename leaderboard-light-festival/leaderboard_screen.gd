@@ -1,9 +1,9 @@
 extends Control
 
-@onready var simon_entries_container := $LeaderboardContainer/SimonSaysContainer/VBoxContainer
 @onready var timer: Timer = $Timer
 @onready var simon_says_rows: Node = $LeaderboardContainer/SimonSaysContainer/VBoxContainer/SimonSaysRows
 @onready var stacker_rows: VBoxContainer = $LeaderboardContainer/StackerContainer/VBoxContainer/StackerRows
+@onready var rhythm_game_rows: VBoxContainer = $LeaderboardContainer/RhythmGameContainer/VBoxContainer/RhythmGameRows
 @onready var countdown_timer: Timer = $TIMER/Panel/CountdownTimer
 @onready var timer_text: Label = $TIMER/Panel/TimerText
 
@@ -35,6 +35,7 @@ func _create_row(name: String, score: int) -> HBoxContainer:
 func update_all_leaderboards():
 	for c in simon_says_rows.get_children(): c.queue_free()
 	for c in stacker_rows.get_children(): c.queue_free()
+	for c in rhythm_game_rows.get_children(): c.queue_free()
 	
 	# Simon Says
 	for entry in LeaderboardManager.simon_says_entries:
@@ -45,6 +46,11 @@ func update_all_leaderboards():
 	for entry in LeaderboardManager.stacker_entries:
 		var row = _create_row(entry["name"], entry["score"])
 		stacker_rows.add_child(row)
+	
+	#RhythmGame
+	for entry in LeaderboardManager.rhythmgame_entries:
+		var row = _create_row(entry["name"], entry["score"])
+		rhythm_game_rows.add_child(row)
 
 func _on_timer_timeout() -> void:
 	LeaderboardManager.load_shared_json()

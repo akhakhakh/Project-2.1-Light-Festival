@@ -82,6 +82,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qjw78")
 text = "Score"
 
+[node name="RhythmGameRows" type="VBoxContainer" parent="LeaderboardContainer/RhythmGameContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="StackerContainer" type="MarginContainer" parent="LeaderboardContainer"]
 layout_mode = 2
 

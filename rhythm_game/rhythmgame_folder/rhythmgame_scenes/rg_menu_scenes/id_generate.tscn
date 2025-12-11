@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://bad28c7c8gq7y"]
+
+[ext_resource type="Script" uid="uid://c6cndlfrv6maj" path="res://rhythmgame_folder/rhythmgame_scripts/rg_menu_scripts/id_generate.gd" id="1_ojmur"]
+[ext_resource type="Texture2D" uid="uid://x5jnceo0jflh" path="res://rhythmgame_folder/rhythmgame_assets/images/neon_glitch.jpg" id="2_istfo"]
+[ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://rhythmgame_folder/rhythmgame_assets/font/PixelifySans-VariableFont_wght.ttf" id="3_f7trh"]
+
+[node name="IDGenerate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ojmur")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_istfo")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 139.0
+offset_right = 707.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("3_f7trh")
+theme_override_font_sizes/font_size = 32
+text = "Your Generated ID:"
+
+[node name="ID" type="Label" parent="."]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 272.0
+offset_right = 526.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("3_f7trh")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Press Red to continue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 439.0
+offset_right = 735.0
+offset_bottom = 484.0
+theme_override_fonts/font = ExtResource("3_f7trh")
+theme_override_font_sizes/font_size = 32
+text = "Press Red to continue"

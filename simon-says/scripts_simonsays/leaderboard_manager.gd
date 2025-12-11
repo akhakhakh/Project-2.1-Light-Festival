@@ -74,4 +74,4 @@ func _update_shared_json(name: String, score: int, game: String):
 	
 	file_save.store_string(JSON.stringify(data))
 	file_save.close()
-	print("aSved score to shared JSON at:", SHARED_JSON)
+	print("Saved score to shared JSON at:", SHARED_JSON)
