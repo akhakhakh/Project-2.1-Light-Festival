@@ -12,3 +12,6 @@ func _input(event):
 
 	elif event.is_action_pressed("green_button"):
 		get_tree().change_scene_to_file("res://scenes_stacker/LeaderboardScreen.tscn")
+	
+	elif event.is_action_pressed("input"):
+		get_tree().quit()

@@ -10,3 +10,6 @@ func _input(event):
 
 	elif event.is_action_pressed("green_button"):
 		get_tree().change_scene_to_file("res://scenes_simonsays/leaderboard_screen.tscn")
+	
+	elif event.is_action_pressed("quit"):
+		get_tree().quit()

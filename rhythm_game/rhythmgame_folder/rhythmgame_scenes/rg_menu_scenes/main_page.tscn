@@ -87,15 +87,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_47v0h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rlhb6")
 text = "Start"
 
-[node name="LeaderboardButton" type="Button" parent="CanvasLayer/StartUpPage/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_gl2rg")
-theme_override_font_sizes/font_size = 43
-theme_override_styles/normal = SubResource("StyleBoxFlat_uxver")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bx58v")
-theme_override_styles/hover = SubResource("StyleBoxFlat_sgmfo")
-text = "Leaderboard"
-
 [node name="QuitButton" type="Button" parent="CanvasLayer/StartUpPage/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_gl2rg")
@@ -137,10 +128,25 @@ theme_override_font_sizes/font_size = 41
 text = "- Up"
 metadata/_edit_use_anchors_ = true
 
+[node name="GreenButton2" type="Polygon2D" parent="CanvasLayer"]
+position = Vector2(-158.13373, 102.50983)
+scale = Vector2(0.834853, 0.8177556)
+color = Color(0.92941177, 0.9607843, 1, 1)
+polygon = PackedVector2Array(406, 344, 385, 343, 368, 353, 365, 368, 369, 379, 380, 388, 396, 389, 410, 384, 417, 374, 417, 362, 412, 350)
+
+[node name="Label" type="Label" parent="CanvasLayer/GreenButton2"]
+offset_left = 434.13956
+offset_top = 340.87183
+offset_right = 601.5051
+offset_bottom = 390.87183
+theme_override_fonts/font = ExtResource("5_gl2rg")
+theme_override_font_sizes/font_size = 41
+text = "- Press"
+metadata/_edit_use_anchors_ = true
+
 [node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_apm6u")
 script = ExtResource("5_omkak")
 
 [connection signal="pressed" from="CanvasLayer/StartUpPage/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/StartUpPage/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartUpPage/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
