@@ -1,0 +1,216 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvyal3s7daq3f"]
+
+[ext_resource type="Shader" uid="uid://cliomwmllqkbs" path="res://interface_scripts/background.gdshader" id="1_wrpha"]
+[ext_resource type="Script" uid="uid://cbiygisoai8v2" path="res://interface_scenes/interface.gd" id="1_y0vtu"]
+[ext_resource type="VideoStream" uid="uid://bd2nd3ck7ls06" path="res://interface_assets/simon says preview video.ogv" id="2_ptwgj"]
+[ext_resource type="Texture2D" uid="uid://ccsvcpesjvsgg" path="res://interface_assets/arrow-35388_1280.png" id="3_ptwgj"]
+[ext_resource type="VideoStream" path="res://interface_assets/stacker preview video.ogv" id="4_no8la"]
+[ext_resource type="VideoStream" uid="uid://bbeesco0bd0j6" path="res://interface_assets/rhythm game preview video.ogv" id="4_trtjb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oi7g3"]
+shader = ExtResource("1_wrpha")
+shader_parameter/bottom_color = Color(0, 0, 0, 1)
+shader_parameter/top_color = Color(0.30467948, 0.32565138, 0.2987847, 1)
+shader_parameter/wave_amp = 0.5
+shader_parameter/wave_size = 4.130000148675
+shader_parameter/wave_time_mul = 0.17500000505262
+shader_parameter/total_phases = 8
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y0vtu")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_oi7g3")
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+color = Color(1, 1, 1, 0)
+
+[node name="videos" type="Node" parent="."]
+
+[node name="Video1" type="Control" parent="videos"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 52.0
+offset_top = 56.0
+offset_right = 347.0
+offset_bottom = 256.0
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="videos/Video1"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 311.0
+offset_bottom = 214.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="videos/Video1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stream = ExtResource("2_ptwgj")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Video2" type="Control" parent="videos"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 435.0
+offset_top = 56.0
+offset_right = 730.0
+offset_bottom = 256.0
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="videos/Video2"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 311.0
+offset_bottom = 214.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="videos/Video2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stream = ExtResource("4_trtjb")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Video3" type="Control" parent="videos"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 816.0
+offset_top = 57.0
+offset_right = 1111.0
+offset_bottom = 257.0
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="videos/Video3"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 311.0
+offset_bottom = 214.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="videos/Video3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stream = ExtResource("4_no8la")
+autoplay = true
+expand = true
+loop = true
+
+[node name="titles" type="Node" parent="."]
+
+[node name="Simon Says" type="Label" parent="titles"]
+offset_left = 105.0
+offset_top = -1.0
+offset_right = 300.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 37
+text = "Simon Says"
+
+[node name="Rhythm Game" type="Label" parent="titles"]
+offset_left = 463.0
+offset_top = 2.0
+offset_right = 705.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 37
+text = "Rhythm Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stacker" type="Label" parent="titles"]
+offset_left = 848.0
+offset_top = 4.0
+offset_right = 1090.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 37
+text = "Stacker"
+horizontal_alignment = 1
+
+[node name="descriptions" type="Node" parent="."]
+
+[node name="Simon Says" type="Label" parent="descriptions"]
+offset_left = 22.0
+offset_top = 278.0
+offset_right = 382.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 22
+text = "Geheugenspel met vier lampjes
+ die in een bepaalde volgorde
+ knipperen. Je moet op de 
+bijbehorende knoppen drukken
+ om het patroon te laten 
+overeenkomen."
+horizontal_alignment = 1
+
+[node name="Rhythm Game" type="Label" parent="descriptions"]
+offset_left = 406.0
+offset_top = 282.0
+offset_right = 762.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 22
+text = "Luister naar de muziek
+ en volg de noten terwijl ze 
+naar beneden vallen. Druk op de 
+knop met de juiste kleur zodra 
+de noot bovenaan valt."
+horizontal_alignment = 1
+
+[node name="Stacker" type="Label" parent="descriptions"]
+offset_left = 788.0
+offset_top = 282.0
+offset_right = 1144.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 22
+text = "Drie blokken bewegen naar links 
+en rechts, druk op de knoppen 
+om de blokken te plaatsen en je 
+moet de volgende laag blokken 
+nauwkeurig opstapelen, zodat 
+er geen blokken afvallen."
+horizontal_alignment = 1
+
+[node name="arrow" type="Sprite2D" parent="."]
+position = Vector2(191, 511)
+scale = Vector2(0.0570312, 0.048046865)
+texture = ExtResource("3_ptwgj")
+
+[node name="markers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="markers"]
+position = Vector2(189, 508)
+
+[node name="Marker2D2" type="Marker2D" parent="markers"]
+position = Vector2(574, 510)
+
+[node name="Marker2D3" type="Marker2D" parent="markers"]
+position = Vector2(964, 513)

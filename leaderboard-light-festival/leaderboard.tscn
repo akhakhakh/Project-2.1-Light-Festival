@@ -1,0 +1,309 @@
+[gd_scene load_steps=10 format=3 uid="uid://lqqxptb2oorv"]
+
+[ext_resource type="Script" uid="uid://2qtjqocfxigu" path="res://leaderboard_screen.gd" id="1_3ilyb"]
+[ext_resource type="VideoStream" uid="uid://bd2nd3ck7ls06" path="res://leaderboard_assets/simon says preview video.ogv" id="2_2t7te"]
+[ext_resource type="FontFile" uid="uid://bi6lujanrby48" path="res://leaderboard_assets/PixelifySans-VariableFont_wght.ttf" id="2_qjw78"]
+[ext_resource type="VideoStream" uid="uid://bbeesco0bd0j6" path="res://leaderboard_assets/rhythm game preview video.ogv" id="3_oli24"]
+[ext_resource type="VideoStream" uid="uid://blakf5fryfvl2" path="res://leaderboard_assets/stacker preview video.ogv" id="4_y1kwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ilyb"]
+bg_color = Color(0.8666667, 0.7372549, 1, 0.09019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oli24"]
+bg_color = Color(0.6, 0.6, 0.6, 0.22745098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1kwj"]
+bg_color = Color(0.42745098, 0.57254905, 1, 0.12941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjw78"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ilyb")
+
+[node name="LeaderboardContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 295.0
+offset_right = 1152.0
+offset_bottom = 883.0
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="SimonSaysContainer" type="MarginContainer" parent="LeaderboardContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardContainer/SimonSaysContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="SSName" type="Label" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Name"
+
+[node name="SSScore" type="Label" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Score"
+
+[node name="SimonSaysRows" type="VBoxContainer" parent="LeaderboardContainer/SimonSaysContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RhythmGameContainer" type="MarginContainer" parent="LeaderboardContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardContainer/RhythmGameContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardContainer/RhythmGameContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="RGName" type="Label" parent="LeaderboardContainer/RhythmGameContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Name"
+
+[node name="RGScore" type="Label" parent="LeaderboardContainer/RhythmGameContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Score"
+
+[node name="RhythmGameRows" type="VBoxContainer" parent="LeaderboardContainer/RhythmGameContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StackerContainer" type="MarginContainer" parent="LeaderboardContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardContainer/StackerContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardContainer/StackerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 100
+
+[node name="SGName" type="Label" parent="LeaderboardContainer/StackerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Name"
+
+[node name="SGScore" type="Label" parent="LeaderboardContainer/StackerContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Score"
+
+[node name="StackerRows" type="VBoxContainer" parent="LeaderboardContainer/StackerContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SimonSays" type="Label" parent="."]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 9.0
+offset_right = 171.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Simon Says"
+horizontal_alignment = 1
+
+[node name="RhythmGame" type="Label" parent="."]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 7.0
+offset_right = 575.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Rhythm Game"
+horizontal_alignment = 1
+
+[node name="Stacker" type="Label" parent="."]
+layout_mode = 0
+offset_left = 745.0
+offset_top = -1.0
+offset_right = 935.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+text = "Stacker"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 59.0
+offset_right = 1152.0
+offset_bottom = 292.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 388.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ilyb")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_right = 776.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oli24")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 776.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y1kwj")
+
+[node name="video1" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 48.0
+offset_right = 197.0
+offset_bottom = 251.0
+
+[node name="SimonSaysPreviewVideo" type="VideoStreamPlayer" parent="video1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_2t7te")
+autoplay = true
+expand = true
+loop = true
+
+[node name="SimonSaysTutorialText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 53.0
+offset_right = 443.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+theme_override_font_sizes/font_size = 15
+text = "Geheugenspel met vier 
+lampjes die in een 
+bepaalde volgorde 
+knipperen. Je moet op 
+de bijbehorende 
+knoppen drukken om het 
+patroon te laten 
+overeenkomen."
+
+[node name="video2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 389.0
+offset_top = 48.0
+offset_right = 593.0
+offset_bottom = 251.0
+
+[node name="RhythmGamePreviewVideo" type="VideoStreamPlayer" parent="video2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("3_oli24")
+autoplay = true
+expand = true
+loop = true
+
+[node name="RhythmGamePreviewText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 50.0
+offset_right = 840.0
+offset_bottom = 260.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+theme_override_font_sizes/font_size = 15
+text = "Luister naar de muziek
+en volg de noten terwijl 
+ze naar beneden vallen. 
+Druk op de knop met de 
+juiste kleur zodra de 
+noot bovenaan valt."
+
+[node name="video3" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 776.0
+offset_top = 48.0
+offset_right = 980.0
+offset_bottom = 251.0
+
+[node name="StackerGamePreviewVideo" type="VideoStreamPlayer" parent="video3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("4_y1kwj")
+autoplay = true
+expand = true
+loop = true
+
+[node name="StackerGamePreviewText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 47.0
+offset_right = 1227.0
+offset_bottom = 265.0
+theme_override_fonts/font = ExtResource("2_qjw78")
+theme_override_font_sizes/font_size = 15
+text = "Drie blokken bewegen 
+naar links en rechts, 
+druk op de knoppen 
+om de blokken te 
+plaatsen en je moet de 
+volgende laag blokken 
+nauwkeurig 
+opstapelen, zodat er 
+geen blokken afvallen."
+
+[node name="TIMER" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 984.0
+offset_right = 1152.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="TIMER"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjw78")
+
+[node name="TimerText" type="Label" parent="TIMER/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_qjw78")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownTimer" type="Timer" parent="TIMER/Panel"]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TIMER/Panel/CountdownTimer" to="." method="_on_countdown_timer_timeout"]

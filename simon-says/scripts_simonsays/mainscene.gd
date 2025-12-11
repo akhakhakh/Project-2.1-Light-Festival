@@ -15,19 +15,28 @@ var buttonSounds: Array[AudioStreamPlayer] = []
 # Particles that play when a button is pressed
 var buttonParticles: Array[CPUParticles2D] = []
 
+#Particles for when a highscore is reached
+var celebrationParticles: Array[CPUParticles2D] = []
+
 # Input enabled variable checks to se when inputs are active or not.
 var input_enabled: bool = false
 
 # Integer points increases after every successful sequence input.
 var points: int = 0
 
+var sequence_playing = false
+
 # Milestone booleans
 var reached_5_points = false
 var reached_10_points = false
 var reached_20_points = false
+var highscore_reached = false
 
 #Points text
-@onready var label: Label = $Panel/Label
+@onready var points_label: Label = $PointsBackground/Points
+
+#ID text
+@onready var id: Label = $ID_Background/ID
 
 #Game Over screen text.
 @onready var game_over_text: Label = $GameOverText
@@ -41,11 +50,16 @@ var reached_20_points = false
 # Text that appears when a milestone is met
 @onready var combo_message: Label = $ComboMessage
 
+# Text that appears when a highscore is reached
+@onready var highscore_message: Label = $HighscoreMessage
+
 # The _ready() function is called upon scene initialization.
 func _ready():
 	buttons = [$RedButton, $GreenButton, $BlueButton, $YellowButton]
 	buttonSounds = [$RedSound, $GreenSound, $BlueSound, $YellowSound]
 	buttonParticles = [$RedParticles, $GreenParticles, $BlueParticles, $YellowParticles]
+	celebrationParticles = [$CelebrationHighscore1, $CelebrationHighscore2, $CelebrationHighscore3, $CelebrationHighscore4, $CelebrationHighscore5, $CelebrationHighscore6, $CelebrationHighscore7]
+	id.text = LeaderboardManager.current_player_name
 	start_game()
 
 
@@ -92,6 +106,7 @@ func add_random_step():
 #Plays the full sequence by looping through the sequence with a 0.2 second delay for each step
 func play_sequence():
 	input_enabled = false
+	sequence_playing = true
 	for idx in sequence:
 		var button = buttons[idx]
 		var buttonSound = buttonSounds[idx]
@@ -99,6 +114,7 @@ func play_sequence():
 		await flash_button(button)
 		await get_tree().create_timer(0.2).timeout
 	player_index = 0
+	sequence_playing = false
 	input_enabled = true
 
 
@@ -128,6 +144,8 @@ func _on_button_pressed(idx: int):
 	if not input_enabled:
 		return
 	
+	if sequence_playing:
+		return
 	
 	# Before anything else, plays the sound and flashes the button.
 	await play_sound(buttonSounds[idx])
@@ -141,8 +159,8 @@ func _on_button_pressed(idx: int):
 		
 		# If the next step marks the end of the sequence in that round, add a new step, then play the sequence from the beginning.
 		if player_index >= sequence.size():
-			add_point()
-			add_random_step()
+			await add_point()
+			await add_random_step()
 			await get_tree().create_timer(1.0).timeout
 			await play_sequence()
 			
@@ -161,7 +179,7 @@ func lose_game():
 			print("Saved score for", LeaderboardManager.current_player_name, ":", points)
 
 	points = 0
-	label.text = "Points: 0"
+	points_label.text = "Points: 0"
 	get_tree().change_scene_to_file("res://scenes_simonsays/game_over.tscn")
 
 func return_background_to_white():
@@ -195,7 +213,29 @@ func display_combo_text():
 
 func add_point():
 	points += 1
-	label.text = "Points: " + str(points)
+	points_label.text = "Points: " + str(points)
+	
+	if points > LeaderboardManager.get_high_score():
+		if highscore_reached == false:
+			play_highscore_effect()
+			await get_tree().create_timer(3.0).timeout
+			finish_highscore_effect()
+			await get_tree().create_timer(1.0).timeout
+
+
+func play_highscore_effect():
+	input_enabled = false
+	if highscore_reached == false:
+		for particle in celebrationParticles:
+			particle.emitting = true
+		highscore_message.visible = true
+		highscore_reached = true
+
+func finish_highscore_effect():
+	for particle in celebrationParticles:
+		particle.emitting = false
+	await get_tree().create_timer(0.5).timeout
+	highscore_message.visible = false
 
 # Red == 0
 func _on_red_button_pressed() -> void:

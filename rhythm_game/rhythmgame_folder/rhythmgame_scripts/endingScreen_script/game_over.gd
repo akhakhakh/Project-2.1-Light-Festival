@@ -4,7 +4,9 @@ extends Control
 func _ready():
 	var score = Global.total_score
 	var score_label = get_node("VBoxContainer/ScoreLabel")
+	var id = Global.player_id
 	score_label.text = "Your score was: " + str(score)
+	Global._update_shared_json(id, score, Global.game)
 
 # Called by your colored buttons or keys
 func _on_button_pressed(index: int) -> void:
