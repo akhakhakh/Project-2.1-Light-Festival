@@ -65,4 +65,11 @@ func _play_button_sound():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		_on_easy_button_pressed()
+		if easy_button.has_focus():
+			_on_easy_button_pressed()
+		elif medium_button.has_focus():
+			_on_medium_button_pressed()
+		elif hard_button.has_focus():
+			_on_hard_button_pressed()
+		elif back_button.has_focus():
+			_on_back_button_pressed()
