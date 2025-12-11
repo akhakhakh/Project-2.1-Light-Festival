@@ -27,6 +27,7 @@ BeatManagerEasyLevel="*res://rhythmgame_folder/rhythmgame_scripts/easy_level_scr
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]

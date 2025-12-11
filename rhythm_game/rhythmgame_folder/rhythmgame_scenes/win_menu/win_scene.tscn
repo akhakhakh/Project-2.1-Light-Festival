@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://6r8d1jplc1tl"]
+[gd_scene load_steps=7 format=3 uid="uid://6r8d1jplc1tl"]
 
 [ext_resource type="Texture2D" uid="uid://bd8hqdafs1qc5" path="res://rhythmgame_folder/rhythmgame_assets/images/black-background.png" id="1_0hjd7"]
 [ext_resource type="AudioStream" uid="uid://cuknwq3u45l1x" path="res://rhythmgame_folder/rhythmgame_assets/music/win_sound.wav" id="1_nyylm"]
+[ext_resource type="Script" uid="uid://vmpb7mns385x" path="res://rhythmgame_folder/rhythmgame_scripts/endingScreen_script/win_script.gd" id="1_srd2f"]
 [ext_resource type="FontFile" uid="uid://cuy0sid5rllod" path="res://rhythmgame_folder/rhythmgame_assets/font/PixelifySans-VariableFont_wght.ttf" id="2_t2k5l"]
 [ext_resource type="Texture2D" uid="uid://bqjbqx5ft4dft" path="res://rhythmgame_folder/rhythmgame_assets/images/8-bits-pixel-art-yellow-smiling-eyes-and-a-broad-happy-face-icon-free-png.png" id="4_srd2f"]
 
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_srd2f")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-1480, -398)

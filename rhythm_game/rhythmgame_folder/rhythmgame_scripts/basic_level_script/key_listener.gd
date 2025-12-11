@@ -24,7 +24,7 @@ const GOOD_SCORE := 50
 const OK_SCORE := 20
 
 # Player’s total score for this lane
-var total_score: int = 0
+#var total_score: int = 0
 
 var _base_color: Color
 var _is_popping: bool = false
@@ -172,8 +172,8 @@ func HandleKeyPress():
 		Signals.ResetCombo.emit()
 
 	# Add earned points to the total score
-	total_score += points
-	print("Score:", total_score, "| Hit:", text, "| Distance:", min_distance)
+	Global.total_score += points
+	print("Score:", Global.total_score, "| Hit:", text, "| Distance:", min_distance)
 
 	# If we successfully hit a note, remove it AND mark it handled so it can't be counted as a miss
 	if is_instance_valid(nearest_key):
@@ -228,7 +228,7 @@ func GameOver():
 		print("BeatManager NOT found")
 	
 	# Save current score to global for display
-	Global.total_score = total_score
+	#Global.total_score = total_score
 
 	# Change to GameOver scene
 	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/endingScreen_scene/game_over.tscn")
