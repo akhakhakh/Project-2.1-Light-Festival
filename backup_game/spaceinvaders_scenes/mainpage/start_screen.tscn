@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dc5bdqweb1m5j" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="2_pcynf"]
 [ext_resource type="Texture2D" uid="uid://dwsbdttracrs7" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="2_su4we"]
 [ext_resource type="Texture2D" uid="uid://do7elebbhby1q" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_iod57"]
-[ext_resource type="AudioStream" uid="uid://5axrwtemkoyn" path="res://spaceinvaders_assets/sounds/background music/startup_music.mp3" id="6_rim3v"]
+[ext_resource type="AudioStream" uid="uid://cycmks3r3hw7h" path="res://spaceinvaders_assets/sounds/background music/background_music.wav" id="6_rim3v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcw74"]
 bg_color = Color(0, 0, 0, 1)
@@ -120,5 +120,6 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_rim3v")
+max_distance = 4096.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Button" to="." method="load_game"]

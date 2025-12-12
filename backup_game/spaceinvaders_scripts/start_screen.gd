@@ -14,6 +14,7 @@ extends CanvasLayer
 var node_array = []
 
 func _ready():
+	background_music.play()
 	node_array.append(invader_1_texture)
 	node_array.append(invader_1_label)
 	node_array.append(invader_2_texture)
@@ -34,6 +35,5 @@ func on_timer_timeout():
 		timer.queue_free()
 
 func load_game():
-	background_music.play()
 	get_tree().change_scene_to_file("res://spaceinvaders_scenes/mainpage/main.tscn")
 	
