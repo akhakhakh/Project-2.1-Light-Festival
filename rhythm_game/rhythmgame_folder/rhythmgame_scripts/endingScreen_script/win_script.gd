@@ -1,4 +1,5 @@
 extends Control
+@onready var id_label: Label = $ID
 
 func _ready():
 	var score = Global.total_score
@@ -6,15 +7,13 @@ func _ready():
 	var id = Global.player_id
 	score_label.text = "Your score was: " + str(score)
 	Global._update_shared_json(id, score, Global.game)
-# Called by your colored buttons or keys
+	id_label.text = id# Called by your colored buttons or keys
 func _on_button_pressed(index: int) -> void:
 	BeatManagerEasyLevel.Reset()
 	BeatManagerMedium.Reset()
 	BeatManagerJingleBells.Reset()
 	Global.reset_game_stats()
 	match index:
-		0:
-			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
 
 		1:
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")

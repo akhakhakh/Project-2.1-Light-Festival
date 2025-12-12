@@ -65,7 +65,7 @@ key_name = "red_button"
 
 [node name="GreenButton" parent="." instance=ExtResource("3_xlayl")]
 modulate = Color(6.8345666e-06, 0.94750494, 0.48401868, 1)
-position = Vector2(-17.792599, 266.83237)
+position = Vector2(70, 270)
 scale = Vector2(0.21024343, 0.22952916)
 texture = ExtResource("4_udews")
 hframes = 1
@@ -75,7 +75,7 @@ key_name = "green_button"
 
 [node name="YellowButton" parent="." instance=ExtResource("3_xlayl")]
 modulate = Color(1, 1, 0.27058825, 1)
-position = Vector2(68.89019, 268.5)
+position = Vector2(-21, 270)
 scale = Vector2(0.21205607, 0.23142858)
 texture = ExtResource("4_udews")
 hframes = 1

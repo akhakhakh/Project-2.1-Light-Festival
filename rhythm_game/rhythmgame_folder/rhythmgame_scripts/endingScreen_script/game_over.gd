@@ -15,9 +15,6 @@ func _on_button_pressed(index: int) -> void:
 	BeatManagerJingleBells.Reset()
 	Global.reset_game_stats()
 	match index:
-		0:
-			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/difficulty_menu.tscn")
-
 		1:
 			get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/rg_menu_scenes/main_page.tscn")
 

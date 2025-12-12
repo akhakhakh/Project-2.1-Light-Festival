@@ -55,27 +55,16 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 200
+alignment = 1
 
 [node name="Instructions" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_t2k5l")
 theme_override_font_sizes/font_size = 24
 text = "Press
-To Try Again"
+To Exit"
 
 [node name="Red" type="Polygon2D" parent="VBoxContainer/HBoxContainer"]
-position = Vector2(-662, -361)
-color = Color(1, 0, 0.019607844, 1)
-polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_t2k5l")
-theme_override_font_sizes/font_size = 24
-text = "Press
-To Exit To Title"
-
-[node name="Red2" type="Polygon2D" parent="VBoxContainer/HBoxContainer"]
-position = Vector2(-321, -365)
-color = Color(0, 0.2901961, 1, 1)
+position = Vector2(-457, -356)
+color = Color(0, 0.28627452, 0.9411765, 1)
 polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)

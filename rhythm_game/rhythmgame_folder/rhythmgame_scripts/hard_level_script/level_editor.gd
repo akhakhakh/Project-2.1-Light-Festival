@@ -64,7 +64,7 @@ func KeyListenerPress(_button_name: String, array_num: int):
 	fk_output_arr[array_num].append(spawn_time)
 	
 # Called when the music finishes playing
-func _on_music_player_finished():
+func _on_music_player_finished(): 
 	print("Jingle Bells finished!")
 	if in_edit_mode:
 		print("Recorded timings: ", fk_output_arr)
