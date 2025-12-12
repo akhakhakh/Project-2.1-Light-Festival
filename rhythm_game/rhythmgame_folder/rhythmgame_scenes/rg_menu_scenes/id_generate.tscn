@@ -52,4 +52,13 @@ offset_right = 735.0
 offset_bottom = 484.0
 theme_override_fonts/font = ExtResource("3_f7trh")
 theme_override_font_sizes/font_size = 32
-text = "Press Red to continue"
+text = "Press        to continue"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+
+[node name="BlueButton" type="Polygon2D" parent="."]
+position = Vector2(290, 222)
+scale = Vector2(0.5735945, 0.64791995)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(406, 344, 385, 343, 368, 353, 365, 368, 369, 379, 380, 388, 396, 389, 410, 384, 417, 374, 417, 362, 412, 350)

@@ -43,7 +43,7 @@ public partial class BeatManagerEasyLevel : Node
 		//Connect to finished signal
 		_musicPlayer.Finished += OnMusicFinished;
 		
-		//load music if not assigned 
+		  //load music if not assigned 
 		if (Music == null)
 		{
 			Music = GD.Load<AudioStream>("res://rhythmgame_folder/rhythmgame_assets/music/WeWishYouAMerryChristmas.wav");

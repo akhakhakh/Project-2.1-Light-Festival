@@ -44,7 +44,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_7yjrp")
 theme_override_font_sizes/font_size = 24
-text = "Press Green to Start Game"
+text = "Press               to Start Game"
 horizontal_alignment = 1
 
 [node name="Back" type="Label" parent="."]
@@ -61,4 +61,9 @@ To go back"
 [node name="Red" type="Polygon2D" parent="."]
 position = Vector2(288, 140)
 color = Color(0.96862745, 0.8156863, 0, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
+
+[node name="Red" type="Polygon2D" parent="Red"]
+position = Vector2(-527, -56)
+color = Color(0, 0.7348627, 0, 1)
 polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)

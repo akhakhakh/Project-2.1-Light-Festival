@@ -222,4 +222,4 @@ offset_top = 604.0
 offset_right = 1137.0
 offset_bottom = 641.0
 theme_override_font_sizes/font_size = 30
-text = "Groen om naar links te gaan, geel om naar rechts te gaan, wit om te drukken."
+text = "Rood om naar links te gaan, blau om naar rechts te gaan, wit om te drukken."

@@ -7,7 +7,7 @@ const in_edit_mode: bool = false
 var current_level_name = "DECK_THE_HALLS"
 
 # Time (in seconds) it takes for a falling key to reach the hit line after spawning
-var fk_fall_time: float = 2  # Faster fall time for 186 BPM
+var fk_fall_time: float = 2.5  # Faster fall time for 186 BPM
 
 # Array to store recorded falling key timings when in edit mode
 var fk_output_arr = [[], [], [], []]

@@ -42,7 +42,7 @@ offset_left = -248.0
 offset_right = 251.0
 offset_bottom = 648.0
 grow_horizontal = 2
-theme_override_constants/separation = 200
+theme_override_constants/separation = 130
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -102,8 +102,8 @@ hue_variation_curve = SubResource("Curve_nyylm")
 
 [node name="ID" type="Label" parent="."]
 layout_mode = 0
-offset_left = 571.0
-offset_top = 256.0
-offset_right = 685.0
-offset_bottom = 301.0
+offset_left = 559.0
+offset_top = 186.0
+offset_right = 673.0
+offset_bottom = 231.0
 theme_override_font_sizes/font_size = 32
