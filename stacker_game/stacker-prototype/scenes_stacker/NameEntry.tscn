@@ -52,7 +52,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_56hoe")
 theme_override_font_sizes/font_size = 24
 text = "
-Press green to start game"
+Press              to start game"
 horizontal_alignment = 1
 
 [node name="ErrorMsgContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -63,6 +63,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_56hoe")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
+
+[node name="Red" type="Polygon2D" parent="VBoxContainer"]
+position = Vector2(-599, -103)
+color = Color(0, 0.62352943, 0, 1)
+polygon = PackedVector2Array(744, 372, 749, 356, 765, 347, 782, 351, 791, 365, 787, 380, 780, 388, 764, 391, 748, 385)
 
 [node name="Back" type="Label" parent="."]
 layout_mode = 0

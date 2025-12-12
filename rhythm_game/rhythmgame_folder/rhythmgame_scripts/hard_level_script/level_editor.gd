@@ -36,8 +36,8 @@ func _ready():
 			bm.connect("SpawnButton", Callable(self, "_on_spawn_button"))
 			
 			#Connect to song finished signal
-			if bm.has_signal("SongFinished"):
-				bm.SongFinished.connect(_on_song_finished)
+			#if bm.has_signal("SongFinished"):
+			#	bm.SongFinished.connect(_on_song_finished)
 				
 			bm.StartMusic()
 			print("BeatManager_JingleBells connected successfully!")
@@ -56,24 +56,6 @@ func _on_spawn_button(button_color: String) -> void:
 	# Emit the signal to create the falling key
 	Signals.CreateFallingKey.emit(button_name)
 	
-#Called when song finishes	
-func _on_song_finished():
-	print("SONG FINISHED!")
-	
-	# Just use Global's values directly!
-	print("\nFinal Results:")
-	print("  Score: ", Global.total_score)
-	print("  Misses: ", Global.miss_count)
-	
-	# Save song name (if you want to display it on results screen)
-	Global.song_name = "Jingle Bells (Glee Version)"
-	
-	# Wait for final notes
-	await get_tree().create_timer(1.5).timeout
-	
-	# Go to results screen
-	get_tree().change_scene_to_file("res://rhythmgame_folder/rhythmgame_scenes/win_menu/win_scene.tscn")
-
 # Records key press time when in EDIT MODE
 func KeyListenerPress(_button_name: String, array_num: int):
 	#print(array_num)
