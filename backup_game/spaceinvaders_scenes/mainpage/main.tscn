@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://x52tm03ns8q"]
+[gd_scene load_steps=14 format=3 uid="uid://x52tm03ns8q"]
 
 [ext_resource type="PackedScene" uid="uid://dtone6hpojcx1" path="res://spaceinvaders_scenes/characters/player.tscn" id="1_5atvj"]
 [ext_resource type="PackedScene" uid="uid://dfn1yx70sdynd" path="res://spaceinvaders_scenes/objects/bullet_catcher.tscn" id="2_rjmfx"]
 [ext_resource type="PackedScene" uid="uid://dn47qdhpsw0s2" path="res://spaceinvaders_scenes/characters/ufo_spawner.tscn" id="3_op00g"]
+[ext_resource type="AudioStream" uid="uid://dsxhk2be1ky86" path="res://spaceinvaders_assets/sounds/sound_effects/explosion.wav" id="3_pok4c"]
 [ext_resource type="PackedScene" uid="uid://mgomvu2yo3u5" path="res://spaceinvaders_scenes/objects/invader_spawner.tscn" id="4_pok4c"]
 [ext_resource type="PackedScene" uid="uid://c8bxce3fgs58i" path="res://spaceinvaders_scenes/characters/bunker.tscn" id="5_422ib"]
 [ext_resource type="Script" uid="uid://b50iyg3b3yeh5" path="res://spaceinvaders_scripts/life_manager.gd" id="6_o6sgd"]
 [ext_resource type="Script" uid="uid://datg5v8owjty" path="res://spaceinvaders_scripts/points_counter.gd" id="7_dmpoh"]
+[ext_resource type="AudioStream" uid="uid://4x34xxgmllku" path="res://spaceinvaders_assets/sounds/sound_effects/invaderkilled.wav" id="7_pok4c"]
 [ext_resource type="PackedScene" uid="uid://belx0qfvh4cii" path="res://spaceinvaders_scenes/mainpage/ui.tscn" id="8_5q44k"]
 [ext_resource type="Texture2D" uid="uid://3setah8cdakk" path="res://spaceinvaders_assets/images/Background/Game-Background.png" id="9_rjmfx"]
 
@@ -25,6 +27,9 @@ texture = ExtResource("9_rjmfx")
 
 [node name="Player" parent="." instance=ExtResource("1_5atvj")]
 position = Vector2(0, 302)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("3_pok4c")
 
 [node name="BulletCatcher" parent="." instance=ExtResource("2_rjmfx")]
 position = Vector2(-581, -326)
@@ -65,6 +70,9 @@ position = Vector2(491, -264)
 
 [node name="InvaderSpawner" parent="." instance=ExtResource("4_pok4c")]
 position = Vector2(0, -189)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="InvaderSpawner"]
+stream = ExtResource("7_pok4c")
 
 [node name="Bunker" parent="." instance=ExtResource("5_422ib")]
 position = Vector2(-365, 204)
