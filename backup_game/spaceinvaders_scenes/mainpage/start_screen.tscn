@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxhb6c2kqw5c7"]
+[gd_scene load_steps=8 format=3 uid="uid://dxhb6c2kqw5c7"]
 
 [ext_resource type="Script" uid="uid://fd1wnisfp3of" path="res://spaceinvaders_scripts/start_screen.gd" id="1_co0ne"]
 [ext_resource type="FontFile" uid="uid://ch103gi2tob72" path="res://spaceinvaders_assets/font/andina.ttf" id="2_3uypn"]
 [ext_resource type="Texture2D" uid="uid://dc5bdqweb1m5j" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="2_pcynf"]
 [ext_resource type="Texture2D" uid="uid://dwsbdttracrs7" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="2_su4we"]
 [ext_resource type="Texture2D" uid="uid://do7elebbhby1q" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_iod57"]
+[ext_resource type="AudioStream" uid="uid://5axrwtemkoyn" path="res://spaceinvaders_assets/sounds/background music/startup_music.mp3" id="6_rim3v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcw74"]
 bg_color = Color(0, 0, 0, 1)
@@ -116,5 +117,8 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rim3v")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Button" to="." method="load_game"]
