@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cso33ws5bv6ns"]
+[gd_scene load_steps=18 format=3 uid="uid://cso33ws5bv6ns"]
 
 [ext_resource type="Script" uid="uid://dc0a4tec1g84l" path="res://spaceinvaders_scripts/invader.gd" id="1_dbv3m"]
-[ext_resource type="Texture2D" uid="uid://dy2h5dklc8h7p" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="1_hx30d"]
-[ext_resource type="Texture2D" uid="uid://b06nkmo0fwryx" path="res://spaceinvaders_assets/images/Invaders/Invader1-2.png" id="3_o8c5u"]
-[ext_resource type="Texture2D" uid="uid://bn227mp3yqjlo" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_tt7ls"]
-[ext_resource type="Texture2D" uid="uid://gf81hnr41a4c" path="res://spaceinvaders_assets/images/Invaders/Invader2-2.png" id="5_e6507"]
-[ext_resource type="Texture2D" uid="uid://m4ub6oll4ikv" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="6_cbirj"]
-[ext_resource type="Texture2D" uid="uid://bfg1tahjcdwb4" path="res://spaceinvaders_assets/images/Invaders/Invader3-2.png" id="7_715ru"]
-[ext_resource type="Texture2D" uid="uid://ctu8snp11c12t" path="res://spaceinvaders_assets/images/Invaders/Invader-explosion-1.png" id="8_yekrj"]
-[ext_resource type="Texture2D" uid="uid://dcoy6mphlfi8i" path="res://spaceinvaders_assets/images/Invaders/Invader-explosion-2.png" id="9_5q3hr"]
+[ext_resource type="Texture2D" uid="uid://dc5bdqweb1m5j" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="1_hx30d"]
+[ext_resource type="Texture2D" uid="uid://dv6p33gh5q04h" path="res://spaceinvaders_assets/images/Invaders/Invader1-2.png" id="3_o8c5u"]
+[ext_resource type="Texture2D" uid="uid://do7elebbhby1q" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_tt7ls"]
+[ext_resource type="Texture2D" uid="uid://bxyrfvw6gsouh" path="res://spaceinvaders_assets/images/Invaders/Invader2-2.png" id="5_e6507"]
+[ext_resource type="Texture2D" uid="uid://dwsbdttracrs7" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="6_cbirj"]
+[ext_resource type="Texture2D" uid="uid://bxp5bt6t11ixq" path="res://spaceinvaders_assets/images/Invaders/Invader3-2.png" id="7_715ru"]
+[ext_resource type="Texture2D" uid="uid://dovgyg3vqjaow" path="res://spaceinvaders_assets/images/Invaders/Invader-explosion-1.png" id="8_yekrj"]
+[ext_resource type="Texture2D" uid="uid://dnk3a1ek1m5a0" path="res://spaceinvaders_assets/images/Invaders/Invader-explosion-2.png" id="9_5q3hr"]
+[ext_resource type="AudioStream" uid="uid://4x34xxgmllku" path="res://spaceinvaders_assets/sounds/sound_effects/invaderkilled.wav" id="10_shd5c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d4qx3"]
 radius = 4.0
@@ -92,11 +93,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wg7en"]
 _data = {
-"RESET": SubResource("Animation_6du8x"),
-"destroy": SubResource("Animation_r8k6w"),
-"move_1": SubResource("Animation_u0v2k"),
-"move_2": SubResource("Animation_kf8jt"),
-"move_3": SubResource("Animation_srt4y")
+&"RESET": SubResource("Animation_6du8x"),
+&"destroy": SubResource("Animation_r8k6w"),
+&"move_1": SubResource("Animation_u0v2k"),
+&"move_2": SubResource("Animation_kf8jt"),
+&"move_3": SubResource("Animation_srt4y")
 }
 
 [node name="Invader" type="Area2D"]
@@ -113,10 +114,13 @@ texture = ExtResource("1_hx30d")
 shape = SubResource("CircleShape2D_d4qx3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-method_call_mode = 1
+callback_mode_method = 1
 libraries = {
-"": SubResource("AnimationLibrary_wg7en")
+&"": SubResource("AnimationLibrary_wg7en")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_shd5c")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
