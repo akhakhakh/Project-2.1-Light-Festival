@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://fd1wnisfp3of" path="res://spaceinvaders_scripts/start_screen.gd" id="1_co0ne"]
 [ext_resource type="FontFile" uid="uid://ch103gi2tob72" path="res://spaceinvaders_assets/font/andina.ttf" id="2_3uypn"]
-[ext_resource type="Texture2D" uid="uid://dy2h5dklc8h7p" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="2_pcynf"]
-[ext_resource type="Texture2D" uid="uid://m4ub6oll4ikv" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="2_su4we"]
-[ext_resource type="Texture2D" uid="uid://bn227mp3yqjlo" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_iod57"]
+[ext_resource type="Texture2D" uid="uid://dc5bdqweb1m5j" path="res://spaceinvaders_assets/images/Invaders/Invader1-1.png" id="2_pcynf"]
+[ext_resource type="Texture2D" uid="uid://dwsbdttracrs7" path="res://spaceinvaders_assets/images/Invaders/Invader3-1.png" id="2_su4we"]
+[ext_resource type="Texture2D" uid="uid://do7elebbhby1q" path="res://spaceinvaders_assets/images/Invaders/Invader2-1.png" id="4_iod57"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcw74"]
 bg_color = Color(0, 0, 0, 1)
@@ -18,10 +18,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -237.0
-offset_top = -82.0
-offset_right = 268.0
-offset_bottom = 206.0
+offset_left = -245.0
+offset_top = -14.0
+offset_right = 260.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -101,10 +101,10 @@ text = "PLAY SPACE INVADERS"
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -252.386
-offset_top = 20.0
-offset_right = 252.614
-offset_bottom = 43.0
+offset_left = -315.0
+offset_top = 80.0
+offset_right = 298.0
+offset_bottom = 299.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_3uypn")
