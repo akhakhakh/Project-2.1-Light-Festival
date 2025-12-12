@@ -6,6 +6,7 @@ signal on_invader_destroyed(points: int)
 var config: Resource
 @onready var sprite = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var death_sound = $AudioStreamPlayer2D
 
 func _ready():
 	sprite.texture = config.sprite_1
@@ -14,6 +15,7 @@ func _ready():
 
 func _on_area_entered(area):
 	if area is Laser:
+		death_sound.play()
 		animation_player.play("destroy")
 		area.queue_free()
 
