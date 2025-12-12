@@ -23,6 +23,7 @@ var movement_direction = 1
 
 @onready var movement_timer: Timer = $MovementTimer
 @onready var shot_timer: Timer = $ShotTimer
+@onready var invader_deathsound = $AudioStreamPlayer2D
 var invader_shot_scene = preload("res://spaceinvaders_scenes/objects/invader_shot.tscn")
 
 var invader_total_count = ROWS * COLUMNS
@@ -98,6 +99,7 @@ func _on_bottom_wall_area_entered(area):
 	game_lost.emit()
 
 func on_invader_destroyed(points: int):
+	invader_deathsound.play()
 	invader_destroyed.emit(points)
 	invader_destroyed_count += 1
 	if invader_destroyed_count == invader_total_count:
