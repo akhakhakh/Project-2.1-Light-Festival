@@ -30,8 +30,8 @@ func determine_speed_from_active_beat_manager():
 		var bm = get_node("/root/BeatManagerJingleBells")
 		# Check if THIS BeatManager is actually running
 		if is_beat_manager_active(bm):
-			fall_speed = 4.0
-			print("Active: Jingle Bells BeatManager - speed: 4.0")
+			fall_speed = 3.5
+			print("Active: Jingle Bells BeatManager - speed: 3.5")
 			return
 	
 	# Check Medium BeatManager
@@ -46,7 +46,7 @@ func determine_speed_from_active_beat_manager():
 	if has_node("/root/BeatManagerEasyLevel"):
 		var bm = get_node("/root/BeatManagerEasyLevel")
 		if is_beat_manager_active(bm):
-			fall_speed = 1.8
+			fall_speed = 1.5
 			print("Active: Easy BeatManager - speed: 2")
 			return
 	
