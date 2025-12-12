@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var invader_2_label = %Invader2Label
 @onready var invader_3_texture = %Invader3Texture
 @onready var invader_3_label = %Invader3Label
+@onready var background_music = $AudioStreamPlayer2D
 
 @onready var timer = $Timer
 
@@ -31,9 +32,8 @@ func on_timer_timeout():
 	else:
 		timer.stop()
 		timer.queue_free()
-	
-
 
 func load_game():
+	background_music.play()
 	get_tree().change_scene_to_file("res://spaceinvaders_scenes/mainpage/main.tscn")
 	
