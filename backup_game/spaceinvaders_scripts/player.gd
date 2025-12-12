@@ -8,7 +8,7 @@ signal player_destroyed
 var direction = Vector2.ZERO
 @onready var collision_rect: CollisionShape2D = $CollisionShape2D
 @onready var  animation_player = $AnimationPlayer
-@onready var death_sound = $AudioStreamPlayer2D
+@onready var death_sound = $AudioStreamPlayer2
 
 var bounding_size_x 
 var start_bound
@@ -46,7 +46,6 @@ func on_player_destroyed():
 	speed = 0
 	death_sound.play()
 	animation_player.play("destroy")
-	
 
 
 func _on_animation_player_animation_finished(anim_name):
